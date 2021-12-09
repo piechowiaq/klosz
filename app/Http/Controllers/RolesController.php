@@ -24,11 +24,11 @@ class RolesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render('Roles/Create');
     }
 
     /**
