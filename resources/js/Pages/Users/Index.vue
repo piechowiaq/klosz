@@ -5,11 +5,16 @@
                 Users
             </h2>
         </template>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <users-index />
+                    <div>
+                        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+                                <ul>
+                                    <li class="mt-2 mb-2" v-for="user of users" v-text="user.name" > </li>
+                                </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -19,12 +24,16 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import UsersIndex from '@/Jetstream/UsersIndex.vue'
+
+
 
     export default defineComponent({
         components: {
             AppLayout,
-            UsersIndex,
         },
+        props:{
+            users: Object,
+        }
+
     })
 </script>
