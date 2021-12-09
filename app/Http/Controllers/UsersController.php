@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Domains\User\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Users/Index', [
             'users' => User::all()

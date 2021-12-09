@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Domains\User\Models\Role;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
-class RoleController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Roles/Index', [
+            'users' => Role::all()
+        ]);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,10 +32,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-//    Route::get ( '/users', function () {
-//        return Inertia::render('Users');
-//    })->name('users');
-
-    Route::get('/users', [UsersController::class, 'index'])->name('users');;
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+    Route::get('/roles', [RolesController::class, 'index'])->name('roles');
 
 });
