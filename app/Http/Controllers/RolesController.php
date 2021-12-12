@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Domains\User\Models\Role;
+use App\Domains\User\Requests\StoreRoleRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -17,7 +22,7 @@ class RolesController extends Controller
     public function index(): Response
     {
         return Inertia::render('Roles/Index', [
-            'users' => Role::all()
+            'roles' => Role::all()
         ]);
     }
 
@@ -34,13 +39,16 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreRoleRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request): RedirectResponse
     {
-        //
+        Role::create(['name' => $request->get('name')]);
+
+        return Redirect::route('roles.index');
     }
+
 
     /**
      * Display the specified resource.

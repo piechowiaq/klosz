@@ -32,8 +32,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/users', [UsersController::class, 'index'])->name('users');
-    Route::get('/roles', [RolesController::class, 'index'])->name('roles');
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::get('/roles', [RolesController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RolesController::class, 'create'])->name('roles.create');
+    Route::post('/roles', [RolesController::class, 'store'])->name('roles.store');
 
 });
