@@ -3,9 +3,9 @@
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Roles
+                    Permissions
                 </h2>
-                <Link :href="route('roles.create')">
+                <Link :href="route('permissions.create')">
                     <h2 class="inline-flex items-center px-3 mr-6 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                         Create
                     </h2>
@@ -17,7 +17,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500">
                         <ul>
-                            <li v-for="role of roles" v-text="role.name" ></li>
+                            <li v-for="permission of permissions" v-text="permission.name" ></li>
                         </ul>
                     </div>
                 </div>
@@ -32,13 +32,13 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import {Link} from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
-    name: 'Roles/Index',
+    name: 'Permissions/Index',
     components: {
         AppLayout,
         Link
     },
     props:{
-        roles: Object,
+        permissions: Object,
     }
 })
 </script>

@@ -3,8 +3,8 @@
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Create New Role
-               </h2>
+                    Create New Permission
+                </h2>
             </div>
         </template>
 
@@ -13,13 +13,13 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div>
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                            <form @submit.prevent="form.post('/roles')" class="max-w-md mx-auto">
+                            <form @submit.prevent="form.post('/permissions')" class="max-w-md mx-auto">
                                 <div>
-                                    <jet-label for="name" value="Name a role" />
+                                    <jet-label for="name" value="Name a permission" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full"  required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
-                                    <jet-button type="submit" value="Create">Create
-                                    </jet-button>
+                                <jet-button type="submit" value="Create">Create
+                                </jet-button>
                             </form>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ import JetInput from '@/Jetstream/Input.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
-    name: 'Roles/Create',
+    name: 'Permissions/Create',
     components: {
         AppLayout,
         JetButton,
@@ -49,12 +49,9 @@ export default defineComponent({
     setup () {
         const form = useForm({
             name: null,
-
         })
-
         return { form }
     },
-
 });
 
 </script>

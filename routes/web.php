@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PermissionsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,8 +34,13 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     })->name('dashboard');
 
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+
     Route::get('/roles', [RolesController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RolesController::class, 'create'])->name('roles.create');
     Route::post('/roles', [RolesController::class, 'store'])->name('roles.store');
+
+    Route::get('/permissions', [PermissionsController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions/create', [PermissionsController::class, 'create'])->name('permissions.create');
+    Route::post('/permissions', [PermissionsController::class, 'store'])->name('permissions.store');
 
 });

@@ -24,7 +24,7 @@ import { defineComponent } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 export default defineComponent({
-    name: 'Users',
+    name: 'Users/Index',
     components: {
         AppLayout,
     },
