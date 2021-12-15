@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -33,7 +34,9 @@ class RolesController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Roles/Create');
+        return Inertia::render('Roles/Create', [
+            'initialPermissions' => Permission::all()
+        ]);
     }
 
     /**
@@ -44,7 +47,9 @@ class RolesController extends Controller
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
-        Role::create(['name' => $request->get('name')]);
+dd($request->all());
+        $role = Role::create(['name' => $request->get('name')]);
+        $role->syncPermissions($request->get('permissions'));
 
         return Redirect::route('roles.index');
     }

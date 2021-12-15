@@ -7,19 +7,28 @@
                </h2>
             </div>
         </template>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div>
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                            <form @submit.prevent="form.post('/roles')" class="max-w-md mx-auto">
+
+                            <form @submit.prevent="store" class="max-w-md mx-auto">
                                 <div>
                                     <jet-label for="name" value="Name a role" />
-                                    <jet-input id="name" type="text" class="mt-1 block w-full"  required autofocus autocomplete="name" v-model="form.name" />
+                                    <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
-                                    <jet-button type="submit" value="Create">Create
-                                    </jet-button>
+
+                                <div id="v-model-multiple-checkboxes" >
+                                    <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
+                                    <ul>
+                                        <li v-for="permission in form.permissions">
+                                            <jet-input type="checkbox" :value="permission.id" :id="permission.id" v-model="permission"/>
+                                            <jet-label class="ml-2 inline" :for="permission.id">{{permission.name}}</jet-label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <jet-button type="submit" value="Create" :disabled="form.processing">Create</jet-button>
                             </form>
                         </div>
                     </div>
@@ -38,6 +47,7 @@ import JetLabel from '@/Jetstream/Label.vue'
 import JetInput from '@/Jetstream/Input.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 
+
 export default defineComponent({
     name: 'Roles/Create',
     components: {
@@ -49,11 +59,19 @@ export default defineComponent({
     setup () {
         const form = useForm({
             name: null,
-
+            permissions: this.initialPermissions
         })
-
         return { form }
     },
+    props:{
+        initialPermissions: Array
+    },
+    methods: {
+        store() {
+            this.form.post('/roles')
+        },
+    },
+
 
 });
 
