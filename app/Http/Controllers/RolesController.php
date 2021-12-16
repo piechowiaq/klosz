@@ -35,7 +35,7 @@ class RolesController extends Controller
     public function create(): Response
     {
         return Inertia::render('Roles/Create', [
-            'initialPermissions' => Permission::all()
+            'permissions' => Permission::all()
         ]);
     }
 
