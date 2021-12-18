@@ -23,7 +23,7 @@
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
                                     <ul>
                                         <li v-for="(permission, id) in permissions" :key="permission.id">
-                                            <jet-input type="checkbox"  :id="permission.id" v-model="form.permissions[permission.id]"/>
+                                            <jet-input type="checkbox"  :id="permission.id" v-model="form.permissionIds[permission.id]"/>
                                             <jet-label class="ml-2 inline" :for="permission.id">{{permission.name}}</jet-label>
                                         </li>
                                     </ul>
@@ -59,12 +59,12 @@ export default defineComponent({
     setup () {
         const form = useForm({
             name: null,
-            permissions: []
+            permissionIds: []
         })
         return { form }
     },
     props:{
-        permissions: Array
+        permissions: Object
     },
     methods: {
         store() {

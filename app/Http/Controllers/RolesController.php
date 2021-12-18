@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domains\User\Requests\StoreRoleRequest;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +14,9 @@ use Inertia\Response;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+/**
+ * @property Permission[]|Collection
+ */
 class RolesController extends Controller
 {
     /**
@@ -47,9 +51,24 @@ class RolesController extends Controller
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
-dd($request->all());
+        /**
+         * @var Role $role
+         */
         $role = Role::create(['name' => $request->get('name')]);
-        $role->syncPermissions($request->get('permissions'));
+
+        $permissionIds = $request->get('permissionIds');
+
+        $permissions = new Collection();
+
+        if(is_array($permissionIds)){
+            foreach ($permissionIds as $permission=>$permissionId){
+                if ($permissionId == 'on'){
+                    $permissions->add($permission);
+                }
+            }
+        }
+
+        $role->syncPermissions($permissions);
 
         return Redirect::route('roles.index');
     }
@@ -92,11 +111,14 @@ dd($request->all());
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $request
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($request): RedirectResponse
     {
-        //
+       Role::findById((int)$request)->delete();
+
+
+        return Redirect::route('roles.index');
     }
 }

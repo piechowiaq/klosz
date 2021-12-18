@@ -15,10 +15,13 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500">
-                        <ul>
-                            <li v-for="role of roles" v-text="role.name" ></li>
-                        </ul>
+                    <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500 justify-between">
+
+                            <div v-for="role of roles" class="flex justify-between">
+                               <div v-text="role.name"></div>
+                                <jet-button value="Delete" @click="destroy(role.id)">Delete</jet-button>
+                            </div>
+
                     </div>
                 </div>
             </div>
@@ -29,16 +32,28 @@
 <script>
 import { defineComponent } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
+import JetButton from '@/Jetstream/Button.vue'
 import {Link} from "@inertiajs/inertia-vue3";
+
+
 
 export default defineComponent({
     name: 'Roles/Index',
+
     components: {
         AppLayout,
+        JetButton,
         Link
     },
     props:{
         roles: Object,
+    },
+    methods:{
+        destroy(roleId) {
+           console.log(roleId)
+                this.$inertia.delete(`/roles/${roleId}`, roleId)
+
+        },
     }
 })
 </script>
