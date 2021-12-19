@@ -111,7 +111,7 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $request
+     * @param Role $role
      * @return RedirectResponse
      */
     public function destroy($request): RedirectResponse

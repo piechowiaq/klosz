@@ -33,8 +33,6 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import JetButton from '@/Jetstream/Button.vue'
 import {Link} from "@inertiajs/inertia-vue3";
 
-
-
 export default defineComponent({
     name: 'Roles/Index',
 
@@ -48,8 +46,9 @@ export default defineComponent({
     },
     methods:{
         destroy(role) {
-                this.$inertia.delete(this.route('roles.destroy', role))
+            this.$inertia.delete(this.route('roles.destroy', role))
         },
     }
+
 })
 </script>
