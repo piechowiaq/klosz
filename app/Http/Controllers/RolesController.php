@@ -89,11 +89,20 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit($id)
+    public function edit(int $id): Response
     {
-        //
+        /**
+         * @var Role $role
+         */
+        $role = Role::findById($id);
+        $permissions = $role->getAllPermissions();
+
+        return Inertia::render('Roles/Edit', [
+            'role' => $role,
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -111,12 +120,12 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Role $role
+     * @param int $id
      * @return RedirectResponse
      */
-    public function destroy($request): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
-        Role::findById((int)$request)->delete();
+        Role::findById($id)->delete();
 
         return Redirect::route('roles.index');
     }

@@ -35,10 +35,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
-    Route::get('/roles', [RolesController::class, 'index'])->name('roles.index');
-    Route::get('/roles/create', [RolesController::class, 'create'])->name('roles.create');
-    Route::post('/roles', [RolesController::class, 'store'])->name('roles.store');
-    Route::delete('/roles/{id}', [RolesController::class, 'destroy'])->name('roles.destroy');
+    Route::resource('roles', RolesController::class);
 
     Route::get('/permissions', [PermissionsController::class, 'index'])->name('permissions.index');
     Route::get('/permissions/create', [PermissionsController::class, 'create'])->name('permissions.create');

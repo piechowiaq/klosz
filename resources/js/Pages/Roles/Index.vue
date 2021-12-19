@@ -18,6 +18,7 @@
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500 justify-between">
                             <div v-for="role of roles" class="flex justify-between">
                                <div v-text="role.name"></div>
+                                <Link value="Edit" :href="route('roles.edit', role)">Edit</Link>
                                 <jet-button value="Delete" @click="destroy(role)">Delete</jet-button>
                             </div>
                     </div>

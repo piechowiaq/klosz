@@ -3,8 +3,8 @@
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Create New Role
-               </h2>
+                    Update Role
+                </h2>
             </div>
         </template>
         <div class="py-12">
@@ -13,7 +13,7 @@
                     <div>
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                            <form @submit.prevent="store" class="max-w-md mx-auto">
+                            <form @submit.prevent="update" class="max-w-md mx-auto">
                                 <div>
                                     <jet-label for="name" value="Name a role" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
@@ -23,7 +23,7 @@
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
                                     <ul>
                                         <li v-for="(permission, id) in permissions" :key="permission.id">
-                                            <jet-input type="checkbox"  :id="permission.id" v-model="form.permissionIds[permission.id]"/>
+                                            <jet-input type="checkbox"  :id="permission.id" />
                                             <jet-label class="ml-2 inline" :for="permission.id">{{permission.name}}</jet-label>
                                         </li>
                                     </ul>
@@ -45,30 +45,31 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import JetButton from '@/Jetstream/Button.vue'
 import JetLabel from '@/Jetstream/Label.vue'
 import JetInput from '@/Jetstream/Input.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
 
 
 export default defineComponent({
-    name: 'Roles/Create',
+    name: 'Roles/Edit',
     components: {
         AppLayout,
         JetButton,
         JetLabel,
         JetInput,
     },
-    setup () {
-        const form = useForm({
-            name: null,
-            permissionIds: []
-        })
-        return { form }
-    },
     props:{
-        permissions: Object
+        role: Object,
+        permissions: Array,
+    },
+    data() {
+        return {
+            form: this.$inertia.form({
+                name: this.role.name,
+                permissions: this.permissions
+            }),
+        }
     },
     methods: {
-        store() {
-            this.form.post(this.route('roles.index'))
+        update() {
+            this.form.put(this.route('roles.destroy', this.role))
         },
     },
 
