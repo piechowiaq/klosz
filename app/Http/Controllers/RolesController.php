@@ -116,8 +116,7 @@ class RolesController extends Controller
      */
     public function destroy($request): RedirectResponse
     {
-       Role::findById((int)$request)->delete();
-
+        Role::findById((int)$request)->delete();
 
         return Redirect::route('roles.index');
     }

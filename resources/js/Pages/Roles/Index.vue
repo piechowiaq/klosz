@@ -16,12 +16,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500 justify-between">
-
                             <div v-for="role of roles" class="flex justify-between">
                                <div v-text="role.name"></div>
-                                <jet-button value="Delete" @click="destroy(role.id)">Delete</jet-button>
+                                <jet-button value="Delete" @click="destroy(role)">Delete</jet-button>
                             </div>
-
                     </div>
                 </div>
             </div>
@@ -49,10 +47,8 @@ export default defineComponent({
         roles: Object,
     },
     methods:{
-        destroy(roleId) {
-           console.log(roleId)
-                this.$inertia.delete(`/roles/${roleId}`, roleId)
-
+        destroy(role) {
+                this.$inertia.delete(this.route('roles.destroy', role))
         },
     }
 })

@@ -21271,9 +21271,8 @@ __webpack_require__.r(__webpack_exports__);
     roles: Object
   },
   methods: {
-    destroy: function destroy(roleId) {
-      console.log(roleId);
-      this.$inertia["delete"]("/roles/".concat(roleId), roleId);
+    destroy: function destroy(role) {
+      this.$inertia["delete"](this.route('roles.destroy', role));
     }
   }
 }));
@@ -26147,7 +26146,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
           value: "Delete",
           onClick: function onClick($event) {
-            return _ctx.destroy(role.id);
+            return _ctx.destroy(role);
           }
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
