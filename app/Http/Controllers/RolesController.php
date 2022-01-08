@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domains\User\Requests\StoreRoleRequest;
+use App\Domains\User\Requests\UpdateRoleRequest;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class RolesController extends Controller
     public function create(): Response
     {
         return Inertia::render('Roles/Create', [
-            'permissions' => Permission::all()
+            'permissions' => Permission::all()->toArray()
         ]);
     }
 
@@ -56,19 +57,7 @@ class RolesController extends Controller
          */
         $role = Role::create(['name' => $request->get('name')]);
 
-        $permissionIds = $request->get('permissionIds');
-
-        $permissions = new Collection();
-
-        if(is_array($permissionIds)){
-            foreach ($permissionIds as $permission=>$permissionId){
-                if ($permissionId == 'on'){
-                    $permissions->add($permission);
-                }
-            }
-        }
-
-        $role->syncPermissions($permissions);
+        $role->syncPermissions($request->get('permissionIds'));
 
         return Redirect::route('roles.index');
     }
@@ -97,24 +86,34 @@ class RolesController extends Controller
          * @var Role $role
          */
         $role = Role::findById($id);
-        $permissions = $role->getAllPermissions();
+
+        $permissions = Permission::all()->toArray();
+
+        $rolePermissionIds = $role->getAllPermissions()->pluck('id')->toArray();
 
         return Inertia::render('Roles/Edit', [
             'role' => $role,
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'rolePermissionIds' => $rolePermissionIds
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateRoleRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, int $id): RedirectResponse
     {
-        //
+        $role = Role::findById($id);
+        $role->name = $request->get('name');
+        $role->save();
+
+        $role->syncPermissions($request->get('permissionIds'));
+
+        return Redirect::route('roles.index');
     }
 
     /**

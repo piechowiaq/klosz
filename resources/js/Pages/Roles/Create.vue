@@ -18,15 +18,13 @@
                                     <jet-label for="name" value="Name a role" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
-
                                 <div id="v-model-multiple-checkboxes" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                    <ul>
-                                        <li v-for="(permission, id) in permissions" :key="permission.id">
-                                            <jet-input type="checkbox"  :id="permission.id" v-model="form.permissionIds[permission.id]"/>
-                                            <jet-label class="ml-2 inline" :for="permission.id">{{permission.name}}</jet-label>
-                                        </li>
-                                    </ul>
+                                        <select v-model="form.permissionIds" multiple class="form-multiselect block w-full mt-1">
+                                            <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
+                                                {{ permission.name }}
+                                            </option>
+                                        </select>
                                 </div>
                                 <jet-button type="submit" value="Create" :disabled="form.processing">Create</jet-button>
                             </form>
@@ -35,7 +33,6 @@
                 </div>
             </div>
         </div>
-
     </app-layout>
 </template>
 
@@ -64,15 +61,13 @@ export default defineComponent({
         return { form }
     },
     props:{
-        permissions: Object
+        permissions: Array
     },
     methods: {
         store() {
             this.form.post(this.route('roles.index'))
         },
     },
-
-
 });
 
 </script>

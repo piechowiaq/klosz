@@ -19,16 +19,16 @@
                                     <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
 
-                                <div id="v-model-multiple-checkboxes" >
+                                <div id="v-model-multiple-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                    <ul>
-                                        <li v-for="(permission, id) in permissions" :key="permission.id">
-                                            <jet-input type="checkbox"  :id="permission.id" />
-                                            <jet-label class="ml-2 inline" :for="permission.id">{{permission.name}}</jet-label>
-                                        </li>
-                                    </ul>
+                                    <select v-model="form.permissionIds" multiple class="form-multiselect block w-full mt-1">
+                                        <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
+                                            {{ permission.name }}
+                                        </option>
+                                    </select>
                                 </div>
-                                <jet-button type="submit" value="Create" :disabled="form.processing">Create</jet-button>
+
+                                <jet-button type="submit" value="Update" :disabled="form.processing">Update</jet-button>
                             </form>
                         </div>
                     </div>
@@ -57,23 +57,23 @@ export default defineComponent({
     },
     props:{
         role: Object,
-        permissions: Array,
+        permissions: Object,
+        rolePermissionIds: Array,
     },
+
     data() {
         return {
             form: this.$inertia.form({
                 name: this.role.name,
-                permissions: this.permissions
+                permissionIds: this.rolePermissionIds
             }),
         }
     },
     methods: {
         update() {
-            this.form.put(this.route('roles.destroy', this.role))
+            this.form.put(`/roles/${this.role.id}`)
         },
     },
-
-
 });
 
 </script>
