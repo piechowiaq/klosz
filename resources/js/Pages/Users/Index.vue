@@ -1,9 +1,17 @@
 <template>
     <app-layout title="Users">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Users
-            </h2>
+            <div class="flex justify-between">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    Users
+                </h2>
+                <Link :href="route('permissions.create')">
+                    <h2 class="inline-flex items-center px-3 mr-6 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                        Create
+                    </h2>
+                </Link>
+            </div>
+
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -22,11 +30,13 @@
 <script>
 import { defineComponent } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
+import {Link} from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
     name: 'Users/Index',
     components: {
         AppLayout,
+        Link
     },
     props: {
         users: Object

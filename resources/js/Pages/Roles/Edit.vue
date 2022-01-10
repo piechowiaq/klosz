@@ -21,7 +21,7 @@
 
                                 <div id="v-model-multiple-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                    <select v-model="form.permissionIds" multiple class="form-multiselect block w-full mt-1">
+                                    <select v-model="form.permissionIds" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length" >
                                         <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
                                             {{ permission.name }}
                                         </option>
@@ -45,6 +45,8 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import JetButton from '@/Jetstream/Button.vue'
 import JetLabel from '@/Jetstream/Label.vue'
 import JetInput from '@/Jetstream/Input.vue'
+import { useRemember } from '@inertiajs/inertia-vue3'
+import { Inertia } from '@inertiajs/inertia'
 
 
 export default defineComponent({
@@ -61,19 +63,35 @@ export default defineComponent({
         rolePermissionIds: Array,
     },
 
-    data() {
-        return {
-            form: this.$inertia.form({
-                name: this.role.name,
-                permissionIds: this.rolePermissionIds
-            }),
-        }
-    },
-    methods: {
-        update() {
-            this.form.put(`/roles/${this.role.id}`)
+
+        setup({ role, rolePermissionIds }) {
+            const form = useRemember(reactive({
+                name: role.name,
+                permissionIds: rolePermissionIds
+            }))
+            function update() {
+                Inertia.put(this.route('roles.update', this.role.id), form)
+            }
+
+            return { form, update }
+
+
         },
-    },
+
+    // remember: 'form',
+    // data() {
+    //     return {
+    //         form: this.$inertia.form({
+    //             name: this.role.name,
+    //             permissionIds: this.rolePermissionIds
+    //         }),
+    //     }
+    // },
+    // methods: {
+    //     update() {
+    //         this.form.put(this.route('roles.update', this.role.id))
+    //     },
+    // },
 });
 
 </script>

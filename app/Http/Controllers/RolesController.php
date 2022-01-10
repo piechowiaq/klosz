@@ -8,7 +8,6 @@ use App\Domains\User\Requests\StoreRoleRequest;
 use App\Domains\User\Requests\UpdateRoleRequest;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -55,6 +54,7 @@ class RolesController extends Controller
         /**
          * @var Role $role
          */
+
         $role = Role::create(['name' => $request->get('name')]);
 
         $role->syncPermissions($request->get('permissionIds'));
@@ -102,12 +102,11 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateRoleRequest $request
-     * @param int $id
+     * @param Role $role
      * @return RedirectResponse
      */
-    public function update(UpdateRoleRequest $request, int $id): RedirectResponse
+    public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        $role = Role::findById($id);
         $role->name = $request->get('name');
         $role->save();
 
@@ -119,12 +118,12 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Role $role
      * @return RedirectResponse
      */
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Role $role): RedirectResponse
     {
-        Role::findById($id)->delete();
+        $role->delete();
 
         return Redirect::route('roles.index');
     }
