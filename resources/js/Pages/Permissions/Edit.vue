@@ -3,7 +3,7 @@
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Update Role
+                    Update Permission
                 </h2>
             </div>
         </template>
@@ -15,19 +15,10 @@
 
                             <form @submit.prevent="update" class="max-w-md mx-auto">
                                 <div>
-                                    <jet-label for="name" value="Name a role" />
+                                    <jet-label for="name" value="Name a permission" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
                                 <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
-                                <div id="v-model-multiple-select" >
-                                    <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                    <select v-model="form.permissionIds" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length" >
-                                        <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
-                                            {{ permission.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div v-if="errors.permissionIds" class="mb-2 text-orange-500">{{ errors.permissionIds }}</div>
                                 <jet-button type="submit" value="Update" :disabled="form.processing">Update</jet-button>
                             </form>
                         </div>
@@ -50,7 +41,7 @@ import { Inertia } from '@inertiajs/inertia'
 
 
 export default defineComponent({
-    name: 'Roles/Edit',
+    name: 'Permissions/Edit',
     components: {
         AppLayout,
         JetButton,
@@ -58,19 +49,15 @@ export default defineComponent({
         JetInput,
     },
     props:{
-        role: Object,
-        permissions: Object,
-        rolePermissionIds: Array,
+        permission: Object,
         errors: Object
     },
-
-        setup({ role, rolePermissionIds }) {
+        setup({ permission }) {
             const form = useRemember(reactive({
-                name: role.name,
-                permissionIds: rolePermissionIds
+                name: permission.name,
             }))
             function update() {
-                Inertia.put(this.route('roles.update', this.role.id), form)
+                Inertia.put(this.route('permissions.update', this.permission.id), form)
             }
 
             return { form, update }

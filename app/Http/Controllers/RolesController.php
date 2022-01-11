@@ -51,11 +51,9 @@ class RolesController extends Controller
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
-        /**
-         * @var Role $role
-         */
-
-        $role = Role::create(['name' => $request->get('name')]);
+        $role = new Role();
+        $role->name = $request->get('name');
+        $role->save();
 
         $role->syncPermissions($request->get('permissionIds'));
 
@@ -77,16 +75,11 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Role $role
      * @return Response
      */
-    public function edit(int $id): Response
+    public function edit(Role $role): Response
     {
-        /**
-         * @var Role $role
-         */
-        $role = Role::findById($id);
-
         $permissions = Permission::all()->toArray();
 
         $rolePermissionIds = $role->getAllPermissions()->pluck('id')->toArray();
@@ -108,6 +101,7 @@ class RolesController extends Controller
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
         $role->name = $request->get('name');
+
         $role->save();
 
         $role->syncPermissions($request->get('permissionIds'));

@@ -17,6 +17,7 @@
                                     <jet-label for="name" value="Name a role" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
+                                <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
                                 <div id="v-model-multiple-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
                                         <select v-model="form.permissionIds" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length">
@@ -25,7 +26,8 @@
                                             </option>
                                         </select>
                                 </div>
-                                <jet-button type="submit" value="Create" :disabled="form.processing">Create</jet-button>
+                                <div v-if="errors.permissionIds" class="mb-2 text-orange-500">{{ errors.permissionIds }}</div>
+                                <jet-button  type="submit" value="Create" :disabled="form.processing">Create</jet-button>
                             </form>
                         </div>
                     </div>
@@ -53,7 +55,8 @@ export default defineComponent({
         JetInput,
     },
     props:{
-        permissions: Array
+        permissions: Array,
+        errors: Object
     },
     setup () {
         const form = useRemember(

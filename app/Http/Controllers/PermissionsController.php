@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domains\User\Requests\StorePermissionRequest;
+use App\Domains\User\Requests\UpdatePermissionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
@@ -63,34 +64,42 @@ class PermissionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Permission $permission
      * @return Response
      */
-    public function edit($id)
+    public function edit(Permission $permission): Response
     {
-        //
+        return Inertia::render('Permissions/Edit', [
+            'permission' => $permission,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param Request $request
+     * @param Permission $permission
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update( UpdatePermissionRequest $request, Permission $permission): RedirectResponse
     {
-        //
+        $permission->name = $request->get('name');
+
+        $permission->save();
+
+        return Redirect::route('permissions.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Permission $permission
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Permission $permission): RedirectResponse
     {
-        //
+        $permission->delete();
+
+        return Redirect::route('permissions.index');
     }
 }

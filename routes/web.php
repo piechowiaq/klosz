@@ -36,9 +36,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
     Route::resource('roles', RolesController::class);
+    Route::resource('permissions', PermissionsController::class);
 
-    Route::get('/permissions', [PermissionsController::class, 'index'])->name('permissions.index');
-    Route::get('/permissions/create', [PermissionsController::class, 'create'])->name('permissions.create');
-    Route::post('/permissions', [PermissionsController::class, 'store'])->name('permissions.store');
+
 
 });

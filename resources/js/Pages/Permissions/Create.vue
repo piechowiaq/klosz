@@ -18,6 +18,7 @@
                                     <jet-label for="name" value="Name a permission" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full"  required autofocus autocomplete="name" v-model="form.name" />
                                 </div>
+                                <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
                                 <jet-button type="submit" value="Create">Create
                                 </jet-button>
                             </form>
@@ -45,6 +46,9 @@ export default defineComponent({
         JetButton,
         JetLabel,
         JetInput,
+    },
+    props:{
+        errors: Object
     },
     setup () {
         const form = useForm({
