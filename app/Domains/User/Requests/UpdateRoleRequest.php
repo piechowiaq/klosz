@@ -7,7 +7,7 @@ namespace App\Domains\User\Requests;
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UpdateRoleRequest extends FormRequest
 {
@@ -27,12 +27,16 @@ class UpdateRoleRequest extends FormRequest
      */
     public function rules(): array
     {
-        if (! assert($this->route('permissions.edit') instanceof Permission)) {
-            throw new Exception('Received permission is not the required object');
+
+        if (! assert($this->route('role') instanceof Role)) {
+            throw new Exception('Received role is not the required object');
         }
-        dd($this->route('permissions.edit')->get('id'));
+
         return [
-            'name' => ['required', Rule::unique('permissions', 'name')->ignore($this->route('permissions.edit')->get('id'))],
+            'name' => [
+                'required',
+                Rule::unique('roles')->ignore($this->route('role')->id),
+            ],
             'permissionIds' => 'required|array',
             'permissionIds.*' => 'exists:permissions,id',
         ];

@@ -26439,7 +26439,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         id: "name",
         type: "text",
         "class": "mt-1 block w-full",
-        required: "",
         autofocus: "",
         autocomplete: "name",
         modelValue: _ctx.form.name,

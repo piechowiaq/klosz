@@ -16,7 +16,7 @@
                             <form @submit.prevent="update" class="max-w-md mx-auto">
                                 <div>
                                     <jet-label for="name" value="Name a role" />
-                                    <jet-input id="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" v-model="form.name" />
+                                    <jet-input id="name" type="text" class="mt-1 block w-full"  autofocus autocomplete="name" v-model="form.name" />
                                 </div>
                                 <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
                                 <div id="v-model-multiple-select" >
