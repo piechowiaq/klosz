@@ -24,7 +24,7 @@ class StorePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:Spatie\Permission\Models\Permission,name',
+            'name' => 'required|unique:permissions,name',
         ];
     }
 }
