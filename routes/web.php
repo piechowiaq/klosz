@@ -27,17 +27,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
+//Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-
     Route::resource('roles', RolesController::class);
     Route::resource('permissions', PermissionsController::class);
+    Route::resource('users', UsersController::class);
 
 
-
-});
+//
+//});

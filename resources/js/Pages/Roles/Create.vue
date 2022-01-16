@@ -66,7 +66,7 @@ export default defineComponent({
             },))
 
         function store() {
-            Inertia.post('/roles', form)
+            Inertia.post(this.route('roles.store'), form)
         }
 
         return { form , store}
