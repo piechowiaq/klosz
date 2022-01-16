@@ -17,7 +17,7 @@ use Spatie\Permission\Models\Role;
 /**
  * @property Permission[]|Collection
  */
-class RolesController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -55,7 +55,7 @@ class RolesController extends Controller
         $role->name = $request->get('name');
         $role->save();
 
-        $role->syncPermissions($request->get('permissionIds'));
+        $role->syncPermissions($request->get('permission_ids'));
 
         return Redirect::route('roles.index');
     }
@@ -87,7 +87,7 @@ class RolesController extends Controller
         return Inertia::render('Roles/Edit', [
             'role' => $role,
             'permissions' => $permissions,
-            'rolePermissionIds' => $rolePermissionIds
+            'permission_ids' => $rolePermissionIds
         ]);
     }
 
@@ -104,7 +104,7 @@ class RolesController extends Controller
 
         $role->save();
 
-        $role->syncPermissions($request->get('permissionIds'));
+        $role->syncPermissions($request->get('permission_ids'));
 
         return Redirect::route('roles.index');
     }

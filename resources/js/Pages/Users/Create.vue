@@ -17,32 +17,27 @@
                                     <jet-label for="name" value="Name" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                                 </div>
-
                                 <div class="mt-4">
                                     <jet-label for="email" value="Email" />
                                     <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required />
                                 </div>
-
                                 <div class="mt-4">
                                     <jet-label for="password" value="Password" />
                                     <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
                                 </div>
-
                                 <div class="mt-4">
                                     <jet-label for="password_confirmation" value="Confirm Password" />
                                     <jet-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                                 </div>
                                 <div id="v-model-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign role</h3>
-                                    <select v-model="form.roleId" class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="roles.length">
+                                    <select v-model="form.role_id" class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="roles.length">
                                         <option v-for="(role, id) in roles" :key="role.id" :value="role.id">
                                             {{ role.name }}
                                         </option>
                                     </select>
                                 </div>
-
                                 <div class="flex items-center justify-end mt-4">
-
                                     <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                         Create
                                     </jet-button>
@@ -84,7 +79,7 @@ export default defineComponent({
             email: null,
             password: null,
             password_confirmation: null,
-            roleId: '',
+            role_id: '',
 
             },))
 

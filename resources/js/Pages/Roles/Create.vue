@@ -20,13 +20,13 @@
                                 <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
                                 <div id="v-model-multiple-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                        <select v-model="form.permissionIds" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length">
+                                        <select v-model="form.permission_ids" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length">
                                             <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
                                                 {{ permission.name }}
                                             </option>
                                         </select>
                                 </div>
-                                <div v-if="errors.permissionIds" class="mb-2 text-orange-500">{{ errors.permissionIds }}</div>
+                                <div v-if="errors.permission_ids" class="mb-2 text-orange-500">{{ errors.permission_ids }}</div>
                                 <jet-button  type="submit" value="Create" :disabled="form.processing">Create</jet-button>
                             </form>
                         </div>
@@ -62,7 +62,7 @@ export default defineComponent({
         const form = useRemember(
             reactive({
             name: null,
-            permissionIds: [],
+            permission_ids: [],
             },))
 
         function store() {

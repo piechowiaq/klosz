@@ -18,7 +18,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     use HasRoles;
      /**
@@ -59,7 +59,7 @@ class UsersController extends Controller
         $user->email = $request->get('email');
         $user->save();
 
-        $user->assignRole($request->get('roleId'));
+        $user->assignRole($request->get('role_id'));
 
         return Redirect::route('users.index');
     }
@@ -83,11 +83,10 @@ class UsersController extends Controller
      */
     public function edit(User $user): Response
     {
-
        return Inertia::render('Users/Edit', [
             'user' => $user,
             'roles' => Role::all()->toArray(),
-            'userRoleId' => ($user->roles()->pluck('id')->toArray()[0]),
+            'role_id' => $user->roles()->first()->id,
         ]);
     }
 
@@ -105,7 +104,7 @@ class UsersController extends Controller
         $user->password = Hash::make($request['password']);
         $user->save();
 
-        $user->syncRoles($request->get('userRoleId'));
+        $user->syncRoles($request->get('role_id'));
 
         return Redirect::route('users.index');
 

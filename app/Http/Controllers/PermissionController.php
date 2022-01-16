@@ -13,7 +13,7 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\RedirectResponse;
 
-class PermissionsController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,9 +45,7 @@ class PermissionsController extends Controller
      */
     public function store(StorePermissionRequest $request): RedirectResponse
     {
-        Permission::create(['name' => $request->get('name')]);
-
-        return Redirect::route('permissions.index');
+        return Redirect::route('permissions.show',  ['permission' => Permission::create(['name' => $request->get('name')])]);
     }
 
     /**
@@ -56,9 +54,11 @@ class PermissionsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Permission $permission)
     {
-        //
+        return Inertia::render('Permissions/Show', [
+            'permission' => $permission
+        ]);
     }
 
     /**

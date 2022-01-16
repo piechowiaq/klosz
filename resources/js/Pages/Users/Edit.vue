@@ -13,30 +13,25 @@
                     <div>
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                             <form @submit.prevent="update">
-
                                 <div>
                                     <jet-label for="name" value="Name" />
                                     <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                                 </div>
-
                                 <div class="mt-4">
                                     <jet-label for="email" value="Email" />
                                     <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="email" />
                                 </div>
-
                                 <div class="mt-4">
                                     <jet-label for="password" value="Password" />
                                     <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
                                 </div>
-
-
                                 <div class="mt-4">
                                     <jet-label for="password_confirmation" value="Confirm Password" />
                                     <jet-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                                 </div>
                                 <div id="v-model-select" >
-                                    <h3 class="block font-medium text-sm text-gray-700">Assign role {{userRoleId}}</h3>
-                                    <select v-model="form.userRoleId" class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="roles.length">
+                                    <h3 class="block font-medium text-sm text-gray-700">Assign role</h3>
+                                    <select v-model="form.role_id" class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="roles.length">
                                         <option v-for="(role, id) in roles" :key="role.id" :value="role.id">
                                             {{ role.name }}
                                         </option>
@@ -76,16 +71,16 @@ export default defineComponent({
     props:{
         roles: Array,
         user: Object,
-        userRoleId: Number,
+        role_id: Number,
         errors: Object
     },
 
-    setup({ user, userRoleId}) {
+    setup({ user, role_id}) {
         const form = useRemember(reactive({
             name: user.name,
             email: user.email,
             password: user.password,
-            userRoleId: userRoleId,
+            role_id: role_id,
         }))
 
         function update() {
