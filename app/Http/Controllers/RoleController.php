@@ -57,19 +57,21 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->get('permission_ids'));
 
-        return Redirect::route('roles.index');
+        return Redirect::route('roles.show', ['role' => $role]);
     }
 
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return void
+     * @param Role $role
+     * @return Response
      */
-    public function show(int $id)
+    public function show(Role $role)
     {
-        //
+        return Inertia::render('Roles/Show', [
+            'role' => $role
+        ]);
     }
 
     /**

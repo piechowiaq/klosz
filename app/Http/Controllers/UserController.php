@@ -61,18 +61,20 @@ class UserController extends Controller
 
         $user->assignRole($request->get('role_id'));
 
-        return Redirect::route('users.index');
+        return Redirect::route('users.show', ['user' => $user]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
-    public function show($id)
+    public function show(User $user): Response
     {
-        //
+        return Inertia::render('Users/Show', [
+            'user' => $user
+        ]);
     }
 
     /**
