@@ -29,7 +29,10 @@ class UserController extends Controller
     public function index(): Response
     {
         return Inertia::render('Users/Index', [
-            'users' => User::all()
+            'users' => User::paginate(10)->through(fn($user) => [
+                'id' => $user->id,
+                'name' => $user->name
+            ])
         ]);
     }
 

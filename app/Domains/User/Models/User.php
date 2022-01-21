@@ -3,13 +3,38 @@
 namespace App\Domains\User\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+
+/**
+ * App\Domains\User\Models\User
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $email
+ * @property Carbon $email_verified_at
+ * @property string $password
+ * @property string $remember_token
+ * @property integer $current_team_id
+ * @property string $profile_photo_path
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property string $two_factor_secret
+ * @property string $two_factor_recovery_codes
+ *
+ * @property Permission[]|Collection $permissions
+ * @property Role[]|Collection $roles
+ *
+ */
 
 class User extends Authenticatable
 {
