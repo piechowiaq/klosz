@@ -21551,7 +21551,9 @@ __webpack_require__.r(__webpack_exports__);
     errors: Object
   },
   data: function data() {
-    var processing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    return {
+      processing: false
+    };
   },
   setup: function setup() {
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
@@ -21563,12 +21565,14 @@ __webpack_require__.r(__webpack_exports__);
     }));
 
     function store() {
+      var _this = this;
+
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.post(this.route('users.store'), form, {
         onStart: function onStart() {
-          processing.value = true;
+          _this.processing = true;
         },
         onFinish: function onFinish() {
-          processing.value = false;
+          _this.processing = false;
         }
       });
     }

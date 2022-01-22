@@ -74,7 +74,7 @@ export default defineComponent({
         errors: Object
     },
     data(){
-        let processing = ref(false);
+        return {processing: false};
     },
     setup () {
         const form = useRemember(
@@ -84,21 +84,16 @@ export default defineComponent({
             password: null,
             password_confirmation: null,
             role_id: '',
-
             },))
 
         function store() {
-
-
             Inertia.post(this.route('users.store'), form,{
-                onStart: () => { processing.value = true },
-                onFinish: () => { processing.value = false }
+                onStart: () => { this.processing = true },
+                onFinish: () => { this.processing = false }
             })
         }
-
         return { form , store}
    },
-
 });
 
 </script>
