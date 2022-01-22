@@ -21429,6 +21429,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _require = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js"),
+    ref = _require.ref;
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Roles/Index',
   components: {
@@ -21546,6 +21550,9 @@ __webpack_require__.r(__webpack_exports__);
     roles: Array,
     errors: Object
   },
+  data: function data() {
+    var processing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+  },
   setup: function setup() {
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       name: null,
@@ -21556,7 +21563,14 @@ __webpack_require__.r(__webpack_exports__);
     }));
 
     function store() {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.post(this.route('users.store'), form);
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.post(this.route('users.store'), form, {
+        onStart: function onStart() {
+          processing.value = true;
+        },
+        onFinish: function onFinish() {
+          processing.value = false;
+        }
+      });
     }
 
     return {
@@ -25354,7 +25368,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS, DYNAMIC_SLOTS */
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
           value: "Delete",
-          onClick: function onClick($event) {
+          onClickOnce: function onClickOnce($event) {
             return _ctx.destroy(permission);
           }
         }, {
@@ -25366,7 +25380,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["onClick"])])]);
+        , ["onClickOnce"])])]);
       }), 128
       /* KEYED_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
@@ -26941,7 +26955,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS, DYNAMIC_SLOTS */
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
           value: "Delete",
-          onClick: function onClick($event) {
+          onClickOnce: function onClickOnce($event) {
             return _ctx.destroy(role);
           }
         }, {
@@ -26953,7 +26967,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["onClick"])])]);
+        , ["onClickOnce"])])]);
       }), 128
       /* KEYED_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
@@ -27248,9 +27262,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.form.role_id]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-4", {
-          'opacity-25': _ctx.form.processing
+          'opacity-25': _ctx.processing
         }]),
-        disabled: _ctx.form.processing
+        disabled: _ctx.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_14];
@@ -27557,7 +27571,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS, DYNAMIC_SLOTS */
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
           value: "Delete",
-          onClick: function onClick($event) {
+          onClickOnce: function onClickOnce($event) {
             return _ctx.destroy(user);
           }
         }, {
@@ -27569,7 +27583,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["onClick"])])]);
+        , ["onClickOnce"])])]);
       }), 128
       /* KEYED_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {

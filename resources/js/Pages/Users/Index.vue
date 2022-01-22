@@ -21,7 +21,7 @@
                             <div v-text="user.name"></div>
                             <div class="flex justify-between">
                                 <Link value="Edit" :href="route('users.edit', user)" class="w-24 text-center items-center px-4 py-2 bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-blue-600 focus:outline-none focus:border-blue-600 focus:ring focus:ring-blue-100 disabled:opacity-25 transition">Edit</Link>
-                                <jet-button value="Delete" @click="destroy(user)">Delete</jet-button>
+                                <jet-button value="Delete" @click.once="destroy(user)" >Delete</jet-button>
                             </div>
                         </div>
                         <Pagination :links="users.links"></Pagination>
@@ -55,6 +55,6 @@ export default defineComponent({
         destroy(user) {
             this.$inertia.delete(this.route('users.destroy', user))
         },
-    }
+    },
 })
 </script>

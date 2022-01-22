@@ -21,7 +21,7 @@
                                 <div v-text="role.name" ></div>
                                 <div class="flex justify-between">
                                 <Link value="Edit" :href="route('roles.edit', role)" class="w-24 text-center items-center px-4 py-2 bg-blue-500 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-blue-600 focus:outline-none focus:border-blue-600 focus:ring focus:ring-blue-100 disabled:opacity-25 transition">Edit</Link>
-                                <jet-button value="Delete" @click="destroy(role)">Delete</jet-button>
+                                <jet-button value="Delete" @click.once="destroy(role)">Delete</jet-button>
                                 </div>
                             </div>
                         <Pagination :links="roles.links"></Pagination>
@@ -39,6 +39,8 @@ import JetButton from '@/Jetstream/Button.vue'
 import {Link} from "@inertiajs/inertia-vue3";
 import Pagination from '@/Shared/Pagination.vue'
 
+const {ref} = require("vue");
+
 export default defineComponent({
     name: 'Roles/Index',
 
@@ -55,7 +57,7 @@ export default defineComponent({
         destroy(role) {
             this.$inertia.delete(this.route('roles.destroy', role))
         },
-    }
 
+    },
 })
 </script>

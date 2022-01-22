@@ -8,8 +8,11 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Domains\User\Models\User;
 use App\Domains\User\Requests\StoreUserRequest;
 use App\Domains\User\Requests\UpdateUserRequest;
+use App\Domains\User\Services\UserService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -17,11 +20,23 @@ use Inertia\Response;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+use function PHPUnit\Framework\throwException;
 
 class UserController extends Controller
 {
     use HasRoles;
-     /**
+
+    /**
+     * @var UserService
+     */
+    private $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -40,9 +55,16 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      *
      * @return Response
+     * @throws Exception
      */
     public function create(): Response
     {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->cannot('manage users')){
+            throw new Exception('Cant manage users');
+        }
         return Inertia::render('Users/Create', [
             'roles' => Role::all()->toArray()
         ]);
@@ -56,13 +78,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = new User();
-        $user->name = $request->get('name');
-        $user->password = Hash::make($request['password']);
-        $user->email = $request->get('email');
-        $user->save();
-
-        $user->assignRole($request->get('role_id'));
+        sleep(5);
+        $user = $this->userService->create($request->get('name'), $request->get('password'), $request->get('email'), $request->get('role_id'));
 
         return Redirect::route('users.show', ['user' => $user]);
     }
@@ -104,15 +121,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = Hash::make($request['password']);
-        $user->save();
-
-        $user->syncRoles($request->get('role_id'));
+        $this->userService->update($user, $request->get('name'), $request->get('password'), $request->get('email'), $request->get('role_id'));
 
         return Redirect::route('users.index');
-
     }
 
     /**

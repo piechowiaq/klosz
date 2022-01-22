@@ -38,7 +38,7 @@
                                     </select>
                                 </div>
                                 <div class="flex items-center justify-end mt-4">
-                                    <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                    <jet-button class="ml-4" :class="{ 'opacity-25': processing }" :disabled="processing">
                                         Create
                                     </jet-button>
                                 </div>
@@ -52,13 +52,14 @@
 </template>
 
 <script>
-import {defineComponent, reactive} from 'vue'
+import {defineComponent, reactive, ref} from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import JetButton from '@/Jetstream/Button.vue'
 import JetLabel from '@/Jetstream/Label.vue'
 import JetInput from '@/Jetstream/Input.vue'
 import { Inertia } from '@inertiajs/inertia'
 import { useRemember } from '@inertiajs/inertia-vue3'
+
 
 export default defineComponent({
     name: 'Users/Create',
@@ -71,6 +72,9 @@ export default defineComponent({
     props:{
         roles: Array,
         errors: Object
+    },
+    data(){
+        let processing = ref(false);
     },
     setup () {
         const form = useRemember(
@@ -85,7 +89,11 @@ export default defineComponent({
 
         function store() {
 
-            Inertia.post(this.route('users.store'), form)
+
+            Inertia.post(this.route('users.store'), form,{
+                onStart: () => { processing.value = true },
+                onFinish: () => { processing.value = false }
+            })
         }
 
         return { form , store}
