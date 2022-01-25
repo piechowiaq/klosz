@@ -32,6 +32,8 @@ Route::get('/', function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::inertia('/test', 'Layout');
+    Route::inertia('/organizations', 'Organizations/Index');
 
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

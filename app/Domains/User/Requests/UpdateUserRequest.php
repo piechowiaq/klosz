@@ -29,15 +29,16 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
+
         if (! assert($this->route('user') instanceof User)) {
             throw new Exception('Received permission is not the required object');
         }
         return [
             'name' => ['required', 'string' , 'max:255'],
             'role_id' => ['required', 'exists:roles,id'],
-            'password' => $this->passwordRules(),
+            'password' => [ 'nullable'],
             'email' => ['required', 'string', 'email', 'max:255',
-            Rule::unique('users')->ignore($this->route('user')->id)],
+                Rule::unique('users')->ignore($this->route('user')->id)],
         ];
     }
 }

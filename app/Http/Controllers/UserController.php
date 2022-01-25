@@ -78,7 +78,6 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        sleep(5);
         $user = $this->userService->create($request->get('name'), $request->get('password'), $request->get('email'), $request->get('role_id'));
 
         return Redirect::route('users.show', ['user' => $user]);

@@ -23,11 +23,7 @@
                                 </div>
                                 <div class="mt-4">
                                     <jet-label for="password" value="Password" />
-                                    <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-                                </div>
-                                <div class="mt-4">
-                                    <jet-label for="password_confirmation" value="Confirm Password" />
-                                    <jet-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+                                    <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" autocomplete="new-password" />
                                 </div>
                                 <div id="v-model-select" >
                                     <h3 class="block font-medium text-sm text-gray-700">Assign role</h3>

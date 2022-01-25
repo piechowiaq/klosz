@@ -28,12 +28,18 @@ class UserService
     }
 
 
-    public function update(User $user, string $name, string $password, string $email, int $roleId): User
+    public function update(User $user, string $name, $password, string $email, int $roleId): User
     {
+
         $user->name = $name;
-        $user->password = Hash::make($password);
+
         $user->email = $email;
         $user->save();
+
+        if ($password) {
+            $user->password = Hash::make((string)$password);
+            $user->save();
+        }
 
         $user->syncRoles($roleId);
 
