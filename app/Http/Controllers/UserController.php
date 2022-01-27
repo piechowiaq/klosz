@@ -59,12 +59,12 @@ class UserController extends Controller
      */
     public function create(): Response
     {
-        /** @var User $user */
-        $user = Auth::user();
-
-        if ($user->cannot('manage users')){
-            throw new Exception('Cant manage users');
-        }
+//        /** @var User $user */
+//        $user = Auth::user();
+//
+//        if ($user->cannot('manage users')){
+//            throw new Exception('Cant manage users');
+//        }
         return Inertia::render('Users/Create', [
             'roles' => Role::all()->toArray()
         ]);

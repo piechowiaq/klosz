@@ -49,11 +49,8 @@
                             </div>
                         </div>
 
-                        <slot></slot>
-
+                    <slot></slot>
             </div>
-
-
         </div>
     </div>
 </template>
