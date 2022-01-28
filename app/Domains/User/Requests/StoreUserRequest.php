@@ -30,6 +30,7 @@ class StoreUserRequest extends FormRequest
             'role_id' => ['required','exists:roles,id'],
             'password' => $this->passwordRules(),
             'email' => ['required','string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'integer'],
         ];
     }
 }

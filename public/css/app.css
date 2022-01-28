@@ -1066,6 +1066,9 @@ select {
 .-mb-8 {
   margin-bottom: -2rem;
 }
+.ml-auto {
+  margin-left: auto;
+}
 .block {
   display: block;
 }
@@ -1918,6 +1921,10 @@ select {
 .hover\:text-indigo-600:hover {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
+}
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 .focus\:z-10:focus {
   z-index: 10;

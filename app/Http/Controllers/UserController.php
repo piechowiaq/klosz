@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = $this->userService->create($request->get('name'), $request->get('password'), $request->get('email'), $request->get('role_id'));
+        $user = $this->userService->create($request->get('name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
 
         return Redirect::route('users.show', ['user' => $user]);
     }
@@ -120,7 +120,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $this->userService->update($user, $request->get('name'), $request->get('password'), $request->get('email'), $request->get('role_id'));
+        $this->userService->update($user, $request->get('name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
 
         return Redirect::route('users.index');
     }

@@ -1,16 +1,4 @@
 <template>
-
-
-
-
-
-
-
-
-
-
-
-
         <layout title="Users">
             <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
                 <div>

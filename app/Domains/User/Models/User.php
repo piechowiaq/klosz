@@ -22,7 +22,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $name
  * @property string $email
  * @property Carbon $email_verified_at
- * @property string $password
+ * @property string $phone
+ * @property integer $password
  * @property string $remember_token
  * @property integer $current_team_id
  * @property string $profile_photo_path
