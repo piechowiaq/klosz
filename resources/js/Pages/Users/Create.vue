@@ -4,7 +4,7 @@
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('users.index')" class="text-indigo-400 hover:text-indigo-600">Users</Link>
-                    <span class="text-indigo-400 font-medium"> /</span> Create
+                    <span class="text-indigo-400 font-medium"> /</span> Edit
                 </h1>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="store">
@@ -22,7 +22,7 @@
 
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="email" class="form-label">Email:</label>
-                                <input id="email" type="email" class="form-input w-full flex" v-model="form.email" required>
+                                <input id="email" type="email" class="form-input w-full flex" autocomplete="email" v-model="form.email" required>
                                 <div v-if="errors.email" class="text-indigo-500">{{ errors.email }}</div> <!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
@@ -38,7 +38,7 @@
                                 <div v-if="errors.role_id" class="text-indigo-500">{{ errors.role_id }}</div>
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="company" class="form-label">Assign Company:</label>
+                                <label for="company" class="form-label">{{company_ids}}Assign Company:</label>
                                 <select id="company" v-model="form.company_ids" multiple class="form-select w-full flex">
                                     <option v-for="(company, id) in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
                                 </select>
@@ -46,12 +46,12 @@
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="password" class="form-label">Password:</label>
-                                <input id="password" type="password" class="form-input w-full flex" v-model="form.password">
+                                <input id="password" type="password" autocomplete="new-password" class="form-input w-full flex" v-model="form.password">
                                 <div v-if="errors.password" class="text-indigo-500">{{ errors.password }}</div><!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="password_confirmation" class="form-label">Confirm Password:</label>
-                                <input id="password_confirmation" type="password" class="form-input w-full flex" v-model="form.password_confirmation" required>
+                                <input id="password_confirmation" autocomplete="new-password" type="password" class="form-input w-full flex" v-model="form.password_confirmation" required>
                                 <div v-if="errors.password_confirmation" class="text-indigo-500">{{ errors.password_confirmation }}</div><!---->
                             </div>
                         </div>
@@ -68,9 +68,6 @@
 <script>
 import {defineComponent, reactive, ref} from 'vue'
 import Layout from "../Layout";
-import JetButton from '@/Jetstream/Button.vue'
-import JetLabel from '@/Jetstream/Label.vue'
-import JetInput from '@/Jetstream/Input.vue'
 import { Inertia } from '@inertiajs/inertia'
 import { useRemember } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
@@ -81,14 +78,12 @@ export default defineComponent({
     components: {
         Link,
         Layout,
-        JetButton,
-        JetLabel,
-        JetInput,
     },
     props:{
         roles: Array,
         errors: Object,
-        companies: Array
+        companies: Array,
+        company_ids: Array
     },
     data(){
         return {processing: false};

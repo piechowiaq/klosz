@@ -123,7 +123,7 @@ class UserController extends Controller
             'roles' => Role::all()->toArray(),
             'role_id' => $user->roles()->first()->id,
            'companies' => Company::all()->toArray(),
-           'companies_ids' => $user->companies()->get()
+           'company_ids' => $user->companies()->get()->pluck('id')->toArray()
         ]);
     }
 

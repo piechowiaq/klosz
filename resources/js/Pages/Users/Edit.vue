@@ -33,7 +33,7 @@
                                 </select>
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="company" class="form-label">Assign Companies:</label>
+                                <label for="company" class="form-label">Assign Company:</label>
                                 <select v-model="form.company_ids" multiple class="form-select w-full flex">
                                     <option v-for="(company, id) in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
                                 </select>
