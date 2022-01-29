@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Domains\User\Requests\StorePermissionRequest;
 use App\Domains\User\Requests\UpdatePermissionRequest;
 use Illuminate\Http\Request;

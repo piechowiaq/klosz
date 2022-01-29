@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Domains\Company\Models\Company;
 use App\Domains\User\Models\User;
 use App\Domains\User\Requests\StoreUserRequest;
 use App\Domains\User\Requests\UpdateUserRequest;
 use App\Domains\User\Services\UserService;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +48,9 @@ class UserController extends Controller
         return Inertia::render('Users/Index', [
             'users' => User::paginate(10)->through(fn($user) => [
                 'id' => $user->id,
-                'name' => $user->name
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
             ])
         ]);
     }
@@ -66,7 +70,8 @@ class UserController extends Controller
 //            throw new Exception('Cant manage users');
 //        }
         return Inertia::render('Users/Create', [
-            'roles' => Role::all()->toArray()
+            'roles' => Role::all()->toArray(),
+            'companies' => Company::all()->toArray()
         ]);
     }
 
@@ -78,7 +83,16 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = $this->userService->create($request->get('name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+        $user = $this->userService->create($request->get('name'), $request->get('last_name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+
+        $companyIds = $request->get('company_ids');
+        $companies  = new Collection();
+
+        if (is_array($companyIds)) {
+            $companies = Company::whereIn('id', $companyIds)->get();
+        }
+
+        $user->companies()->sync($companies);
 
         return Redirect::route('users.show', ['user' => $user]);
     }
@@ -108,6 +122,8 @@ class UserController extends Controller
             'user' => $user,
             'roles' => Role::all()->toArray(),
             'role_id' => $user->roles()->first()->id,
+           'companies' => Company::all()->toArray(),
+           'companies_ids' => $user->companies()->get()
         ]);
     }
 
@@ -120,7 +136,16 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $this->userService->update($user, $request->get('name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+        $this->userService->update($user, $request->get('name'), $request->get('last_name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+
+        $companyIds = $request->get('company_ids');
+        $companies  = new Collection();
+
+        if (is_array($companyIds)) {
+            $companies = Company::whereIn('id', $companyIds)->get();
+        }
+
+        $user->companies()->sync($companies);
 
         return Redirect::route('users.index');
     }

@@ -2,9 +2,12 @@
 
 namespace App\Domains\User\Models;
 
+
+use App\Domains\Company\Models\Company;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -20,6 +23,7 @@ use Spatie\Permission\Traits\HasRoles;
  *
  * @property integer $id
  * @property string $name
+ * @property string $last_name
  * @property string $email
  * @property Carbon $email_verified_at
  * @property string $phone
@@ -86,4 +90,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function companies(): Relation
+    {
+        return $this->belongsToMany(Company::class);
+    }
 }

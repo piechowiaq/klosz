@@ -14,17 +14,17 @@
                                 <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus> <!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="surname" class="form-label">Last name:</label>
-                                <input id="surname" type="text" class="form-input w-full flex"> <!---->
+                                <label for="last_name" class="form-label" >Last name:</label>
+                                <input id="last_name" type="text" class="form-input w-full flex" v-model="form.last_name"> <!---->
+                                <div v-if="errors.last_name" class="text-indigo-500">{{ errors.last_name }}</div><!---->
                             </div>
-
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="email" class="form-label">Email:</label>
                                 <input id="email" type="email" class="form-input w-full flex" v-model="form.email" required> <!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="phone" class="form-label">Phone:</label>
-                                <input id="phone" type="number" class="form-input w-full flex" v-model="form.phone"> <!---->
+                                <input id="phone" type="tel" class="form-input w-full flex" v-model="form.phone"> <!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="role" class="form-label">Assign Role:</label>
@@ -33,8 +33,11 @@
                                 </select>
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="company" class="form-label">Company:</label>
-                                <input id="company" type="text" class="form-input w-full flex"> <!---->
+                                <label for="company" class="form-label">Assign Companies:</label>
+                                <select v-model="form.company_ids" multiple class="form-select w-full flex">
+                                    <option v-for="(company, id) in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
+                                </select>
+                                <div v-if="errors.company_ids" class="text-indigo-500">{{ errors.company_ids }}</div>
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="password" class="form-label">Password:</label>
@@ -78,16 +81,20 @@ export default defineComponent({
         roles: Array,
         user: Object,
         role_id: Number,
-        errors: Object
+        errors: Object,
+        companies: Array,
+        company_ids: Array
     },
 
-    setup({ user, role_id}) {
+    setup({ user, role_id, company_ids}) {
         const form = useRemember(reactive({
             name: user.name,
+            last_name: user.last_name,
             email: user.email,
             phone: user.phone,
             password: user.password,
             role_id: role_id,
+            company_ids: company_ids,
         }))
 
         function update() {

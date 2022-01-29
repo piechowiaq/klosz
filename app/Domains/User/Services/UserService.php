@@ -13,11 +13,12 @@ class UserService
 {
 
 
-    public function create(string $name, string $password, string $email, int $phone, int $roleId): User
+    public function create(string $name, string $lastName, string $password, string $email, string $phone, int $roleId): User
     {
 
         $user = new User();
         $user->name = $name;
+        $user->last_name = $lastName;
         $user->password = Hash::make($password);
         $user->email = $email;
         $user->phone = $phone;
@@ -29,11 +30,11 @@ class UserService
     }
 
 
-    public function update(User $user, string $name, $password, string $email, int $phone, int $roleId): User
+    public function update(User $user, string $name, string $lastName, $password, string $email, string $phone, int $roleId): User
     {
 
         $user->name = $name;
-
+        $user->last_name = $lastName;
         $user->email = $email;
         $user->phone = $phone;
         $user->save();
