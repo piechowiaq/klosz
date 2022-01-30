@@ -1,58 +1,53 @@
 <template>
-    <app-layout title="Dashboard">
-        <template #header>
-            <div class="flex justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Update Role
-                </h2>
-            </div>
-        </template>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                            <form @submit.prevent="update" class="max-w-md mx-auto">
-                                <div>
-                                    <jet-label for="name" value="Name a role" />
-                                    <jet-input id="name" type="text" class="mt-1 block w-full"  autofocus autocomplete="name" v-model="form.name" />
-                                </div>
-                                <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
-                                <div id="v-model-multiple-select" >
-                                    <h3 class="block font-medium text-sm text-gray-700">Assign permissions</h3>
-                                    <select v-model="form.permission_ids" multiple class="block w-full overflow-hidden mb-2 mt-2 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm" :size="permissions.length" >
-                                        <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">
-                                            {{ permission.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div v-if="errors.permission_ids" class="mb-2 text-orange-500">{{ errors.permission_ids }}</div>
-                                <jet-button type="submit" value="Update" :disabled="form.processing">Update</jet-button>
-                            </form>
+    <layout>
+        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
+            <div>
+                <h1 class="mb-8 font-bold text-3xl">
+                    <Link :href="route('roles.index')" class="text-indigo-400 hover:text-indigo-600">Roles</Link>
+                    <span class="text-indigo-400 font-medium"> /</span> Edit
+                </h1>
+                <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+                    <form @submit.prevent="update">
+                        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+                            <div class="pr-6 pb-8 w-full lg:w-1/2">
+                                <label for="name" class="form-label">Name:</label>
+                                <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus>
+                                <div v-if="errors.name" class="text-indigo-500">{{ errors.name }}</div><!---->
+                            </div>
+                            <div class="pr-6 pb-8 w-full lg:w-1/2">
+                                <label for="permission" class="form-label">Assign Company:</label>
+                                <select v-model="form.permission_ids" multiple class="form-select w-full flex">
+                                    <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">{{ permission.name }}</option>
+                                </select>
+                                <div v-if="errors.permission_ids" class="text-indigo-500">{{ errors.permission_ids }}</div>
+                            </div>
                         </div>
+                        <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
+                            <button value="Delete" @click.once="destroy(permission)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Permission</button>
+                            <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit" >Edit Permission</loading-button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-    </app-layout>
+    </layout>
 </template>
 
 <script>
 import {defineComponent, reactive} from 'vue'
-import AppLayout from '@/Layouts/AppLayout.vue'
-import JetButton from '@/Jetstream/Button.vue'
-import JetLabel from '@/Jetstream/Label.vue'
-import JetInput from '@/Jetstream/Input.vue'
-import { useRemember } from '@inertiajs/inertia-vue3'
-import { Inertia } from '@inertiajs/inertia'
+import { useRemember, useForm } from '@inertiajs/inertia-vue3'
+import {Link} from "@inertiajs/inertia-vue3";
+import LoadingButton from "../../Shared/LoadingButton";
+import Layout from "../Layout";
+
 
 
 export default defineComponent({
     name: 'Roles/Edit',
     components: {
-        AppLayout,
-        JetButton,
-        JetLabel,
-        JetInput,
+        Layout,
+        Link,
+        LoadingButton
     },
     props:{
         role: Object,
@@ -62,17 +57,22 @@ export default defineComponent({
     },
 
         setup({ role, permission_ids }) {
-            const form = useRemember(reactive({
+            const form = useForm(useRemember(reactive({
                 name: role.name,
                 permission_ids: permission_ids
-            }))
-            function update() {
-                Inertia.put(this.route('roles.update', this.role.id), form)
-            }
+            })))
 
-            return { form, update }
+            return { form}
 
         },
+    methods:{
+        update() {
+            this.form.put(this.route('roles.update', this.role.id))
+        },
+        destroy(role) {
+            this.$inertia.delete(this.route('roles.destroy', role))
+        },
+    },
 });
 
 </script>

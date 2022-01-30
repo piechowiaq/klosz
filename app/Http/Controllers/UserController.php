@@ -49,6 +49,7 @@ class UserController extends Controller
             'users' => User::paginate(10)->through(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
+                'last_name' => $user->last_name,
                 'email' => $user->email,
                 'phone' => $user->phone,
             ])
@@ -122,8 +123,8 @@ class UserController extends Controller
             'user' => $user,
             'roles' => Role::all()->toArray(),
             'role_id' => $user->roles()->first()->id,
-           'companies' => Company::all()->toArray(),
-           'company_ids' => $user->companies()->get()->pluck('id')->toArray()
+            'companies' => Company::all()->toArray(),
+            'company_ids' => $user->companies()->get()->pluck('id')->toArray()
         ]);
     }
 

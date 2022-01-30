@@ -16,7 +16,7 @@
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="last_name" class="form-label" >Last name:</label>
                                 <input id="last_name" type="text" class="form-input w-full flex" v-model="form.last_name"> <!---->
-                                <div v-if="errors.last_name" class="text-indigo-500">{{ errors.last_name }}</div><!---->
+                                <div v-if="form.errors.last_name" class="text-indigo-500">{{ form.errors.last_name }}</div><!---->
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="email" class="form-label">Email:</label>
@@ -37,7 +37,7 @@
                                 <select v-model="form.company_ids" multiple class="form-select w-full flex">
                                     <option v-for="(company, id) in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
                                 </select>
-                                <div v-if="errors.company_ids" class="text-indigo-500">{{ errors.company_ids }}</div>
+                                <div v-if="form.errors.company_ids" class="text-indigo-500">{{ form.errors.company_ids }}</div>
                             </div>
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="password" class="form-label">Password:</label>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
                             <button value="Delete" @click.once="destroy(user)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Contact</button>
-                            <button class="flex items-center btn-indigo ml-auto" type="submit" :class="{ 'opacity-25': processing }" :disabled="processing">Edit User</button>
+                            <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit" >Edit User</loading-button>
                         </div>
                     </form>
                 </div>
@@ -65,8 +65,9 @@ import JetButton from '@/Jetstream/Button.vue'
 import JetLabel from '@/Jetstream/Label.vue'
 import JetInput from '@/Jetstream/Input.vue'
 import { Inertia } from '@inertiajs/inertia'
-import { useRemember } from '@inertiajs/inertia-vue3'
+import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
+import LoadingButton from "../../Shared/LoadingButton";
 
 export default defineComponent({
     name: 'Users/Edit',
@@ -76,6 +77,7 @@ export default defineComponent({
         JetLabel,
         JetInput,
         Link,
+        LoadingButton
     },
     props:{
         roles: Array,
@@ -87,7 +89,7 @@ export default defineComponent({
     },
 
     setup({ user, role_id, company_ids}) {
-        const form = useRemember(reactive({
+        const form = useForm(useRemember(reactive({
             name: user.name,
             last_name: user.last_name,
             email: user.email,
@@ -95,16 +97,16 @@ export default defineComponent({
             password: user.password,
             role_id: role_id,
             company_ids: company_ids,
-        }))
+        })))
 
-        function update() {
-            Inertia.put(this.route('users.update', this.user.id), form)
-        }
 
-        return { form, update }
+        return { form }
 
     },
     methods:{
+        update() {
+            this.form.put(this.route('users.update', this.user.id))
+        },
         destroy(user) {
             this.$inertia.delete(this.route('users.destroy', user))
         },

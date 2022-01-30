@@ -34,11 +34,11 @@ class UpdateRoleRequest extends FormRequest
 
         return [
             'name' => [
-                'required',
+                'required', 'max:2',
                 Rule::unique('roles')->ignore($this->route('role')->id),
             ],
-            'permission_ids' => ['required','array'],
-            'permission_ids.*' => ['exists:permissions,id'],
+//            'permission_ids' => ['required','array'],
+//            'permission_ids.*' => ['exists:permissions,id'],
         ];
     }
 }
