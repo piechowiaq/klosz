@@ -1,5 +1,4 @@
 <template>
-
     <layout>
         <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
             <div>
@@ -10,11 +9,7 @@
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                            <div class="pr-6 pb-8 w-full">
-                                <label for="name" class="form-label">Name:</label>
-                                <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus>
-                                <div v-if="errors.name" class="text-indigo-500">{{ errors.name }}</div><!---->
-                            </div>
+                            <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full" label="Name" />
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
                             <button value="Delete" @click.once="destroy(permission)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Permission</button>
@@ -29,12 +24,11 @@
 
 <script>
 import {defineComponent, reactive} from 'vue'
-import { useRemember } from '@inertiajs/inertia-vue3'
-import { useForm } from '@inertiajs/inertia-vue3'
-import { Inertia } from '@inertiajs/inertia'
+import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import Layout from "../Layout";
 import {Link} from "@inertiajs/inertia-vue3";
 import LoadingButton from "../../Shared/LoadingButton";
+import TextInput from "../../Shared/TextInput";
 
 
 export default defineComponent({
@@ -42,11 +36,11 @@ export default defineComponent({
     components: {
         LoadingButton,
         Layout,
-        Link
+        Link,
+        TextInput
     },
     props:{
         permission: Object,
-        errors: Object
     },
     setup({ permission }) {
         const form = useForm(useRemember(reactive({

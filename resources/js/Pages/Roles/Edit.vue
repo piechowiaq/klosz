@@ -9,17 +9,13 @@
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="name" class="form-label">Name:</label>
-                                <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus>
-                                <div v-if="errors.name" class="text-indigo-500">{{ errors.name }}</div><!---->
-                            </div>
+                            <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full" label="Name" />
                             <div class="pr-6 pb-8 w-full lg:w-1/2">
                                 <label for="permission" class="form-label">Assign Company:</label>
-                                <select v-model="form.permission_ids" multiple class="form-select w-full flex">
+                                <select id="permission" v-model="form.permission_ids" multiple class="form-select w-full flex">
                                     <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id">{{ permission.name }}</option>
                                 </select>
-                                <div v-if="errors.permission_ids" class="text-indigo-500">{{ errors.permission_ids }}</div>
+                                <div v-if="formerrors.permission_ids" class="text-indigo-500">{{ form.errors.permission_ids }}</div>
                             </div>
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
@@ -39,15 +35,15 @@ import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
 import LoadingButton from "../../Shared/LoadingButton";
 import Layout from "../Layout";
-
-
+import TextInput from "../../Shared/TextInput";
 
 export default defineComponent({
     name: 'Roles/Edit',
     components: {
         Layout,
         Link,
-        LoadingButton
+        LoadingButton,
+        TextInput
     },
     props:{
         role: Object,
