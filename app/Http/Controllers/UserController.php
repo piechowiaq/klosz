@@ -95,7 +95,7 @@ class UserController extends Controller
 
         $user->companies()->sync($companies);
 
-        return Redirect::route('users.show', ['user' => $user]);
+        return Redirect::route('users.edit',  ['user' => $user])->with('success', 'User created.');;
     }
 
     /**

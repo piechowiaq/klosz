@@ -4,38 +4,21 @@
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('companies.index')" class="text-indigo-400 hover:text-indigo-600">Companies</Link>
-                    <span class="text-indigo-400 font-medium"> /</span> Create
+                    <span class="text-indigo-400 font-medium"> /</span> Edit
                 </h1>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="name" class="form-label">Name:</label>
-                                <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus>
-                                <div v-if="errors.name" class="text-indigo-500">{{ errors.name }}</div><!---->
-                            </div>
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="last_name" class="form-label" >City:</label>
-                                <input id="last_name" type="text" class="form-input w-full flex" v-model="form.city"> <!---->
-                                <div v-if="errors.last_name" class="text-indigo-500">{{ errors.last_name }}</div><!---->
-                            </div>
-
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="email" class="form-label">Email:</label>
-                                <input id="email" type="email" class="form-input w-full flex" v-model="form.email" required>
-                                <div v-if="errors.email" class="text-indigo-500">{{ errors.email }}</div> <!---->
-                            </div>
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="phone" class="form-label">Phone:</label>
-                                <input id="phone" type="tel" class="form-input w-full flex" v-model="form.phone">
-                                <div v-if="errors.phone" class="text-indigo-500">{{ errors.phone }}</div><!---->
-                            </div>
-
+                            <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Company Name" />
+                            <text-input v-model="form.city" :error="form.errors.city" class="pb-8 pr-6 w-full lg:w-1/2" label="City" />
+                            <text-input v-model="form.email" :error="form.errors.email" class="pb-8 pr-6 w-full lg:w-1/2" label="Company E-mail" />
+                            <text-input v-model="form.phone" :error="form.errors.phone" class="pb-8 pr-6 w-full lg:w-1/2" label="Company Phone" />
                         </div>
-                        <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
+                        <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
                             <button value="Delete" @click.once="destroy(company)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Company</button>
-                            <button class="flex items-center btn-indigo ml-auto" type="submit" :class="{ 'opacity-25': processing }" :disabled="processing">Edit Company</button>
+                            <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit Company</loading-button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -46,15 +29,18 @@
 <script>
 import {defineComponent, reactive} from 'vue'
 import Layout from "../Layout";
-import { Inertia } from '@inertiajs/inertia'
-import { useRemember } from '@inertiajs/inertia-vue3'
+import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
+import TextInput from "../../Shared/TextInput";
+import LoadingButton from "../../Shared/LoadingButton";
 
 export default defineComponent({
-    name: 'Users/Edit',
+    name: 'Companies/Edit',
     components: {
         Layout,
         Link,
+        TextInput,
+        LoadingButton
     },
     props:{
         company: Object,
@@ -62,22 +48,22 @@ export default defineComponent({
     },
 
     setup({ company }) {
-        const form = useRemember(reactive({
+        const form = useForm(useRemember(
+            reactive({
             name: company.name,
             city: company.city,
             email: company.email,
             phone: company.phone,
 
-        }))
+        })))
 
-        function update() {
-            Inertia.put(this.route('companies.update', this.company.id), form)
-        }
-
-        return { form, update }
+        return { form }
 
     },
     methods:{
+        update() {
+            this.form.put(this.route('companies.update', this.company.id))
+        },
         destroy(company) {
             this.$inertia.delete(this.route('companies.destroy', company))
         },

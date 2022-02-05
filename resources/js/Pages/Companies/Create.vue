@@ -9,31 +9,13 @@
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="store">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="name" class="form-label">Name:</label>
-                                <input id="name" type="text" class="form-input w-full flex" v-model="form.name" required autofocus>
-                                <div v-if="errors.name" class="text-indigo-500">{{ errors.name }}</div><!---->
-                            </div>
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="last_name" class="form-label" >City:</label>
-                                <input id="last_name" type="text" class="form-input w-full flex" v-model="form.city"> <!---->
-                                <div v-if="errors.last_name" class="text-indigo-500">{{ errors.last_name }}</div><!---->
-                            </div>
-
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="email" class="form-label">Email:</label>
-                                <input id="email" type="email" class="form-input w-full flex" v-model="form.email" required>
-                                <div v-if="errors.email" class="text-indigo-500">{{ errors.email }}</div> <!---->
-                            </div>
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="phone" class="form-label">Phone:</label>
-                                <input id="phone" type="tel" class="form-input w-full flex" v-model="form.phone">
-                                <div v-if="errors.phone" class="text-indigo-500">{{ errors.phone }}</div><!---->
-                            </div>
-
+                            <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Company Name" />
+                            <text-input v-model="form.city" :error="form.errors.city" class="pb-8 pr-6 w-full lg:w-1/2" label="City" />
+                            <text-input v-model="form.email" :error="form.errors.email" class="pb-8 pr-6 w-full lg:w-1/2" label="Company E-mail" />
+                            <text-input v-model="form.phone" :error="form.errors.phone" class="pb-8 pr-6 w-full lg:w-1/2" label="Company Phone" />
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-                            <button class="flex items-center btn-indigo" type="submit" :class="{ 'opacity-25': processing }" :disabled="processing">Create Company</button>
+                            <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Company</loading-button>
                         </div>
                     </form>
                 </div>
@@ -43,44 +25,43 @@
 </template>
 
 <script>
-import {defineComponent, reactive, ref} from 'vue'
+import {defineComponent, reactive} from 'vue'
 import Layout from "../Layout";
-import { Inertia } from '@inertiajs/inertia'
-import { useRemember } from '@inertiajs/inertia-vue3'
+import { useRemember, useForm  } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
-
+import TextInput from "../../Shared/TextInput";
+import LoadingButton from "../../Shared/LoadingButton";
 
 export default defineComponent({
     name: 'Companies/Create',
     components: {
         Link,
         Layout,
+        TextInput,
+        LoadingButton
     },
     props:{
         roles: Array,
         errors: Object
     },
-    data(){
-        return {processing: false};
-    },
+
     setup () {
-        const form = useRemember(
+        const form = useForm(useRemember(
             reactive({
-            name: null,
-            city: null,
-            email: null,
-            phone: null,
+                name: null,
+                city: null,
+                email: null,
+                phone: null,
+            },)))
 
-            },))
+        return { form }
 
-        function store() {
-            Inertia.post(this.route('companies.store'), form,{
-                onStart: () => { this.processing = true },
-                onFinish: () => { this.processing = false }
-            })
-        }
-        return { form , store}
    },
+    methods:{
+        store() {
+            this.form.post(this.route('companies.store'))
+        },
+    },
 });
 
 </script>

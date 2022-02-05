@@ -57,7 +57,10 @@
                             </div>
                         </div>
 
-                    <slot></slot>
+
+<!--                        <flash-messages />-->
+                        <slot />
+
             </div>
         </div>
     </div>
@@ -69,6 +72,7 @@ import { defineComponent } from 'vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Banner from '@/Shared/Banner.vue'
 import Dropdown from "../Shared/Dropdown";
+import FlashMessages from "../Shared/FlashMessages";
 
 export default defineComponent({
 
@@ -82,7 +86,8 @@ export default defineComponent({
         Dropdown,
         Head,
         Link,
-        Banner
+        Banner,
+        FlashMessages
     },
 
 })

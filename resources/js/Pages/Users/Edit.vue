@@ -4,7 +4,7 @@
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('users.index')" class="text-indigo-400 hover:text-indigo-600">Users</Link>
-                    <span class="text-indigo-400 font-medium"> /</span> Create
+                    <span class="text-indigo-400 font-medium"> /</span>   {{ form.name }} {{ form.last_name }}
                 </h1>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
@@ -13,21 +13,13 @@
                             <text-input v-model="form.last_name" :error="form.errors.last_name" class="pr-6 pb-8 w-full lg:w-1/2" label="Last Name" />
                             <text-input v-model="form.email" :error="form.errors.email" class="pr-6 pb-8 w-full lg:w-1/2" label="Email" />
                             <text-input v-model="form.phone" :error="form.errors.phone" class="pr-6 pb-8 w-full lg:w-1/2" label="Phone" />
-
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="role" class="form-label">Assign Role:</label>
-                                <select id="role" class="form-select w-full flex" v-model="form.role_id">
-                                    <option v-for="(role, id) in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
-                                </select>
-                                <div v-if="form.errors.role_id" class="text-indigo-500">{{ form.errors.role_id }}</div>
-                            </div>
-                            <div class="pr-6 pb-8 w-full lg:w-1/2">
-                                <label for="company" class="form-label">Assign Company:</label>
-                                <select id="company" v-model="form.company_ids" multiple class="form-select w-full flex">
-                                    <option v-for="(company, id) in companies" :key="company.id" :value="company.id">{{ company.name }}</option>
-                                </select>
-                                <div v-if="form.errors.company_ids" class="text-indigo-500">{{ form.errors.company_ids }}</div>
-                            </div>
+                            <select-input v-model="form.role_id" :error="form.errors.role_id" class="pb-8 pr-6 w-full lg:w-1/2" label="Role">
+                                <option :value="null" />
+                                <option v-for="(role, id) in roles" :key="role.id" :value="role.id">{{ role.name }}</option>
+                            </select-input>
+                            <select-input v-model="form.company_ids" multiple :error="form.errors.company_ids" class="pb-8 pr-6 w-full lg:w-1/2" label="Companies">
+                                <option v-for="(company, id) in companies" :key="company.id" :value="company.id" >{{ company.name }}</option>
+                            </select-input>
                             <text-input v-model="form.password" :error="form.errors.password" class="pr-6 pb-8 w-full lg:w-1/2" label="Password" />
                             <text-input v-model="form.password_confirmation" :error="form.errors.password_confirmation" class="pr-6 pb-8 w-full lg:w-1/2" label="Password Confirmation" />
                         </div>
@@ -49,6 +41,7 @@ import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
 import LoadingButton from "../../Shared/LoadingButton";
 import TextInput from "../../Shared/TextInput";
+import SelectInput from "../../Shared/SelectInput";
 
 export default defineComponent({
     name: 'Users/Edit',
@@ -56,7 +49,8 @@ export default defineComponent({
         Layout,
         Link,
         LoadingButton,
-        TextInput
+        TextInput,
+        SelectInput
     },
     props:{
         roles: Array,
@@ -68,7 +62,8 @@ export default defineComponent({
     },
 
     setup({ user, role_id, company_ids}) {
-        const form = useForm(useRemember(reactive({
+        const form = useForm(useRemember(
+            reactive({
             name: user.name,
             last_name: user.last_name,
             email: user.email,
@@ -76,7 +71,7 @@ export default defineComponent({
             password: user.password,
             role_id: role_id,
             company_ids: company_ids,
-        })))
+        },)))
 
 
         return { form }
