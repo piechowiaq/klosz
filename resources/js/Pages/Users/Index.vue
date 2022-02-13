@@ -1,6 +1,6 @@
 <template>
     <layout title="Users">
-        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
+
             <div>
                     <h1 class="mb-8 font-bold text-3xl">Users</h1>
                     <div class="mb-6 flex justify-between items-center">
@@ -62,7 +62,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
 
 <!--        <div class="py-12">-->
@@ -100,7 +99,7 @@ export default defineComponent({
         JetButton,
         Link,
         Pagination,
-        Icon
+        Icon,
     },
     props: {
         users: Object

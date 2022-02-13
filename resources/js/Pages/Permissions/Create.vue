@@ -1,60 +1,54 @@
 <template>
-    <app-layout title="Dashboard">
-        <template #header>
-            <div class="flex justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Create New Permission
-                </h2>
-            </div>
-        </template>
+    <layout>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div>
-                        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                            <form @submit.prevent="form.post('/permissions')" class="max-w-md mx-auto">
-                                <div>
-                                    <jet-label for="name" value="Name a permission" />
-                                    <jet-input id="name" type="text" class="mt-1 block w-full"  required autofocus autocomplete="name" v-model="form.name" />
-                                </div>
-                                <div v-if="errors.name" class="mb-2 text-orange-500">{{ errors.name }}</div>
-                                <jet-button type="submit" value="Create">Create
-                                </jet-button>
-                            </form>
+            <div>
+                <h1 class="mb-8 font-bold text-3xl">
+                    <Link :href="route('permissions.index')" class="text-indigo-400 hover:text-indigo-600">Permissions</Link>
+                    <span class="text-indigo-400 font-medium"> /</span> Create
+                </h1>
+                <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+                    <form @submit.prevent="store">
+                        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+                            <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full" label="Permission Name" />
                         </div>
-                    </div>
+                        <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
+                            <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Permission</loading-button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
 
-    </app-layout>
+    </layout>
 </template>
 
 <script>
+
 import {defineComponent, reactive} from 'vue'
-import AppLayout from '@/Layouts/AppLayout.vue'
-import JetButton from '@/Jetstream/Button.vue'
-import JetLabel from '@/Jetstream/Label.vue'
-import JetInput from '@/Jetstream/Input.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useRemember, useForm, Link  } from '@inertiajs/inertia-vue3'
+import Layout from "../Layout";
+import TextInput from "../../Shared/TextInput";
+import LoadingButton from "../../Shared/LoadingButton";
 
 export default defineComponent({
     name: 'Permissions/Create',
     components: {
-        AppLayout,
-        JetButton,
-        JetLabel,
-        JetInput,
-    },
-    props:{
-        errors: Object
+        Link,
+        Layout,
+        TextInput,
+        LoadingButton,
     },
     setup () {
-        const form = useForm({
-            name: null,
-        })
+        const form = useForm(useRemember(
+            reactive({
+                name: null,
+            }
+        )))
         return { form }
+    },
+    methods:{
+        store() {
+            this.form.post(this.route('permissions.store'))
+        },
     },
 });
 

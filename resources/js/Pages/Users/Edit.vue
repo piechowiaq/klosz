@@ -1,7 +1,7 @@
 <template>
     <layout>
-        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
             <div>
+
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('users.index')" class="text-indigo-400 hover:text-indigo-600">Users</Link>
                     <span class="text-indigo-400 font-medium"> /</span>   {{ form.name }} {{ form.last_name }}
@@ -30,7 +30,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+
     </layout>
 </template>
 
@@ -38,7 +38,7 @@
 import {defineComponent, reactive} from 'vue'
 import Layout from "../Layout";
 import { useRemember, useForm } from '@inertiajs/inertia-vue3'
-import {Link} from "@inertiajs/inertia-vue3";
+import {Head, Link} from "@inertiajs/inertia-vue3";
 import LoadingButton from "../../Shared/LoadingButton";
 import TextInput from "../../Shared/TextInput";
 import SelectInput from "../../Shared/SelectInput";
@@ -48,6 +48,7 @@ export default defineComponent({
     components: {
         Layout,
         Link,
+        Head,
         LoadingButton,
         TextInput,
         SelectInput
@@ -69,6 +70,7 @@ export default defineComponent({
             email: user.email,
             phone: user.phone,
             password: user.password,
+            password_confirmation: user.password,
             role_id: role_id,
             company_ids: company_ids,
         },)))

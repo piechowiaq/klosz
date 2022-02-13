@@ -14,7 +14,7 @@ class UpdateCompanyRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,14 +22,15 @@ class UpdateCompanyRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array|string[]
      * @throws Exception
      */
-    public function rules()
+    public function rules(): array
     {
         if (! assert($this->route('company') instanceof Company)) {
-            throw new Exception('Received user is not the required object');
+            throw new Exception('Received company is not the required object');
         }
+
         return [
             'name' => ['required', 'string' , 'max:255'],
             'city' => ['required', 'string' , 'max:255'],

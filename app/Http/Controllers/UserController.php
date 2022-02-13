@@ -95,7 +95,7 @@ class UserController extends Controller
 
         $user->companies()->sync($companies);
 
-        return Redirect::route('users.edit',  ['user' => $user])->with('success', 'User created.');;
+        return Redirect::route('users.edit',  ['user' => $user])->with('success', 'User created.');
     }
 
     /**
@@ -148,7 +148,7 @@ class UserController extends Controller
 
         $user->companies()->sync($companies);
 
-        return Redirect::route('users.index');
+        return Redirect::route('users.index')->with('success', 'User updated.');
     }
 
     /**
@@ -161,6 +161,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return Redirect::route('users.index');
+        return Redirect::route('users.index')->with('success', 'User destroyed');
     }
 }

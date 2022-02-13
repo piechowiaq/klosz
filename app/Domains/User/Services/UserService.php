@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
 
-
     public function create(string $name, string $lastName, string $password, string $email, string $phone, int $roleId): User
     {
 

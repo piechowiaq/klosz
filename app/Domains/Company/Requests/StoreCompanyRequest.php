@@ -2,6 +2,8 @@
 
 namespace App\Domains\Company\Requests;
 
+use App\Domains\Company\Models\Company;
+use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCompanyRequest extends FormRequest
@@ -11,7 +13,7 @@ class StoreCompanyRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -20,6 +22,7 @@ class StoreCompanyRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
+     * @throws Exception
      */
     public function rules()
     {

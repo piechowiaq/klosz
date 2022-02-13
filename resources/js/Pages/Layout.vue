@@ -57,10 +57,10 @@
                             </div>
                         </div>
 
-
-<!--                        <flash-messages />-->
+                    <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" >
+                        <flash-messages />
                         <slot />
-
+                    </div>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@ import { defineComponent } from 'vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Banner from '@/Shared/Banner.vue'
 import Dropdown from "../Shared/Dropdown";
-import FlashMessages from "../Shared/FlashMessages";
+import FlashMessages from "@/Shared/FlashMessages";
 
 export default defineComponent({
 

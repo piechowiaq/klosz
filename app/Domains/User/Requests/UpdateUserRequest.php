@@ -34,10 +34,10 @@ class UpdateUserRequest extends FormRequest
             throw new Exception('Received user is not the required object');
         }
         return [
-            'name' => ['required', 'string' , 'max:255'],
-            'last_name' => ['required', 'string' , 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'role_id' => ['required', 'exists:roles,id'],
-            'password' => [ 'nullable'],
+            'password' => $this->passwordRules(),
             'email' => ['required', 'string', 'email', 'max:255',
                 Rule::unique('users')->ignore($this->route('user')->id)],
             'phone' => ['required', 'string', 'max:255'],

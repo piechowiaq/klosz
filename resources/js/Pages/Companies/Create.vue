@@ -1,6 +1,6 @@
 <template>
     <layout>
-        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
+
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('companies.index')" class="text-indigo-400 hover:text-indigo-600">Companies</Link>
@@ -20,7 +20,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+
     </layout>
 </template>
 
@@ -42,9 +42,7 @@ export default defineComponent({
     },
     props:{
         roles: Array,
-        errors: Object
     },
-
     setup () {
         const form = useForm(useRemember(
             reactive({
@@ -52,10 +50,9 @@ export default defineComponent({
                 city: null,
                 email: null,
                 phone: null,
-            },)))
+            })))
 
         return { form }
-
    },
     methods:{
         store() {

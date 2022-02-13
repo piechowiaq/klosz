@@ -1,6 +1,6 @@
 <template>
     <layout>
-        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
+
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('users.index')" class="text-indigo-400 hover:text-indigo-600">Users</Link>
@@ -29,7 +29,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+
     </layout>
 </template>
 

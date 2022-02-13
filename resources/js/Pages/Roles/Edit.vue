@@ -1,13 +1,13 @@
 <template>
     <layout>
-        <div class="md:flex-1 px-4 py-8 md:p-12 md:overflow-y-auto">
+
             <div>
                 <h1 class="mb-8 font-bold text-3xl">
                     <Link :href="route('roles.index')" class="text-indigo-400 hover:text-indigo-600">{{ form.name }}</Link>
-                    <span class="text-indigo-400 font-medium"> /</span> Create
+                    <span class="text-indigo-400 font-medium"> /</span> Edit
                 </h1>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-                    <form @submit.prevent="store">
+                    <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
                             <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Name a role" />
                             <select-input v-model="form.permission_ids" multiple :error="form.errors.permission_ids" class="pb-8 pr-6 w-full lg:w-1/2" label="Companies">
@@ -18,11 +18,10 @@
                             <button value="Delete" @click.once="destroy(role)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Contact</button>
                             <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit" >Edit User</loading-button>
                         </div>
-
                     </form>
                 </div>
             </div>
-        </div>
+
     </layout>
 
 </template>
@@ -52,15 +51,14 @@ export default defineComponent({
         errors: Object
     },
 
-        setup({ role, permission_ids }) {
-            const form = useForm(useRemember(reactive({
-                name: role.name,
-                permission_ids: permission_ids
-            })))
+    setup({ role, permission_ids }) {
+        const form = useForm(useRemember(reactive({
+            name: role.name,
+            permission_ids: permission_ids
+        })))
 
-            return { form}
-
-        },
+        return {form}
+    },
     methods:{
         update() {
             this.form.put(this.route('roles.update', this.role.id))

@@ -57,7 +57,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->get('permission_ids'));
 
-        return Redirect::route('roles.show', ['role' => $role]);
+        return Redirect::route('roles.edit', ['role' => $role]);
     }
 
 
