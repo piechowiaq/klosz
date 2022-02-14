@@ -46,7 +46,7 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionRequest $request): RedirectResponse
     {
-        return Redirect::route('permissions.show',  ['permission' => Permission::create(['name' => $request->get('name')])]);
+        return Redirect::route('permissions.show',  ['permission' => Permission::create(['name' => $request->get('name')])])->with('success', 'Permission created.');
     }
 
     /**
@@ -88,7 +88,7 @@ class PermissionController extends Controller
 
         $permission->save();
 
-        return Redirect::route('permissions.index');
+        return Redirect::route('permissions.index')->with('success', 'Permission updated.');
     }
 
     /**
@@ -101,6 +101,6 @@ class PermissionController extends Controller
     {
         $permission->delete();
 
-        return Redirect::route('permissions.index');
+        return Redirect::route('permissions.index')->with('success', 'Permission deleted.');
     }
 }

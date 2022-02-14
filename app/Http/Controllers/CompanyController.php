@@ -51,7 +51,7 @@ class CompanyController extends Controller
         $company->phone = ($request->get('phone'));
         $company->save();
 
-        return Redirect::route('companies.edit',  ['company' => $company]);
+        return Redirect::route('companies.edit',  ['company' => $company])->with('success', 'Company created.');
     }
 
     /**
@@ -93,7 +93,7 @@ class CompanyController extends Controller
         $company->phone = ($request->get('phone'));
         $company->save();
 
-        return Redirect::route('companies.index');
+        return Redirect::route('companies.index')->with('success', 'Company updated.');
     }
 
     /**
@@ -106,6 +106,6 @@ class CompanyController extends Controller
     {
         $company->delete();
 
-        return Redirect::route('companies.index');
+        return Redirect::route('companies.index')->with('success', 'Company deleted.');
     }
 }

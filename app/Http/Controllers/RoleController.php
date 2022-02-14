@@ -57,7 +57,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->get('permission_ids'));
 
-        return Redirect::route('roles.edit', ['role' => $role]);
+        return Redirect::route('roles.edit', ['role' => $role])->with('success', 'Role created.');
     }
 
 
@@ -108,7 +108,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->get('permission_ids'));
 
-        return Redirect::route('roles.index');
+        return Redirect::route('roles.index')->with('success', 'Role updated.');
     }
 
     /**
@@ -121,6 +121,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return Redirect::route('roles.index');
+        return Redirect::route('roles.index')->with('success', 'Role deleted.');
     }
 }
