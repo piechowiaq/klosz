@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use App\Domains\Company\Models\Company;
 use App\Domains\Company\Requests\StoreCompanyRequest;
 use App\Domains\Company\Requests\UpdateCompanyRequest;
+use App\Domains\Company\Services\CompanyService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-use Spatie\Permission\Models\Permission;
 
 class CompanyController extends Controller
 {
+    /**
+     * @var CompanyService
+     */
+    private $companyService;
+
+    public function __construct(CompanyService $companyService)
+    {
+        $this->companyService = $companyService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,12 +54,10 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request): RedirectResponse
     {
-        $company = new Company();
-        $company->name = ($request->get('name'));
-        $company->city = ($request->get('city'));
-        $company->email = ($request->get('email'));
-        $company->phone = ($request->get('phone'));
-        $company->save();
+        $company = $this->companyService->create($request->get('name'),
+            $request->get('city'),
+            $request->get('email'),
+            $request->get('phone'));
 
         return Redirect::route('companies.edit',  ['company' => $company])->with('success', 'Company created.');
     }
@@ -87,11 +95,10 @@ class CompanyController extends Controller
      */
     public function update( UpdateCompanyRequest $request, Company $company): RedirectResponse
     {
-        $company->name = ($request->get('name'));
-        $company->city = ($request->get('city'));
-        $company->email = ($request->get('email'));
-        $company->phone = ($request->get('phone'));
-        $company->save();
+        $this->companyService->update($company, $request->get('name'),
+            $request->get('city'),
+            $request->get('email'),
+            $request->get('phone'));
 
         return Redirect::route('companies.index')->with('success', 'Company updated.');
     }

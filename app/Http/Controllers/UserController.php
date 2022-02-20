@@ -84,7 +84,12 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = $this->userService->create($request->get('name'), $request->get('last_name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+        $user = $this->userService->create($request->get('name'),
+                                            $request->get('last_name'),
+                                            $request->get('password'),
+                                            $request->get('email'),
+                                            $request->get('phone'),
+                                            $request->get('role_id'));
 
         $companyIds = $request->get('company_ids');
         $companies  = new Collection();
@@ -137,7 +142,12 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $this->userService->update($user, $request->get('name'), $request->get('last_name'), $request->get('password'), $request->get('email'), $request->get('phone'), $request->get('role_id'));
+        $this->userService->update($user, $request->get('name'),
+                                            $request->get('last_name'),
+                                            $request->get('password'),
+                                            $request->get('email'),
+                                            $request->get('phone'),
+                                            $request->get('role_id'));
 
         $companyIds = $request->get('company_ids');
         $companies  = new Collection();

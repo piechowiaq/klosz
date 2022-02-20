@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Domains\User\Requests\StoreRoleRequest;
 use App\Domains\User\Requests\UpdateRoleRequest;
+use App\Domains\User\Services\RoleService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -19,6 +20,16 @@ use Spatie\Permission\Models\Role;
  */
 class RoleController extends Controller
 {
+    /**
+     * @var RoleService
+     */
+    private $roleService;
+
+    public function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,9 +62,11 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
-        $role = new Role();
-        $role->name = $request->get('name');
-        $role->save();
+        $role = $this->roleService->create($request->get('name'));
+
+//        $role = new Role();
+//        $role->name = $request->get('name');
+//        $role->save();
 
         $role->syncPermissions($request->get('permission_ids'));
 
@@ -102,9 +115,7 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        $role->name = $request->get('name');
-
-        $role->save();
+        $this->roleService->update($role, $request->get('name'));
 
         $role->syncPermissions($request->get('permission_ids'));
 

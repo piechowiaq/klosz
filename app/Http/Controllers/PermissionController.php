@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Company;
 use App\Domains\User\Requests\StorePermissionRequest;
 use App\Domains\User\Requests\UpdatePermissionRequest;
+use App\Domains\User\Services\PermissionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
@@ -16,6 +16,16 @@ use Illuminate\Http\RedirectResponse;
 
 class PermissionController extends Controller
 {
+    /**
+     * @var PermissionService
+     */
+    private $permissionService;
+
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,16 +56,18 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionRequest $request): RedirectResponse
     {
-        return Redirect::route('permissions.show',  ['permission' => Permission::create(['name' => $request->get('name')])])->with('success', 'Permission created.');
+        $permission = $this->permissionService->create($request->get('name'));
+
+        return Redirect::route('permissions.edit',  ['permission' => $permission])->with('success', 'Permission created.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Permission $permission
      * @return Response
      */
-    public function show(Permission $permission)
+    public function show(Permission $permission): Response
     {
         return Inertia::render('Permissions/Show', [
             'permission' => $permission
@@ -78,15 +90,13 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdatePermissionRequest $request
      * @param Permission $permission
      * @return RedirectResponse
      */
     public function update( UpdatePermissionRequest $request, Permission $permission): RedirectResponse
     {
-        $permission->name = $request->get('name');
-
-        $permission->save();
+        $this->permissionService->update($permission, $request->get('name'));
 
         return Redirect::route('permissions.index')->with('success', 'Permission updated.');
     }
