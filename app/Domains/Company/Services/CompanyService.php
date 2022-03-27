@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Company\Services;
 
 use App\Domains\Company\Models\Company;
+use Illuminate\Support\Facades\Gate;
 
 class CompanyService
 {
@@ -37,6 +38,9 @@ class CompanyService
      */
     public function update(Company $company, string $name, string $city, string $email, string $phone): Company
     {
+        if(! Gate::allows('update-company', $company)){
+            abort(403);
+        }
         $company->name = $name;
         $company->city = $city;
         $company->email = $email;

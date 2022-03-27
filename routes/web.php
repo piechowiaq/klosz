@@ -29,15 +29,18 @@ Route::get('/', function () {
 });
 
 
-//Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
+Route::middleware(['auth'])->group (function (): void {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::inertia('/test', 'Layout');
+    Route::inertia('/test', 'Layout')->middleware(['password.confirm']);
     Route::inertia('/organizations', 'Organizations/Index');
 
-    Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('companies', CompanyController::class);
-//});
+    Route::middleware('admin.authorize')->group(static function (): void{
+        Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('companies', CompanyController::class);
+    });
+
+});

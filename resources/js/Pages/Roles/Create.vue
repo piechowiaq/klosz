@@ -11,7 +11,7 @@
                     <form @submit.prevent="store">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
                             <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Name a role" />
-                            <select-input v-model="form.permission_ids" multiple :error="form.errors.permission_ids" class="pb-8 pr-6 w-full lg:w-1/2" label="Companies">
+                            <select-input v-model="form.permission_ids" multiple :error="form.errors.permission_ids" class="pb-8 pr-6 w-full lg:w-1/2" label="Permissions">
                                 <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id" >{{ permission.name }}</option>
                             </select-input>
                         </div>
