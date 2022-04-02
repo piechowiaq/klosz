@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group (function (): void {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::inertia('/test', 'Layout')->middleware(['password.confirm']);
+    Route::inertia('/test', 'Layout');
     Route::inertia('/organizations', 'Organizations/Index');
 
     Route::middleware('admin.authorize')->group(static function (): void{

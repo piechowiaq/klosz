@@ -1,40 +1,18 @@
 <template>
-    <button type="button" class="mt-1">
-        <div class="flex-col items-center cursor-pointer select-none group" @click="toggleVisibility">
-            <a href="#" class="flex items-center group py-3">
-                <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">
-                    <span>John</span>
-                    <span class="hidden md:inline">Doe</span>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
-                </svg>
-            </a>
-            <transition v-if="isVisible" >
-            <div class="absolute" >
-                <Link :href="route('companies.index')" class="flex items-center group py-3">
-                    <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">My Profile</div>
-                </Link>
-
-                <Link :href="route('users.index')" class="flex items-center group py-3">
-                    <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">Managed Users</div>
-                </Link>
-
-                <Link :href="route('companies.index')" class="flex items-center group py-3">
-                    <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">Logout</div>
-                </Link>
-            </div>
-            </transition>
-
+    <div class="relative">
+        <button @click="isOpen = !isOpen" class="relative z-10 block focus:outline-none">
+            John Doe
+        </button>
+        <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-20 cursor-default"></button>
+        <div v-if="isOpen" class="absolute right-0 mt-2 py-2 w-40 bg-white rounded  text-sm shadow-xl">
+            <Link :href="route('companies.index')" class="block px-6 py-2 hover:bg-indigo-500 hover:text-white">My Profile</Link>
+            <Link :href="route('companies.index')" class="block px-6 py-2 hover:bg-indigo-500 hover:text-white">Managed Users</Link>
+            <Link :href="route('companies.index')" class="block px-6 py-2 hover:bg-indigo-500 hover:text-white">Log Out</Link>
         </div>
-    </button>
-
+    </div>
 </template>
 
-
-
 <script>
-
 import { defineComponent } from 'vue'
 import { Link } from '@inertiajs/inertia-vue3';
 
@@ -47,14 +25,9 @@ export default defineComponent({
 
     data(){
         return {
-            isVisible: false
+            isOpen: false
         }
     },
-    methods: {
-        toggleVisibility() {
-            this.isVisible = !this.isVisible
-        },
-    }
 })
 
 </script>
