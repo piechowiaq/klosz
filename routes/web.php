@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -31,7 +32,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group (function (): void {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'auth' => Auth::user()
+        ]);
     })->name('dashboard');
     Route::inertia('/test', 'Layout');
     Route::inertia('/organizations', 'Organizations/Index');
@@ -44,3 +47,5 @@ Route::middleware(['auth'])->group (function (): void {
     });
 
 });
+
+require_once __DIR__ . '/fortify.php';

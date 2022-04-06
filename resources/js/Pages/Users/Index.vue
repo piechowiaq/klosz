@@ -84,7 +84,7 @@ export default defineComponent({
         Icon,
     },
     props: {
-        users: Object
+        users: Object,
     },
     methods:{
         destroy(user) {

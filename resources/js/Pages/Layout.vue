@@ -16,12 +16,12 @@
                 <div class="md:flex md:flex-grow md:overflow-hidden">
                         <div class="hidden md:block bg-indigo-800 flex-shrink-0 w-56 p-12 overflow-y-auto">
                             <div class="mb-4">
-                                <a href="https://demo.inertiajs.com/" class="flex items-center group py-3">
+                                <Link :href="route('dashboard')" class="flex items-center group py-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 mr-2 fill-indigo-400 group-hover:fill-white">
                                         <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"></path>
                                     </svg>
                                     <div class="text-indigo-300 group-hover:text-white">Dashboard</div>
-                                </a>
+                                </Link>
                             </div>
                             <div class="mb-4">
                                 <Link :href="route('companies.index')" class="flex items-center group py-3">

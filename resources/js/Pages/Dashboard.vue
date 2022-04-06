@@ -1,30 +1,19 @@
 <template>
-    <app-layout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <welcome />
-                </div>
-            </div>
-        </div>
-    </app-layout>
+    <div>
+        <Head title="Dashboard" />
+        <h1 class="mb-8 text-3xl font-bold">Dashboard</h1>
+        <p class="mb-8 leading-normal">Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how <a class="text-indigo-500 hover:text-orange-600 underline" href="https://inertiajs.com">Inertia.js</a> works.</p>
+    </div>
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
-    import AppLayout from '@/Layouts/AppLayout.vue'
-    import Welcome from '@/Jetstream/Welcome.vue'
+import { Head } from '@inertiajs/inertia-vue3'
+import Layout from '@/Pages/Layout'
 
-    export default defineComponent({
-        components: {
-            AppLayout,
-            Welcome,
-        },
-    })
+export default {
+    components: {
+        Head,
+    },
+    layout: Layout,
+}
 </script>

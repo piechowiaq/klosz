@@ -52,7 +52,7 @@ class UserController extends Controller
                 'last_name' => $user->last_name,
                 'email' => $user->email,
                 'phone' => $user->phone,
-            ])
+            ]),
         ]);
     }
 
@@ -124,6 +124,7 @@ class UserController extends Controller
      */
     public function edit(User $user): Response
     {
+
        return Inertia::render('Users/Edit', [
             'user' => $user,
             'roles' => Role::all()->toArray(),
