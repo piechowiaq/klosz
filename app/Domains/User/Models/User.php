@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -31,6 +32,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $remember_token
  * @property integer $current_team_id
  * @property string $profile_photo_path
+ * @property Carbon $deleted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $two_factor_secret
@@ -49,6 +51,7 @@ class User extends Authenticatable
     use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -82,6 +85,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function resolveRouteBinding($value, $field = null): ?\Illuminate\Database\Eloquent\Model
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -100,4 +109,5 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'Super Admin')->exists();
     }
+
 }

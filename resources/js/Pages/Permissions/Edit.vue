@@ -12,7 +12,8 @@
                             <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full" label="Permission Name" />
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-                            <loading-button :loading="form.processing" class="btn-indigo" type="submit">Edit Permission</loading-button>
+                            <button value="Delete" @click.once="destroy(permission)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Permission</button>
+                            <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit Permission</loading-button>
                         </div>
                     </form>
                 </div>

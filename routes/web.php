@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group (function (): void {
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
         Route::resource('users', UserController::class);
+        Route::put('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
         Route::resource('companies', CompanyController::class);
     });
 

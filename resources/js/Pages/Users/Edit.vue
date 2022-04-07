@@ -3,9 +3,10 @@
             <div>
 
                 <h1 class="mb-8 font-bold text-3xl">
-                    <Link :href="route('users.index')" class="text-indigo-400 hover:text-indigo-600">Users</Link>
-                    <span class="text-indigo-400 font-medium"> /</span>   {{ form.name }} {{ form.last_name }}
+                    <Link :href="route('users.index')" class="text-sky-800 hover:text-indigo-600">Users</Link>
+                    <span class="text-sky-800 font-medium"> /</span>   {{ form.name }} {{ form.last_name }}
                 </h1>
+                <trashed-message v-if="user.deleted_at" class="mb-6" @restore="restore(user)"> This user has been deleted. </trashed-message>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -24,7 +25,7 @@
                             <text-input v-model="form.password_confirmation" :error="form.errors.password_confirmation" class="pr-6 pb-8 w-full lg:w-1/2" label="Password Confirmation" />
                         </div>
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-                            <button value="Delete" @click.once="destroy(user)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Contact</button>
+                            <button v-if="!user.deleted_at" value="Delete" @click.once="destroy(user)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Contact</button>
                             <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit" >Edit User</loading-button>
                         </div>
                     </form>
@@ -42,6 +43,7 @@ import {Head, Link} from "@inertiajs/inertia-vue3";
 import LoadingButton from "../../Shared/LoadingButton";
 import TextInput from "../../Shared/TextInput";
 import SelectInput from "../../Shared/SelectInput";
+import TrashedMessage from "../../Shared/TrashedMessage";
 
 export default defineComponent({
     name: 'Users/Edit',
@@ -51,7 +53,8 @@ export default defineComponent({
         Head,
         LoadingButton,
         TextInput,
-        SelectInput
+        SelectInput,
+        TrashedMessage
     },
     props:{
         roles: Array,
@@ -75,9 +78,7 @@ export default defineComponent({
             company_ids: company_ids,
         },)))
 
-
         return { form }
-
     },
     methods:{
         update() {
@@ -85,6 +86,9 @@ export default defineComponent({
         },
         destroy(user) {
             this.$inertia.delete(this.route('users.destroy', user))
+        },
+        restore(user) {
+            this.$inertia.put(this.route('users.restore', user))
         },
     },
 

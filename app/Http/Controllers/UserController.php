@@ -46,12 +46,13 @@ class UserController extends Controller
     public function index(): Response
     {
         return Inertia::render('Users/Index', [
-            'users' => User::paginate(10)->through(fn($user) => [
+            'users' => User::withTrashed()->paginate(10)->through(fn($user) => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'last_name' => $user->last_name,
                 'email' => $user->email,
                 'phone' => $user->phone,
+                'deleted_at' => $user->deleted_at
             ]),
         ]);
     }
@@ -173,5 +174,12 @@ class UserController extends Controller
         $user->delete();
 
         return Redirect::route('users.index')->with('success', 'User deleted.');
+    }
+
+    public function restore(User $user): RedirectResponse
+    {
+        $user->restore();
+
+        return Redirect::route('users.index')->with('success', 'User restored.');
     }
 }
