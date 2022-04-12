@@ -1899,12 +1899,12 @@ select {
   fill: #991b1b;
 }
 
-.fill-gray-400 {
-  fill: #9ca3af;
-}
-
 .fill-yellow-800 {
   fill: #854d0e;
+}
+
+.fill-gray-400 {
+  fill: #9ca3af;
 }
 
 .object-cover {
@@ -2253,6 +2253,11 @@ select {
   color: rgb(212 212 216 / var(--tw-text-opacity));
 }
 
+.text-yellow-800 {
+  --tw-text-opacity: 1;
+  color: rgb(133 77 14 / var(--tw-text-opacity));
+}
+
 .text-indigo-400 {
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity));
@@ -2261,11 +2266,6 @@ select {
 .text-sky-800 {
   --tw-text-opacity: 1;
   color: rgb(7 89 133 / var(--tw-text-opacity));
-}
-
-.text-yellow-800 {
-  --tw-text-opacity: 1;
-  color: rgb(133 77 14 / var(--tw-text-opacity));
 }
 
 .underline {

@@ -40,20 +40,29 @@ class UserController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     * @param Request $request
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('Users/Index', [
-            'users' => User::withTrashed()->paginate(10)->through(fn($user) => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'phone' => $user->phone,
-                'deleted_at' => $user->deleted_at
-            ]),
+            'filters' => $request->only(['search']),
+            'users' => User::withTrashed()
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('name' , 'like', '%' . $search. '%')
+                        ->orWhere('last_name', 'like', '%'.$search.'%')
+                        ->orWhere('email', 'like', '%'.$search.'%');
+                })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn($user) => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'last_name' => $user->last_name,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                    'deleted_at' => $user->deleted_at
+                ]),
         ]);
     }
 

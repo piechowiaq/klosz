@@ -1,8 +1,7 @@
 <template>
     <layout title="Users">
-
             <div>
-                    <h1 class="mb-8 font-bold text-3xl">Users</h1>
+                <h1 class="mb-8 font-bold text-3xl">Users</h1>
                     <div class="mb-6 flex justify-between items-center">
                         <div class="flex items-center w-full max-w-md mr-4">
                             <div class="flex w-full bg-white shadow rounded">
@@ -14,7 +13,7 @@
                                         </svg>
                                     </div>
                                 </button>
-                                <input autocomplete="off" type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
+                                <input v-model="form.search"  type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
                             </div>
                             <button type="button" class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500">Reset</button>
                         </div>
@@ -62,29 +61,45 @@
                         </div>
                     </div>
                 </div>
-
        </layout>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import Layout from "../Layout";
 import Icon from "@/Shared/Icon.vue"
 import {Link} from "@inertiajs/inertia-vue3";
-import JetButton from '@/Jetstream/Button.vue'
 import Pagination from '@/Shared/Pagination.vue'
+import {debounce, pickBy, throttle} from "lodash";
 
 export default defineComponent({
     name: 'Users/Index',
+
     components: {
         Layout,
-        JetButton,
         Link,
         Pagination,
         Icon,
     },
     props: {
         users: Object,
+        filters: Object
+    },
+    data() {
+        return {
+            form: {
+                search: this.filters.search,
+                // trashed: this.filters.trashed,
+            },
+        }
+    },
+    watch: {
+        form: {
+            deep: true,
+            handler: debounce(function () {
+                this.$inertia.get(this.route('users.index'), this.form, { preserveState: true })
+            }, 150),
+        },
     },
     methods:{
         destroy(user) {
