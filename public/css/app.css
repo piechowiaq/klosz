@@ -1468,6 +1468,10 @@ select {
   width: 0.5rem;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .w-px {
   width: 1px;
 }
@@ -2499,6 +2503,10 @@ select {
 
 .focus\:z-10:focus {
   z-index: 10;
+}
+
+.focus\:z-50:focus {
+  z-index: 50;
 }
 
 .focus\:border-blue-300:focus {

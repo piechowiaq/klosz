@@ -46,12 +46,19 @@ class UserController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Users/Index', [
-            'filters' => $request->only(['search']),
-            'users' => User::withTrashed()
-                ->when($request->input('search'), function ($query, $search) {
+            'filters' => $request->all(['search', 'trashed']),
+            'users' => User::when($request->input('search'), function ($query, $search) {
+
                     $query->where('name' , 'like', '%' . $search. '%')
                         ->orWhere('last_name', 'like', '%'.$search.'%')
                         ->orWhere('email', 'like', '%'.$search.'%');
+                })
+                ->when($request->input('trashed'), function ($query, $trashed) {
+                    if ($trashed === 'with') {
+                        $query->withTrashed();
+                    } elseif ($trashed === 'only') {
+                        $query->onlyTrashed();
+                    }
                 })
                 ->paginate(10)
                 ->withQueryString()
