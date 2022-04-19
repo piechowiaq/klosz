@@ -1,36 +1,11 @@
 <template>
     <layout title="Users">
-            <div>
-                <h1 class="mb-8 font-bold text-3xl">Users</h1>
-                    <div class="mb-6 flex justify-between items-center">
-
-                        <div class="flex items-center w-full max-w-md mr-4">
-                            <div class="flex w-full bg-white shadow rounded">
-
-                                    <div class="relative">
-                                        <button @click="isOpen = !isOpen"  class="flex h-full w-full bg-white shadow rounded py-4 px-4 border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-50  z-50 block focus:outline-none">
-                                            <span>Filter</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                        </button>
-                                        <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-20 cursor-default"></button>
-                                        <div v-if="isOpen" class="absolute mt-2 px-4 py-6 w-screen bg-white text-sm rounded shadow-xl" style="max-width: 300px">
-                                            <label class="block text-gray-700">Trashed:</label>
-                                            <select v-model="form.trashed" class="form-select text-sm mt-1 w-full">
-                                                <option :value="null" />
-                                                <option value="with">With Trashed</option>
-                                                <option value="only">Only Trashed</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                <input v-model="form.search"  type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
-                            </div>
-                            <button type="button" class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500"  @click="reset">Reset</button>
-                        </div>
-
-                        <Link :href="route('users.create')" >
-                           Create User
-                        </Link>
-                    </div>
+        <div>
+            <h1 class="mb-8 font-bold text-3xl">Users</h1>
+            <div class="mb-6 flex justify-between items-center">
+                <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
+                <Link :href="route('users.create')" >Create User</Link>
+            </div>
                     <div class="bg-white rounded-md shadow overflow-x-auto">
                         <table class="w-full whitespace-nowrap">
                             <tr class="text-left font-bold">
@@ -79,7 +54,8 @@ import Layout from "../Layout";
 import Icon from "@/Shared/Icon.vue"
 import {Link} from "@inertiajs/inertia-vue3";
 import Pagination from '@/Shared/Pagination.vue'
-import {debounce, mapValues, pickBy, throttle} from "lodash";
+import {debounce, mapValues} from "lodash";
+import Search from "@/Shared/Search"
 
 
 export default defineComponent({
@@ -90,6 +66,7 @@ export default defineComponent({
         Link,
         Pagination,
         Icon,
+        Search
     },
     props: {
         users: Object,
@@ -119,16 +96,6 @@ export default defineComponent({
         reset() {
             this.form = mapValues(this.form, () => null)
         },
-    },
-    mounted() {
-        const onEscape = (e) => {
-            if (!this.isOpen || e.key !== 'Escape') {
-                return
-            }
-            this.isOpen = false
-        }
-        document.addEventListener('keydown', onEscape)
-        onUnmounted(() => document.removeEventListener('keydown', onEscape))
     },
 })
 </script>

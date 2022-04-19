@@ -1468,12 +1468,12 @@ select {
   width: 0.5rem;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .w-px {
   width: 1px;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .min-w-0 {

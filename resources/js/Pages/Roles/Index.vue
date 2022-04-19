@@ -78,7 +78,6 @@ export default defineComponent({
         destroy(role) {
             this.$inertia.delete(this.route('roles.destroy', role))
         },
-
     },
 })
 </script>
