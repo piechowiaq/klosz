@@ -6,6 +6,7 @@ use App\Domains\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Vendor\Spatie\Laravel-permission\Src\Models\Permission
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Company extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     /** @var array|string[] */
     protected $guarded = [];

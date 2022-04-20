@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('city');
             $table->string('phone');
             $table->string('email');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

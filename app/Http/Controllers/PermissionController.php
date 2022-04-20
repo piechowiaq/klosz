@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 use Inertia\Inertia;
-use Spatie\Permission\Models\Permission;
+use App\Domains\User\Models\Permission;
 use Illuminate\Http\RedirectResponse;
 
 class PermissionController extends Controller
@@ -31,10 +31,28 @@ class PermissionController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('Permissions/Index', [
-            'permissions' => Permission::paginate(10)
+            'filters' => $request->all(['search', 'trashed']),
+            'permissions' => Permission::when($request->input('search'), function ($query, $search) {
+
+                $query->where('name' , 'like', '%' . $search. '%');
+
+            })
+                ->when($request->input('trashed'), function ($query, $trashed) {
+                    if ($trashed === 'with') {
+                        $query->withTrashed();
+                    } elseif ($trashed === 'only') {
+                        $query->onlyTrashed();
+                    }
+                })->paginate(10)
+                ->withQueryString()
+                ->through(fn($permission) => [
+                    'id' => $permission->id,
+                    'name' => $permission->name,
+                    'deleted_at' => $permission->deleted_at
+                ]),
         ]);
     }
 

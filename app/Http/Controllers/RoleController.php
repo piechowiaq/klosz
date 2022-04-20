@@ -7,13 +7,14 @@ namespace App\Http\Controllers;
 use App\Domains\User\Requests\StoreRoleRequest;
 use App\Domains\User\Requests\UpdateRoleRequest;
 use App\Domains\User\Services\RoleService;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Domains\User\Models\Permission;
+use App\Domains\User\Models\Role;
 
 /**
  * @property Permission[]|Collection
@@ -35,10 +36,28 @@ class RoleController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('Roles/Index', [
-            'roles' => Role::paginate(10)
+            'filters' => $request->all(['search', 'trashed']),
+            'roles' => Role::when($request->input('search'), function ($query, $search) {
+
+                $query->where('name' , 'like', '%' . $search. '%');
+
+            })
+                ->when($request->input('trashed'), function ($query, $trashed) {
+                    if ($trashed === 'with') {
+                        $query->withTrashed();
+                    } elseif ($trashed === 'only') {
+                        $query->onlyTrashed();
+                    }
+                })->paginate(10)
+                ->withQueryString()
+                ->through(fn($role) => [
+                    'id' => $role->id,
+                    'name' => $role->name,
+                    'deleted_at' => $role->deleted_at
+                ]),
         ]);
     }
 

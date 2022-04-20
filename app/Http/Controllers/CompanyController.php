@@ -29,10 +29,32 @@ class CompanyController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('Companies/Index', [
-            'companies' => Company::paginate(10)
+            'filters' => $request->all(['search', 'trashed']),
+            'companies' => Company::when($request->input('search'), function ($query, $search) {
+
+                $query->where('name' , 'like', '%' . $search. '%')
+                    ->orWhere('city', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%');
+            })
+                ->when($request->input('trashed'), function ($query, $trashed) {
+                    if ($trashed === 'with') {
+                        $query->withTrashed();
+                    } elseif ($trashed === 'only') {
+                        $query->onlyTrashed();
+                    }
+                })->paginate(10)
+                ->withQueryString()
+                ->through(fn($company) => [
+                    'id' => $company->id,
+                    'name' => $company->name,
+                    'city' => $company->last_name,
+                    'email' => $company->email,
+                    'phone' => $company->phone,
+                    'deleted_at' => $company->deleted_at
+                ]),
         ]);
     }
 

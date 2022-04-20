@@ -4,21 +4,9 @@
             <div>
                 <h1 class="mb-8 font-bold text-3xl">Roles</h1>
                 <div class="mb-6 flex justify-between items-center">
-                    <div class="flex items-center w-full max-w-md mr-4">
-                        <div class="flex w-full bg-white shadow rounded">
-                            <button type="button" class="px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-10">
-                                <div class="flex items-baseline">
-                                    <span class="text-gray-700 hidden md:inline">Filter</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 961.243 599.998" class="w-2 h-2 fill-gray-700 md:ml-2">
-                                        <path d="M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z">
 
-                                        </path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <input autocomplete="off" type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
-                        </div> <button type="button" class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500">Reset</button>
-                    </div>
+                    <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
+
                     <Link :href="route('roles.create')" >
                         Create Role
                     </Link>
@@ -59,6 +47,8 @@ import Layout from "../Layout";
 import Icon from "@/Shared/Icon.vue"
 import {Link} from "@inertiajs/inertia-vue3";
 import Pagination from '@/Shared/Pagination.vue'
+import {debounce, mapValues} from "lodash"
+import Search from '@/Shared/Search'
 
 
 
@@ -69,14 +59,36 @@ export default defineComponent({
         Layout,
         Icon,
         Link,
-        Pagination
+        Pagination,
+        Search
     },
     props:{
         roles: Object,
+        filters: Object,
+    },
+    data() {
+        return {
+            isOpen: false,
+            form: {
+                search: this.filters.search,
+                trashed: this.filters.trashed,
+            },
+        }
+    },
+    watch: {
+        form: {
+            deep: true,
+            handler: debounce(function () {
+                this.$inertia.get(this.route('roles.index'), this.form, { preserveState: true , replace: true})
+            }, 150),
+        },
     },
     methods:{
         destroy(role) {
             this.$inertia.delete(this.route('roles.destroy', role))
+        },
+        reset() {
+            this.form = mapValues(this.form, () => null)
         },
     },
 })
