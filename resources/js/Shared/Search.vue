@@ -1,8 +1,8 @@
 <template>
     <div>
     <div class="flex w-full bg-white shadow rounded">
-        <div class="relative">
-            <button @click="isOpen = !isOpen"  class="flex h-full w-full bg-white shadow rounded py-4 px-4 border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-50  z-50 block focus:outline-none">
+        <div class="">
+            <button @click="isOpen = !isOpen"  class="flex h-full w-full bg-white shadow rounded py-4 px-4 ">
                 <span>Filter</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </button>

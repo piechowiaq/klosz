@@ -1179,6 +1179,10 @@ select {
   z-index: 10;
 }
 
+.z-20 {
+  z-index: 20;
+}
+
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
@@ -1865,6 +1869,16 @@ select {
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.bg-red-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+}
+
+.bg-blue-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-25 {

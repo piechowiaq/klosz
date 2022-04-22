@@ -29306,7 +29306,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.isOpen = !_ctx.isOpen;
     }),
-    "class": "relative flex z-10 block focus:outline-none"
+    "class": "flex z-10 block focus:outline-none"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.user.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.user.last_name), 1
   /* TEXT */
   ), _hoisted_2]), _ctx.isOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
@@ -29705,7 +29705,7 @@ var _hoisted_1 = {
   "class": "flex w-full bg-white shadow rounded"
 };
 var _hoisted_2 = {
-  "class": "relative"
+  "class": ""
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Filter", -1
@@ -29764,7 +29764,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $data.isOpen = !$data.isOpen;
     }),
-    "class": "flex h-full w-full bg-white shadow rounded py-4 px-4 border-r hover:bg-gray-100 focus:border-white focus:ring focus:z-50 z-50 block focus:outline-none"
+    "class": "flex h-full w-full bg-white shadow rounded py-4 px-4"
   }, _hoisted_5), $data.isOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     onClick: _cache[1] || (_cache[1] = function ($event) {
