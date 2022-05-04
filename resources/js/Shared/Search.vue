@@ -8,12 +8,7 @@
             </button>
             <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-20 cursor-default"></button>
             <div v-if="isOpen" class="absolute mt-2 px-4 py-6 w-screen bg-white text-sm rounded shadow-xl" style="max-width: 300px">
-                <label class="block text-gray-700">Trashed:</label>
-                <select :trashed="trashed" @input="$emit('update:trashed', $event.target.value)" class="form-select text-sm mt-1 w-full">
-                    <option :value="null" />
-                    <option value="with">With Trashed</option>
-                    <option value="only">Only Trashed</option>
-                </select>
+                <slot />
             </div>
         </div>
         <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"  type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">

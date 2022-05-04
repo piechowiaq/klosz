@@ -5,7 +5,14 @@
                 <h1 class="mb-8 font-bold text-3xl">Roles</h1>
                 <div class="mb-6 flex justify-between items-center">
 
-                    <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
+                    <search v-model="form.search" @reset="reset" class="flex items-center w-full max-w-md mr-4">
+                        <label class="block text-gray-700">Trashed:</label>
+                        <select v-model="form.trashed" @input="$emit('update:trashed', $event.target.value)" class="form-select text-sm mt-1 w-full">
+                            <option :value="null" />
+                            <option value="with">With Trashed</option>
+                            <option value="only">Only Trashed</option>
+                        </select>
+                    </search>
 
                     <Link :href="route('roles.create')" >
                         Create Role
