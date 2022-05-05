@@ -4,7 +4,7 @@
             <slot></slot>
         </button>
         <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-20  cursor-default"></button>
-        <div v-if="isOpen" class="absolute right-0 mt-2 py-2 w-40 bg-white rounded  text-sm shadow-xl">
+        <div v-if="isOpen" class="mt-2 px-4 py-6 w-screen bg-white rounded shadow-xl">
             <slot name="dropdown" />
         </div>
     </div>
@@ -12,8 +12,7 @@
 
 <script>
 import { defineComponent, onUnmounted, computed } from 'vue'
-import { Link } from '@inertiajs/inertia-vue3';
-import { usePage } from '@inertiajs/inertia-vue3'
+import { usePage, Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     name: 'Dropdown',

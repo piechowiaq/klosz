@@ -8,7 +8,7 @@
                 <div class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center">
                     <div class="mt-1 mr-4">Klosz Group</div>
 
-                    <dropdown-log class="mt-1" placement="bottom-end">
+                    <dropdown class="mt-1" placement="bottom-end">
                         <template #default>
 
                             <span>{{ user.name }} {{user.last_name}}</span>
@@ -22,7 +22,7 @@
                                 <Link :href="route('logout')" class="block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500" method="post" as="button">Logout</Link>
                             </div>
                         </template>
-                    </dropdown-log>
+                    </dropdown>
 
                     </div>
                 </div>
@@ -86,7 +86,7 @@
 import { defineComponent, computed } from 'vue'
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 import Banner from '@/Shared/Banner.vue'
-import DropdownLog from "../Shared/DropdownLog";
+import Dropdown from "../Shared/Dropdown";
 import FlashMessages from "@/Shared/FlashMessages";
 
 
@@ -103,7 +103,7 @@ export default defineComponent({
     },
 
     components: {
-        DropdownLog,
+        Dropdown,
         Head,
         Link,
         Banner,
