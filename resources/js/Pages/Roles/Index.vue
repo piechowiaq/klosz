@@ -1,14 +1,9 @@
 <template>
     <layout title="Users">
-
             <div>
                 <h1 class="mb-8 font-bold text-3xl">Roles</h1>
                 <div class="mb-6 flex justify-between items-center">
-
                     <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
-
-
-
                     <Link :href="route('roles.create')" >
                         Create Role
                     </Link>

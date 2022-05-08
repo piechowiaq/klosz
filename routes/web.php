@@ -41,10 +41,12 @@ Route::middleware(['auth'])->group (function (): void {
 
     Route::middleware('admin.authorize')->group(static function (): void{
         Route::resource('roles', RoleController::class);
+        Route::put('roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
         Route::resource('permissions', PermissionController::class);
         Route::resource('users', UserController::class);
         Route::put('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
         Route::resource('companies', CompanyController::class);
+        Route::put('companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
     });
 
 });

@@ -40,10 +40,10 @@ import {defineComponent, reactive} from 'vue'
 import Layout from "../Layout";
 import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Head, Link} from "@inertiajs/inertia-vue3";
-import LoadingButton from "../../Shared/LoadingButton";
-import TextInput from "../../Shared/TextInput";
-import SelectInput from "../../Shared/SelectInput";
-import TrashedMessage from "../../Shared/TrashedMessage";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import TrashedMessage from "@/Shared/TrashedMessage";
 
 export default defineComponent({
     name: 'Users/Edit',

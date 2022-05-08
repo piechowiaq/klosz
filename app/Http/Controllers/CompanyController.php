@@ -27,6 +27,7 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request): Response
@@ -92,7 +93,9 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return Inertia::render('Companies/Show', [
+            'comapany' => $company
+        ]);
     }
 
     /**
@@ -136,5 +139,12 @@ class CompanyController extends Controller
         $company->delete();
 
         return Redirect::route('companies.index')->with('success', 'Company deleted.');
+    }
+
+    public function restore(Company $company): RedirectResponse
+    {
+        $company->restore();
+
+        return Redirect::route('companies.index')->with('success', 'Company restored.');
     }
 }

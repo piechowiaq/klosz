@@ -6,6 +6,7 @@
                     <Link :href="route('roles.index')" class="text-indigo-400 hover:text-indigo-600">{{ form.name }}</Link>
                     <span class="text-indigo-400 font-medium"> /</span> Edit
                 </h1>
+                <trashed-message v-if="role.deleted_at" class="mb-6" @restore="restore(role)"> This role has been deleted. </trashed-message>
                 <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="update">
                         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -34,6 +35,7 @@ import LoadingButton from "../../Shared/LoadingButton";
 import Layout from "../Layout";
 import TextInput from "../../Shared/TextInput";
 import SelectInput from "../../Shared/SelectInput";
+import TrashedMessage from "../../Shared/TrashedMessage";
 
 export default defineComponent({
     name: 'Roles/Edit',
@@ -42,7 +44,8 @@ export default defineComponent({
         Link,
         LoadingButton,
         TextInput,
-        SelectInput
+        SelectInput,
+        TrashedMessage
     },
     props:{
         role: Object,
@@ -65,6 +68,9 @@ export default defineComponent({
         },
         destroy(role) {
             this.$inertia.delete(this.route('roles.destroy', role))
+        },
+        restore(role) {
+            this.$inertia.put(this.route('roles.restore', role))
         },
     },
 });

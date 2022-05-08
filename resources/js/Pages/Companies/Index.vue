@@ -4,9 +4,7 @@
                 <div>
                     <h1 class="mb-8 font-bold text-3xl">Companies</h1>
                     <div class="mb-6 flex justify-between items-center">
-                        <search v-model="form.search" @reset="reset" class="flex items-center w-full max-w-md mr-4">
-                            <label class="block text-gray-700">Trashed:</label>
-                            <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
+                      <search v-model="form.search" v-model:trashed="form.trashed" @reset="reset" class="flex items-center w-full max-w-md mr-4"/>
 
                         <Link :href="route('companies.create')" >
                            Create Company
@@ -40,7 +38,7 @@
                                 </td>
                             </tr>
                             <tr v-if="companies.length === 0">
-                                <td class="px-6 py-4 border-t" colspan="4">No users found.</td>
+                                <td class="px-6 py-4 border-t" colspan="4">No companies found.</td>
                             </tr>
                         </table>
                     </div>

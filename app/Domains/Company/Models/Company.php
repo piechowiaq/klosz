@@ -36,4 +36,9 @@ class Company extends Model
         return $this->users()->get()->find($user)->id;
 
     }
+
+    public function resolveRouteBinding($value, $field = null): ?Model
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
 }

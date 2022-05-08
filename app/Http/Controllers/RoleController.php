@@ -83,10 +83,6 @@ class RoleController extends Controller
     {
         $role = $this->roleService->create($request->get('name'));
 
-//        $role = new Role();
-//        $role->name = $request->get('name');
-//        $role->save();
-
         $role->syncPermissions($request->get('permission_ids'));
 
         return Redirect::route('roles.edit', ['role' => $role])->with('success', 'Role created.');
@@ -152,5 +148,12 @@ class RoleController extends Controller
         $role->delete();
 
         return Redirect::route('roles.index')->with('success', 'Role deleted.');
+    }
+
+    public function restore(Role $role): RedirectResponse
+    {
+        $role->restore();
+
+        return Redirect::route('roles.index')->with('success', 'Role restored.');
     }
 }
