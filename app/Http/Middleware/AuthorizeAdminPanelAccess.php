@@ -36,6 +36,12 @@ class AuthorizeAdminPanelAccess
 
         assert($user instanceof User);
 
-        return $user;
+        if (!empty($user))
+        {
+            return $user;
+        }
+
+        abort(ResponseAlias::HTTP_UNAUTHORIZED);
+
     }
 }

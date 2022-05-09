@@ -131,4 +131,10 @@ class PermissionController extends Controller
 
         return Redirect::route('permissions.index')->with('success', 'Permission deleted.');
     }
+    public function restore(Permission $permission): RedirectResponse
+    {
+        $permission->restore();
+
+        return Redirect::route('permissions.index')->with('success', 'Permission restored.');
+    }
 }

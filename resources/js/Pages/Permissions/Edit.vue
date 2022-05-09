@@ -1,23 +1,34 @@
 <template>
     <layout>
 
-            <div>
-                <h1 class="mb-8 font-bold text-3xl">
-                    <Link :href="route('permissions.index')" class="text-indigo-400 hover:text-indigo-600">{{ form.name }}</Link>
-                    <span class="text-indigo-400 font-medium"> /</span> Create
-                </h1>
-                <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
-                    <form @submit.prevent="update">
-                        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                            <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full" label="Permission Name" />
-                        </div>
-                        <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-                            <button value="Delete" @click.once="destroy(permission)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Permission</button>
-                            <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit Permission</loading-button>
-                        </div>
-                    </form>
-                </div>
+        <div>
+            <h1 class="mb-8 font-bold text-3xl">
+                <Link :href="route('permissions.index')" class="text-indigo-400 hover:text-indigo-600">{{
+                        form.name
+                    }}
+                </Link>
+                <span class="text-indigo-400 font-medium"> /</span> Create
+            </h1>
+            <trashed-message v-if="permission.deleted_at" class="mb-6" @restore="restore(permission)"> This permission has been
+                deleted.
+            </trashed-message>
+            <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+                <form @submit.prevent="update">
+                    <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+                        <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full"
+                                    label="Permission Name"/>
+                    </div>
+                    <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
+                        <button v-if="!permission.deleted_at" value="Delete" @click.once="destroy(permission)" tabindex="-1" type="button"
+                                class="text-red-600 hover:underline">Delete Permission
+                        </button>
+                        <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit
+                            Permission
+                        </loading-button>
+                    </div>
+                </form>
             </div>
+        </div>
 
     </layout>
 </template>
@@ -25,10 +36,11 @@
 <script>
 
 import {defineComponent, reactive} from 'vue'
-import { useRemember, useForm, Link  } from '@inertiajs/inertia-vue3'
-import Layout from "../Layout";
-import TextInput from "../../Shared/TextInput";
-import LoadingButton from "../../Shared/LoadingButton";
+import {useRemember, useForm, Link} from '@inertiajs/inertia-vue3'
+import Layout from "@/Pages/Layout";
+import TextInput from "@/Shared/TextInput";
+import LoadingButton from "@/Shared/LoadingButton";
+import TrashedMessage from "@/Shared/TrashedMessage";
 
 
 export default defineComponent({
@@ -37,25 +49,29 @@ export default defineComponent({
         LoadingButton,
         Layout,
         Link,
-        TextInput
+        TextInput,
+        TrashedMessage
     },
-    props:{
+    props: {
         permission: Object,
     },
-    setup({ permission }) {
+    setup({permission}) {
         const form = useForm(useRemember(reactive({
             name: permission.name,
         })))
 
-        return { form }
+        return {form}
 
     },
-    methods:{
+    methods: {
         update() {
             this.form.put(this.route('permissions.update', this.permission.id))
         },
         destroy(permission) {
             this.$inertia.delete(this.route('permissions.destroy', permission))
+        },
+        restore(permission) {
+            this.$inertia.put(this.route('permissions.restore', permission))
         },
     },
 });

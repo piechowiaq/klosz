@@ -2,7 +2,6 @@
 
 namespace App\Domains\Company\Models;
 
-use App\Domains\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -13,13 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property integer $id
  * @property string $name
- * @property string $city
- * @property string $email
- * @property string $phone
+ * @property string $description
+ * @property integer $valid_for
  *
  */
 
-class Company extends Model
+class Registry extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -28,15 +26,12 @@ class Company extends Model
     /** @var array|string[] */
     protected $guarded = [];
 
-    public function users(): Relation
+    public function companies(): Relation
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Company::class);
     }
 
-    public function getByUserId(User $user){
-        return $this->users()->get()->find($user)->id;
 
-    }
 
 
 }

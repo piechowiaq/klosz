@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\RegistryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
@@ -30,25 +31,22 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group (function (): void {
+Route::middleware('admin.authorize')->group(static function (): void {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard', [
-            'auth' => Auth::user()
-        ]);
+        return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::inertia('/test', 'Layout');
-    Route::inertia('/organizations', 'Organizations/Index');
-
-    Route::middleware('admin.authorize')->group(static function (): void{
-        Route::resource('roles', RoleController::class);
-        Route::put('roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
-        Route::resource('permissions', PermissionController::class);
-        Route::resource('users', UserController::class);
-        Route::put('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
-        Route::resource('companies', CompanyController::class);
-        Route::put('companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
-    });
+    Route::resource('roles', RoleController::class);
+    Route::put('roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
+    Route::resource('permissions', PermissionController::class);
+    Route::put('permissions/{permission}/restore', [PermissionController::class, 'restore'])->name('permissions.restore');
+    Route::resource('users', UserController::class);
+    Route::put('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
+    Route::resource('companies', CompanyController::class);
+    Route::put('companies/{company}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
+    Route::resource('registries', RegistryController::class);
+    Route::put('registries/{registry}/restore', [RegistryController::class, 'restore'])->name('registries.restore');
 
 });
+
 
 require_once __DIR__ . '/fortify.php';

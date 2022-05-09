@@ -20548,11 +20548,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Layout */ "./resources/js/Pages/Layout.vue");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
-
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Layout */ "./resources/js/Pages/Layout.vue");
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
 
 
 
@@ -20561,8 +20560,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Companies/Create',
   components: {
-    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link,
+    Layout: _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__["default"],
     TextInput: _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"],
     LoadingButton: _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
@@ -20570,7 +20569,7 @@ __webpack_require__.r(__webpack_exports__);
     roles: Array
   },
   setup: function setup() {
-    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)((0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)((0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       name: null,
       city: null,
       email: null,
@@ -20601,12 +20600,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Layout */ "./resources/js/Pages/Layout.vue");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Layout */ "./resources/js/Pages/Layout.vue");
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
 /* harmony import */ var _Shared_TrashedMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/TrashedMessage */ "./resources/js/Shared/TrashedMessage.vue");
-
 
 
 
@@ -20616,8 +20614,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Companies/Edit',
   components: {
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
+    Layout: _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link,
     TextInput: _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"],
     LoadingButton: _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"],
     TrashedMessage: _Shared_TrashedMessage__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -20628,7 +20626,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup(_ref) {
     var company = _ref.company;
-    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)((0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)((0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useRemember)((0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       name: company.name,
       city: company.city,
       email: company.email,
@@ -20665,15 +20663,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Layout */ "./resources/js/Pages/Layout.vue");
-/* harmony import */ var _Shared_Icon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Shared/Icon.vue */ "./resources/js/Shared/Icon.vue");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Button.vue */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Pages_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/Layout */ "./resources/js/Pages/Layout.vue");
+/* harmony import */ var _Shared_Icon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/Icon.vue */ "./resources/js/Shared/Icon.vue");
 /* harmony import */ var _Shared_Pagination_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/Pagination.vue */ "./resources/js/Shared/Pagination.vue");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Shared_Search__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Shared/Search */ "./resources/js/Shared/Search.vue");
-
+/* harmony import */ var _Shared_Search__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/Search */ "./resources/js/Shared/Search.vue");
 
 
 
@@ -20684,12 +20680,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Companies/Index',
   components: {
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetButton: _Jetstream_Button_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_3__.Link,
+    Layout: _Pages_Layout__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link,
     Pagination: _Shared_Pagination_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Icon: _Shared_Icon_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Search: _Shared_Search__WEBPACK_IMPORTED_MODULE_7__["default"]
+    Icon: _Shared_Icon_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Search: _Shared_Search__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   props: {
     companies: Object,
@@ -20707,7 +20702,7 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     form: {
       deep: true,
-      handler: (0,lodash__WEBPACK_IMPORTED_MODULE_6__.debounce)(function () {
+      handler: (0,lodash__WEBPACK_IMPORTED_MODULE_1__.debounce)(function () {
         this.$inertia.get(this.route('companies.index'), this.form, {
           preserveState: true,
           replace: true
@@ -20720,7 +20715,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia["delete"](this.route('companies.destroy', user));
     },
     reset: function reset() {
-      this.form = (0,lodash__WEBPACK_IMPORTED_MODULE_6__.mapValues)(this.form, function () {
+      this.form = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.mapValues)(this.form, function () {
         return null;
       });
     }
@@ -20879,9 +20874,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Layout */ "./resources/js/Pages/Layout.vue");
-/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
+/* harmony import */ var _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Layout */ "./resources/js/Pages/Layout.vue");
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.vue");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.vue");
+/* harmony import */ var _Shared_TrashedMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/TrashedMessage */ "./resources/js/Shared/TrashedMessage.vue");
+
 
 
 
@@ -20891,9 +20888,10 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Permissions/Edit',
   components: {
     LoadingButton: _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Layout: _Pages_Layout__WEBPACK_IMPORTED_MODULE_2__["default"],
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link,
-    TextInput: _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"]
+    TextInput: _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"],
+    TrashedMessage: _Shared_TrashedMessage__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     permission: Object
@@ -20913,6 +20911,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     destroy: function destroy(permission) {
       this.$inertia["delete"](this.route('permissions.destroy', permission));
+    },
+    restore: function restore(permission) {
+      this.$inertia.put(this.route('permissions.restore', permission));
     }
   }
 }));
@@ -25560,7 +25561,7 @@ var _hoisted_7 = {
   "class": "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create Company");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create Company ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -25681,7 +25682,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ");
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This user has been deleted. ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This company has been deleted. ");
 
 var _hoisted_6 = {
   "class": "bg-white rounded-md shadow overflow-hidden max-w-3xl"
@@ -25693,7 +25694,7 @@ var _hoisted_8 = {
   "class": "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Company");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Company ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -25777,7 +25778,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         label: "Company Phone"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [!_ctx.company.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_ctx.company.id !== 1 || _ctx.company.id !== 1 && !_ctx.company.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
         key: 0,
         value: "Delete",
         onClickOnce: _cache[5] || (_cache[5] = function ($event) {
@@ -25786,7 +25787,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         tabindex: "-1",
         type: "button",
         "class": "text-red-600 hover:underline"
-      }, "Delete Company", 32
+      }, "Delete Company ", 32
       /* HYDRATE_EVENTS */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
         loading: _ctx.form.processing,
@@ -26519,20 +26520,24 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
-var _hoisted_4 = {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This permission has been deleted. ");
+
+var _hoisted_5 = {
   "class": "bg-white rounded-md shadow overflow-hidden max-w-3xl"
 };
-var _hoisted_5 = {
+var _hoisted_6 = {
   "class": "p-8 -mr-6 -mb-8 flex flex-wrap"
 };
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Permission");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Permission ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
+  var _component_trashed_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("trashed-message");
 
   var _component_text_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("text-input");
 
@@ -26556,13 +26561,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"]), _hoisted_2, _hoisted_3]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      , ["href"]), _hoisted_2, _hoisted_3]), _ctx.permission.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_trashed_message, {
+        key: 0,
+        "class": "mb-6",
+        onRestore: _cache[0] || (_cache[0] = function ($event) {
+          return _ctx.restore(_ctx.permission);
+        })
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_4];
+        }),
+        _: 1
+        /* STABLE */
+
+      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return _ctx.update && _ctx.update.apply(_ctx, arguments);
         }, ["prevent"]))
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_text_input, {
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_text_input, {
         modelValue: _ctx.form.name,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.form.name = $event;
         }),
         error: _ctx.form.errors.name,
@@ -26570,23 +26588,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         label: "Permission Name"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [!_ctx.permission.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+        key: 0,
         value: "Delete",
-        onClickOnce: _cache[1] || (_cache[1] = function ($event) {
+        onClickOnce: _cache[2] || (_cache[2] = function ($event) {
           return _ctx.destroy(_ctx.permission);
         }),
         tabindex: "-1",
         type: "button",
         "class": "text-red-600 hover:underline"
-      }, "Delete Permission", 32
+      }, "Delete Permission ", 32
       /* HYDRATE_EVENTS */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
         loading: _ctx.form.processing,
         "class": "btn-indigo ml-auto",
         type: "submit"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_7];
+          return [_hoisted_8];
         }),
         _: 1
         /* STABLE */
@@ -28192,7 +28211,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_ctx.role.name !== 'Super Admin' || _ctx.role.name !== 'Super Admin' && !_ctx.role.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+        key: 0,
         value: "Delete",
         onClickOnce: _cache[3] || (_cache[3] = function ($event) {
           return _ctx.destroy(_ctx.role);
@@ -28202,7 +28222,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "text-red-600 hover:underline"
       }, "Delete Contact", 32
       /* HYDRATE_EVENTS */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
         loading: _ctx.form.processing,
         "class": "btn-indigo ml-auto",
         type: "submit"
@@ -28762,7 +28782,7 @@ var _hoisted_10 = {
   "class": "px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit User");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit User ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -28923,7 +28943,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         label: "Password Confirmation"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [!_ctx.user.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_ctx.user.id !== 1 || _ctx.user.id !== 1 && !_ctx.user.deleted_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
         key: 0,
         value: "Delete",
         onClickOnce: _cache[9] || (_cache[9] = function ($event) {
@@ -28932,7 +28952,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         tabindex: "-1",
         type: "button",
         "class": "text-red-600 hover:underline"
-      }, "Delete Contact", 32
+      }, "Delete Contact ", 32
       /* HYDRATE_EVENTS */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
         loading: _ctx.form.processing,

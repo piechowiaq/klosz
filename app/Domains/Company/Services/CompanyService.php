@@ -6,6 +6,7 @@ namespace App\Domains\Company\Services;
 
 use App\Domains\Company\Models\Company;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CompanyService
 {
@@ -38,9 +39,6 @@ class CompanyService
      */
     public function update(Company $company, string $name, string $city, string $email, string $phone): Company
     {
-        if(! Gate::allows('update-company', $company)){
-            abort(403);
-        }
         $company->name = $name;
         $company->city = $city;
         $company->email = $email;
