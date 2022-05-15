@@ -17,7 +17,7 @@ class CreateRegistriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('valid_for')->nullable();
+            $table->string('valid_for')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

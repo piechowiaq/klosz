@@ -18,6 +18,31 @@
                         <text-input v-model="form.phone" :error="form.errors.phone" class="pb-8 pr-6 w-full lg:w-1/2"
                                     label="Company Phone"/>
                     </div>
+                    <div class="p-8 -mr-6 -mb-8 flex-wrap flex justify-between">
+                        <select-input  multiple v-model="registries" :error="" label="Registries"
+                                      class="pb-8 pr-6 basis-5/12" >
+
+                            <option v-for="(registry, id) in registries" :key="registry.id" :value="registry.id">
+                                {{ registry.name }}
+                            </option>
+                        </select-input>
+
+                        <div class="pb-8 pr-6 basis-2/12 grid grid-cols-1 gap-1 place-content-center">
+                            <button class="display: block w-full">&raquo;</button>
+                            <button class="display: block w-full">&rsaquo;</button>
+                            <button class="display: block w-full">&lsaquo;</button>
+                            <button class="display: block w-full">&laquo;</button>
+                        </div>
+
+                        <select-input multiple v-model="form.registry_ids" :error="" label="Registries Active"
+                                      class="pb-8 pr-6  basis-5/12" >
+                            <option v-for="(registry, id) in form.registry_ids" :key="registry.id" :value="registry.id">
+                                {{ registry.name }}
+                            </option>
+                        </select-input>
+                    </div>
+
+
                     <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
                         <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Company
                         </loading-button>
@@ -35,6 +60,8 @@ import {useRemember, useForm, Link} from '@inertiajs/inertia-vue3'
 import Layout from "@/Pages/Layout";
 import TextInput from "@/Shared/TextInput";
 import LoadingButton from "@/Shared/LoadingButton";
+import SelectInput from "@/Shared/SelectInput";
+
 
 export default defineComponent({
     name: 'Companies/Create',
@@ -42,10 +69,12 @@ export default defineComponent({
         Link,
         Layout,
         TextInput,
-        LoadingButton
+        LoadingButton,
+        SelectInput
+
     },
     props: {
-        roles: Array,
+        registries: Array,
     },
     setup() {
         const form = useForm(useRemember(
@@ -54,6 +83,7 @@ export default defineComponent({
                 city: null,
                 email: null,
                 phone: null,
+                registry_ids: null,
             })))
 
         return {form}
@@ -62,6 +92,7 @@ export default defineComponent({
         store() {
             this.form.post(this.route('companies.store'))
         },
+
     },
 });
 

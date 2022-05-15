@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Company\Models\Company;
+use App\Domains\Company\Models\Registry;
 use App\Domains\Company\Requests\StoreCompanyRequest;
 use App\Domains\Company\Requests\UpdateCompanyRequest;
 use App\Domains\Company\Services\CompanyService;
@@ -66,7 +67,9 @@ class CompanyController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Companies/Create');
+        return Inertia::render('Companies/Create',[
+            'registries' => Registry::all()->toArray()
+        ]);
     }
 
     /**
@@ -94,7 +97,8 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         return Inertia::render('Companies/Show', [
-            'comapany' => $company
+            'company' => $company,
+            'registries' => Registry::all()->toArray()
         ]);
     }
 
