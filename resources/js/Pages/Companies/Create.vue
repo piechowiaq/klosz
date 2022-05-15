@@ -19,27 +19,27 @@
                                     label="Company Phone"/>
                     </div>
                     <div class="p-8 -mr-6 -mb-8 flex-wrap flex justify-between">
-                        <select-input  multiple v-model="registries" :error="" label="Registries"
+                        <select  multiple v-model="registries" :error="" label="Registries"
                                       class="pb-8 pr-6 basis-5/12" >
 
-                            <option v-for="(registry, id) in registries" :key="registry.id" :value="registry.id">
+                            <option v-for="(registry, id) in registries" :key="registry.id" :value="registry">
                                 {{ registry.name }}
                             </option>
-                        </select-input>
+                        </select>
 
                         <div class="pb-8 pr-6 basis-2/12 grid grid-cols-1 gap-1 place-content-center">
                             <button class="display: block w-full">&raquo;</button>
-                            <button class="display: block w-full">&rsaquo;</button>
-                            <button class="display: block w-full">&lsaquo;</button>
+                            <button type="button" class="display: block w-full" @click="onToRight" >&rsaquo;</button>
+                            <button type="button" class="display: block w-full" @click="onToLeft">&lsaquo;</button>
                             <button class="display: block w-full">&laquo;</button>
                         </div>
 
-                        <select-input multiple v-model="form.registry_ids" :error="" label="Registries Active"
+                        <select multiple v-model="form.registry_ids" :error="" label="Registries Active"
                                       class="pb-8 pr-6  basis-5/12" >
                             <option v-for="(registry, id) in form.registry_ids" :key="registry.id" :value="registry.id">
                                 {{ registry.name }}
                             </option>
-                        </select-input>
+                        </select>
                     </div>
 
 
@@ -76,6 +76,7 @@ export default defineComponent({
     props: {
         registries: Array,
     },
+
     setup() {
         const form = useForm(useRemember(
             reactive({
@@ -92,6 +93,26 @@ export default defineComponent({
         store() {
             this.form.post(this.route('companies.store'))
         },
+        onToRight() {
+            let select = this.registries
+            if(select !== ""){
+                this.form.registries.push(select)
+                let del = this.registries.indexOf(select)
+                this.registries.splice(del, 1)
+
+            }
+
+        },
+        onToLeft() {
+            let select = this.form.registries
+            if(select !== ""){
+                this.registries.push(select)
+                let del = this.form.registries.indexOf(select)
+                this.form.registries.splice(del, 1)
+
+            }
+
+        }
 
     },
 });
