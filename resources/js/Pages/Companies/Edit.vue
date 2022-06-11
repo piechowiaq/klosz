@@ -21,8 +21,38 @@
                         <text-input v-model="form.phone" :error="form.errors.phone" class="pb-8 pr-6 w-full lg:w-1/2"
                                     label="Company Phone"/>
                     </div>
+
+                    <div class="p-8">
+                        <p>Registries:</p>
+                        <table class="table-auto w-full text-sm">
+                            <thead class="border-b">
+                            <tr>
+                                <th class="">Name:</th>
+                                <th class="">Duration in moths:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="registry in orderedRegistries" :key="registry.id"
+                                class="">
+                                <td class="border-r lg:w-1/2">
+                                    <input type="checkbox" v-model="form.registry_ids" :value="registry.id"
+                                           :id="registry.id" class="mr-6 ">
+                                    <label :for="registry.id">{{ registry.name }}</label>
+                                </td>
+                                <td class="text-center lg:w-1/2">
+                                    <p>{{ registry.valid_for }}</p>
+                                </td>
+                            </tr>
+                            <tr v-if="registries.length === 0">
+                                <td class="" colspan="4">No registries found.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-                        <button v-if="company.id !== 1 || company.id !== 1 && !company.deleted_at" value="Delete" @click.once="destroy(company)" tabindex="-1"
+                        <button v-if="company.id !== 1 || company.id !== 1 && !company.deleted_at" value="Delete"
+                                @click.once="destroy(company)" tabindex="-1"
                                 type="button" class="text-red-600 hover:underline">Delete Company
                         </button>
                         <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit
@@ -57,17 +87,23 @@ export default defineComponent({
     props: {
         company: Object,
         errors: Object,
-        registries: Array
+        registries: Object,
+        registry_ids: Array
+    },
+    computed: {
+        orderedRegistries: function () {
+            return _.orderBy(this.registries, 'name')
+        }
     },
 
-    setup({company}) {
+    setup({company, registry_ids}) {
         const form = useForm(useRemember(
             reactive({
                 name: company.name,
                 city: company.city,
                 email: company.email,
                 phone: company.phone,
-
+                registry_ids: registry_ids
             })))
 
         return {form}

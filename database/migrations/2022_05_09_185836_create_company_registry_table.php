@@ -17,6 +17,7 @@ class CreateCompanyRegistryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('registry_id');
+            $table->boolean('assigned')->default(false);
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

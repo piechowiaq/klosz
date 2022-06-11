@@ -15,6 +15,8 @@
                                 <option v-for="(permission, id) in permissions" :key="permission.id" :value="permission.id" >{{ permission.name }}</option>
                             </select-input>
                         </div>
+
+
                         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
                             <button v-if=" role.name !== 'Super Admin' || role.name !== 'Super Admin' && !role.deleted_at" value="Delete" @click.once="destroy(role)" tabindex="-1" type="button" class="text-red-600 hover:underline">Delete Contact</button>
                             <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit" >Edit User</loading-button>

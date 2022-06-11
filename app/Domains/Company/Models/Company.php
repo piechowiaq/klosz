@@ -33,9 +33,14 @@ class Company extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function getByUserId(User $user){
-        return $this->users()->get()->find($user)->id;
+    public function registries(): Relation
+{
+    return $this->belongsToMany(Registry::class)->withPivot('assigned');;
+}
 
+    public function getByUserId(User $user)
+    {
+        return $this->users()->get()->find($user)->id;
     }
 
 

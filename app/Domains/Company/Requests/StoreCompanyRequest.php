@@ -31,6 +31,7 @@ class StoreCompanyRequest extends FormRequest
             'city' => ['required', 'string', 'max:255'],
             'email' => ['required','string', 'email', 'max:255', 'unique:companies'],
             'phone' => ['required', 'string', 'max:255'],
+            'companyRegistries' => []
         ];
     }
 }

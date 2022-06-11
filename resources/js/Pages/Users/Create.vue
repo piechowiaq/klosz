@@ -55,8 +55,9 @@ export default defineComponent({
         roles: Array,
         errors: Object,
         companies: Array,
-        company_ids: Array
     },
+
+
 
 
     setup () {

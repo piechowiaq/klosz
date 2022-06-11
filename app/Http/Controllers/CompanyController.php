@@ -68,7 +68,7 @@ class CompanyController extends Controller
     public function create(): Response
     {
         return Inertia::render('Companies/Create',[
-            'registries' => Registry::all()->toArray()
+        'registries' => Registry::all()->toArray(),
         ]);
     }
 
@@ -84,6 +84,13 @@ class CompanyController extends Controller
             $request->get('city'),
             $request->get('email'),
             $request->get('phone'));
+
+        $registries = Registry::all();
+        $companyRegistries = Registry::findMany($request->get('registry_ids'));
+
+        $company->registries()->syncWithPivotValues($registries, ['assigned' => false]);
+        $company->registries()->detach($companyRegistries);
+        $company->registries()->attach($companyRegistries, ['assigned' => true]);
 
         return Redirect::route('companies.edit',  ['company' => $company])->with('success', 'Company created.');
     }
@@ -110,8 +117,15 @@ class CompanyController extends Controller
      */
     public function edit(Company $company): Response
     {
+        $registries = $company->registries()->where('assigned', 1)->get();
+
+        $companyRegistries = $registries->map(function ($registry, $key) {
+        return $registry->id;
+    });
         return Inertia::render('Companies/Edit', [
             'company' => $company,
+            'registries' => $company->registries()->get(),
+            'registry_ids' => $companyRegistries->toArray(),
         ]);
     }
 
@@ -129,7 +143,15 @@ class CompanyController extends Controller
             $request->get('email'),
             $request->get('phone'));
 
-        return Redirect::route('companies.index')->with('success', 'Company updated.');
+        $companyRegistries = Registry::findMany($request->get('registry_ids'));
+
+        $registries = Registry::all();
+        $company->registries()->syncWithPivotValues($registries, ['assigned' => false]);
+        $company->registries()->detach($companyRegistries);
+        $company->registries()->attach($companyRegistries, ['assigned' => true]);
+
+
+        return Redirect::route('companies.edit',  ['company' => $company])->with('success', 'Company updated.');
     }
 
     /**
