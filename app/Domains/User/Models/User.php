@@ -104,4 +104,9 @@ class User extends Authenticatable
         return $this->roles()->where('name', 'Super Admin')->exists();
     }
 
+    public function isBartosz(): bool
+    {
+        return $this->name == 'Bartosz';
+    }
+
 }

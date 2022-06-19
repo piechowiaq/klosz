@@ -25,7 +25,7 @@
                             <thead class="border-b">
                                 <tr >
                                     <th class="">Name:</th>
-                                    <th class="">Duration in moths:</th>
+                                    <th class="">Duration in months:</th>
                                 </tr>
                             </thead>
                             <tbody>

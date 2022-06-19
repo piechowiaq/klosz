@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class AuthorizeAdminPanelAccess
+class AuthorizeUserPanelAccess
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class AuthorizeAdminPanelAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->getUser()->isSuperAdmin() || $this->getUser()->isBartosz()) {
+        if ($this->getUser()->isBartosz()) {
 
             return $next($request);
 

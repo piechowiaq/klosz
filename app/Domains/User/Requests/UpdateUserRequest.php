@@ -8,6 +8,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Domains\User\Models\User;
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
@@ -41,7 +42,7 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255',
                 Rule::unique('users')->ignore($this->route('user')->id)],
             'phone' => ['required', 'string', 'max:255'],
-            'company_ids' => ['required', 'array'],
+            'company_ids' => ['required', 'array', Rule::requiredIf(! $this->route('user')->hasRole('Super Admin'))],
             'company_ids.*' => ['exists:companies,id'],
         ];
     }

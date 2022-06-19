@@ -40,7 +40,7 @@
                                 @click.once="destroy(user)" tabindex="-1" type="button"
                                 class="text-red-600 hover:underline">Delete Contact
                         </button>
-                        <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Edit User
+                        <loading-button v-if="user.id !== 1" :loading=" form.processing" class="btn-indigo ml-auto" type="submit">Edit User
                         </loading-button>
                     </div>
                 </form>

@@ -115,7 +115,7 @@ class RegistryController extends Controller
     public function update(UpdateRegistryRequest $request, Registry $registry): RedirectResponse
     {
         $this->registryService->update($registry, $request->get('name'), $request->get('description'), $request->get('valid_for'));
-
+        $registry->companies()->sync(Company::all());
         return Redirect::route('registries.index')->with('success', 'Registry updated.');
     }
 

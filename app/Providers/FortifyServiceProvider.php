@@ -6,11 +6,16 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Domains\User\Models\User;
+use Exception;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Responses\LoginResponse;
+use function PHPUnit\Framework\throwException;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,6 +27,27 @@ class FortifyServiceProvider extends ServiceProvider
     public function register()
     {
         Fortify::ignoreRoutes();
+
+        $this->app->instance(LoginResponse::class, new class extends LoginResponse {
+            /**
+             * @throws Exception
+             */
+            public function toResponse($request)
+            {
+                $user = $request->user();
+
+                if($user->hasRole('Super Admin')){
+                    return redirect()->route('dashboard');
+                }
+                else if($user->companies()->count() >= 2 ) {
+                    return redirect()->route('user.navigate', ['user' => $user]);
+                }
+                else if($user->companies()->count() === 1){
+                    return redirect()->route('user.dashboard', ['company' => $user->companies()->first()]);
+                }
+                else throw new Exception('User has no companies set up');
+            }
+        });
     }
 
     /**
