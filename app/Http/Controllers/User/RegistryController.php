@@ -71,6 +71,7 @@ class RegistryController extends Controller
         return Inertia::render('User/Pages/Registries/Show', [
             'company' => $company,
             'registry' => $registry,
+            'reports' => $registry->reports()->get()->toArray()
         ]);
     }
 

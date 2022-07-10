@@ -59,9 +59,18 @@
                         </div>
 
 
-                        <div class="bg-white rounded-md shadow overflow-x-auto px-6 pt-6 pb-4">
-                            <div class="font-bold"> Description: </div> <br>
-                            FORM SHOULD COME HERE
+                        <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
+                            <form @submit.prevent="store">
+                                <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+                                    <text-input type="date" v-model="form.report_date" :error="form.errors.report_date" class="pb-8 pr-6 w-full lg:w-1/2" label="Date of the report" />
+                                    <text-input v-model="form.notes" :error="form.errors.notes" class="pb-8 pr-6 w-full lg:w-1/2" label="Notes" />
+
+                                </div>
+                                <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
+                                    <loading-button :loading="form.processing" class="btn-indigo" type="submit">Submit Report</loading-button>
+                                </div>
+
+                            </form>
                         </div>
 
                     </div>
@@ -78,11 +87,11 @@
 
 <script>
 
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed ,reactive } from 'vue'
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
-
-import {debounce, mapValues} from "lodash"
-
+import { useRemember, useForm  } from '@inertiajs/inertia-vue3'
+import TextInput from "@/Shared/TextInput";
+import LoadingButton from "@/Shared/LoadingButton";
 
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
@@ -102,16 +111,34 @@ export default defineComponent({
         Search,
         Banner,
         Dropdown,
-        FlashMessages
-    },
-    setup() {
-        const user = computed(() => usePage().props.value.auth.user)
-        return { user }
+        FlashMessages,
+        TextInput,
+        LoadingButton
     },
     props: {
         company: Object,
         registry: Object,
 
+    },
+
+
+    setup({registry, company}) {
+        const form = useForm(useRemember(
+            reactive({
+                notes: null,
+                report_date: null,
+                registry_id: registry.id,
+                company_id: company.id,
+            })))
+        const user = computed(() => usePage().props.value.auth.user)
+        return {form, user}
+    },
+
+
+    methods: {
+        store() {
+            this.form.post(this.route('user.reports.store', [this.company, this.registry]))
+        },
     },
 
 

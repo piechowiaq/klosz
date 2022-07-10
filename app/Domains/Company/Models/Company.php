@@ -43,5 +43,9 @@ class Company extends Model
         return $this->users()->get()->find($user)->id;
     }
 
+    public function reports(): Relation
+    {
+        return $this->hasMany(Report::class);
+    }
 
 }

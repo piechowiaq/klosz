@@ -31,6 +31,11 @@ class Registry extends Model
         return $this->belongsToMany(Company::class);
     }
 
+    public function reports(): Relation
+    {
+        return $this->hasMany(Report::class);
+    }
+
 
 
 

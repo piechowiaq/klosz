@@ -57,9 +57,8 @@ Route::middleware('user.authorize')->namespace('User')->name('user.')->group(sta
     Route::get('/{company}/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/{company}/registries', [UserRegistryController::class, 'index'])->name('registries.index');
     Route::get('/{company}/registries/{registry}', [UserRegistryController::class, 'show'])->name('registries.show');
-    Route::get('/{company}/registries/{registry}/reports/create', [ReportController::class, 'create'])->name('reports.create');;
-//    Route::get('/{company}/reports/{report}/download', 'ReportController@download')->name('reports.download');
-//
+    Route::get('/{company}/registries/{registry}/reports/create', [ReportController::class, 'create'])->name('reports.create');
+    Route::post('/{company}/registries/{registry}/reports', [ReportController::class, 'store'])->name('reports.store');
 
 
 });

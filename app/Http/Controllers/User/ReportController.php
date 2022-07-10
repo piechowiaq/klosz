@@ -4,8 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Domains\Company\Models\Company;
 use App\Domains\Company\Models\Registry;
+use App\Domains\Company\Models\Report;
+use App\Domains\Company\Requests\StoreReportRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -31,18 +35,26 @@ class ReportController extends Controller
         return Inertia::render('User/Pages/Registries/Create', [
             'company' => $company,
             'registry' => $registry,
+
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreReportRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreReportRequest $request, Company $company, Registry $registry)
     {
-        //
+        $report = new Report();
+        $report->report_date = $request->report_date;
+        $report->notes = $request->notes;
+        $report->company_id = $request->company_id;
+        $report->registry_id = $request->registry_id;
+        $report->save();
+
+        return Redirect::route('user.registries.show', ['company' => $company, 'registry'=> $registry])->with('success', 'Role created.');
     }
 
     /**
