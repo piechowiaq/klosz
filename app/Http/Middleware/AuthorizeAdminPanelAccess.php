@@ -21,10 +21,9 @@ class AuthorizeAdminPanelAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->getUser()->isSuperAdmin() || $this->getUser()->isBartosz()) {
+        if ($this->getUser()->isSuperAdmin()) {
 
             return $next($request);
-
         }
 
         abort(ResponseAlias::HTTP_UNAUTHORIZED);

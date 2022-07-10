@@ -31,7 +31,7 @@
             <div class="md:flex md:flex-grow md:overflow-hidden">
                 <div class="hidden md:block bg-sky-800 flex-shrink-0 w-56 p-12 overflow-y-auto">
                     <div class="mb-4">
-                        <Link :href="route('user.dashboard',this.company)" class="flex items-center group py-3">
+                        <Link :href="route('user.dashboard', company)" class="flex items-center group py-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 mr-2 fill-zinc-400 group-hover:fill-white">
                                 <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"></path>
                             </svg>
@@ -39,7 +39,7 @@
                         </Link>
                     </div>
                     <div class="mb-4">
-                        <Link :href="route('user.registries.index',this.company)" class="flex items-center group py-3">
+                        <Link :href="route('user.registries.index', company)" class="flex items-center group py-3">
                             <svg class="w-4 h-4 mr-2 fill-zinc-400 group-hover:fill-white" viewBox="0 0 20 20">
                                 <path d="M10,6.978c-1.666,0-3.022,1.356-3.022,3.022S8.334,13.022,10,13.022s3.022-1.356,3.022-3.022S11.666,6.978,10,6.978M10,12.267c-1.25,0-2.267-1.017-2.267-2.267c0-1.25,1.016-2.267,2.267-2.267c1.251,0,2.267,1.016,2.267,2.267C12.267,11.25,11.251,12.267,10,12.267 M18.391,9.733l-1.624-1.639C14.966,6.279,12.563,5.278,10,5.278S5.034,6.279,3.234,8.094L1.609,9.733c-0.146,0.147-0.146,0.386,0,0.533l1.625,1.639c1.8,1.815,4.203,2.816,6.766,2.816s4.966-1.001,6.767-2.816l1.624-1.639C18.536,10.119,18.536,9.881,18.391,9.733 M16.229,11.373c-1.656,1.672-3.868,2.594-6.229,2.594s-4.573-0.922-6.23-2.594L2.41,10l1.36-1.374C5.427,6.955,7.639,6.033,10,6.033s4.573,0.922,6.229,2.593L17.59,10L16.229,11.373z"></path>
                             </svg>
@@ -51,50 +51,19 @@
 
 
                 <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" >
-                    <flash-messages />
-                    <div>
-                        <h1 class="mb-8 font-bold text-3xl">Registries</h1>
 
-                        <div class="bg-white rounded-md shadow overflow-x-auto">
-                            <table class="w-full whitespace-nowrap">
-                                <tr class="text-left font-bold">
-                                    <th class="px-6 pt-6 pb-4">Name</th>
-                                    <th class="px-6 pt-6 pb-4">Description</th>
-                                    <th class="px-6 pt-6 pb-4">Valid for | months</th>
-                                </tr>
-                                <tr v-for="registry of registries" :key="registry.id"
-                                    class="hover:bg-gray-100 focus-within:bg-gray-100">
-                                    <td class="border-t">
-                                        <Link value="Edit" :href="route('user.registries.show', [company, registry])"
-                                              class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.name }}
-                                        </Link>
-                                    </td>
-                                    <td class="border-t">
-                                        <Link value="Edit" :href="route('user.registries.show', [company, registry])"
-                                              class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.description }}
-                                        </Link>
-                                    </td>
-                                    <td class="border-t">
-                                        <Link value="Edit" :href="route('user.registries.show', [company, registry])"
-                                              class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.valid_for }}
-                                        </Link>
-                                    </td>
-                                    <td class="w-px border-t">
-                                        <Link class="flex items-center px-4" :href="route('user.registries.show', [company, registry])" tabindex="-1">
-                                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr v-if="registries.length === 0">
-                                    <td class="px-6 py-4 border-t" colspan="4">No registries found.</td>
-                                </tr>
-                            </table>
+                    <div>
+                        <div class="mb-6 flex justify-between items-center">
+                            <h1 class="mb-8 font-bold text-3xl">{{registry.name}}</h1>
+
                         </div>
-                        <div class="mt-6">
-                            <div class="flex flex-wrap -mb-1">
-                                <Pagination :links="registries.links"></Pagination>
-                            </div>
+
+
+                        <div class="bg-white rounded-md shadow overflow-x-auto px-6 pt-6 pb-4">
+                            <div class="font-bold"> Description: </div> <br>
+                            FORM SHOULD COME HERE
                         </div>
+
                     </div>
                 </div>
 
@@ -124,7 +93,7 @@ import Dropdown from "@/Shared/Dropdown";
 import FlashMessages from "@/Shared/FlashMessages";
 
 export default defineComponent({
-    name: 'User/Pages/Registries/Index',
+    name: 'User/Pages/Registries/Create',
     components: {
 
         Link,
@@ -141,34 +110,10 @@ export default defineComponent({
     },
     props: {
         company: Object,
-        registries: Object,
-        filters: Object
+        registry: Object,
+
     },
-    data() {
-        return {
-            isOpen: false,
-            form: {
-                search: this.filters.search,
-                trashed: this.filters.trashed,
-            },
-        }
-    },
-    watch: {
-        form: {
-            deep: true,
-            handler: debounce(function () {
-                this.$inertia.get(this.route('registries.index'), this.form, {preserveState: true, replace: true})
-            }, 150),
-        },
-    },
-    methods: {
-        destroy(registry) {
-            this.$inertia.delete(this.route('registries.destroy', registry))
-        },
-        reset() {
-            this.form = mapValues(this.form, () => null)
-        },
-    },
+
 
 })
 </script>

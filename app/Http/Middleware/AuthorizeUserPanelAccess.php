@@ -21,27 +21,15 @@ class AuthorizeUserPanelAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->getUser()->isBartosz()) {
+
+        if (Auth::check()) {
 
             return $next($request);
 
         }
 
         abort(ResponseAlias::HTTP_UNAUTHORIZED);
-    }
 
-    private function getUser(): User
-    {
-        $user = Auth::user();
-
-        assert($user instanceof User);
-
-        if (!empty($user))
-        {
-            return $user;
         }
 
-        abort(ResponseAlias::HTTP_UNAUTHORIZED);
-
     }
-}

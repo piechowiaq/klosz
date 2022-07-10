@@ -64,11 +64,14 @@ class RegistryController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show($id)
+    public function show(Company $company, Registry $registry)
     {
-        //
+        return Inertia::render('User/Pages/Registries/Show', [
+            'company' => $company,
+            'registry' => $registry,
+        ]);
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\PermissionController;
-
-use App\Http\Controllers\RegistryController;
-use App\Http\Controllers\User\RegistryController as UserRegistryController;
-use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RegistryController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\RegistryController as UserRegistryController;
+use App\Http\Controllers\User\ReportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -56,7 +56,8 @@ Route::middleware('user.authorize')->namespace('User')->name('user.')->group(sta
     Route::get('/{user}/navigate', [DashboardController::class, 'navigate'])->name('navigate');
     Route::get('/{company}/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/{company}/registries', [UserRegistryController::class, 'index'])->name('registries.index');
-//    Route::resource('/{company}/reports', 'ReportController');
+    Route::get('/{company}/registries/{registry}', [UserRegistryController::class, 'show'])->name('registries.show');
+    Route::get('/{company}/registries/{registry}/reports/create', [ReportController::class, 'create'])->name('reports.create');;
 //    Route::get('/{company}/reports/{report}/download', 'ReportController@download')->name('reports.download');
 //
 

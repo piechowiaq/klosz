@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class CompanyService
 {
     /**
-     * @param string $name
+     * @param string $name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
      * @param string $city
      * @param string $email
      * @param string $phone
