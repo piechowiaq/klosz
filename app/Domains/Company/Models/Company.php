@@ -3,6 +3,7 @@
 namespace App\Domains\Company\Models;
 
 use App\Domains\User\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -46,6 +47,12 @@ class Company extends Model
     public function reports(): Relation
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function expiredReports(): \Illuminate\Database\Eloquent\Collection
+    {
+
+        return $this->reports()->whereDate('expiry_date', '<', Carbon::now())->get('id');
     }
 
 }

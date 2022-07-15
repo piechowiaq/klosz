@@ -69,8 +69,27 @@
                     <div>
                         <h1 class="mb-8 font-bold text-3xl">Przeglądy</h1>
                         <div class="mb-6 flex justify-between items-center">
+                            <div class="flex">
+                                <div class="flex w-full bg-white shadow rounded">
 
-                            <input v-model="form.search" type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
+                                    <div>
+                                        <button @click="isOpen = !isOpen"  class="flex h-full w-full bg-white shadow rounded py-4 px-4 ">
+                                            <span>Filter</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                        </button>
+                                        <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 w-full h-full bg-black opacity-20 cursor-default"></button>
+                                        <div v-if="isOpen" class="absolute mt-2 px-4 py-6 w-screen bg-white text-sm rounded shadow-xl" style="max-width: 300px">
+                                            <label class="block text-gray-700">Expired:</label>
+                                            <select  v-model="form.expired" class="form-select text-sm mt-1 w-full px-6 py-2">
+                                                <option :value="null" />
+                                                <option value="only">Only Expired</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input v-model="form.search"  type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
+                                </div>
+                                <button type="button" class="flex ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500"   @click="reset()">Reset</button>
+                            </div>
 
 
                         </div>
