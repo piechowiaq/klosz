@@ -33,6 +33,26 @@ class RegistryController extends Controller
      */
     public function index(Request $request): Response
     {
+        dd( Registry::when($request->input('search'), function ($query, $search) {
+
+            $query->where('name', 'like', '%' . $search . '%');
+
+        })
+            ->when($request->input('trashed'), function ($query, $trashed) {
+                if ($trashed === 'with') {
+                    $query->withTrashed();
+                } elseif ($trashed === 'only') {
+                    $query->onlyTrashed();
+                }
+            })->paginate(10)
+            ->withQueryString()
+            ->through(fn($registry) => [
+                'id' => $registry->id,
+                'name' => $registry->name,
+                'description' => $registry->description,
+                'valid_for' => $registry->valid_for,
+                'deleted_at' => $registry->deleted_at
+            ]));
         return Inertia::render('Admin/Registries/Index', [
             'filters' => $request->all(['search', 'trashed']),
             'registries' => Registry::when($request->input('search'), function ($query, $search) {

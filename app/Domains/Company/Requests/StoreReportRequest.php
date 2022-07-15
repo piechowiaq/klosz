@@ -28,6 +28,7 @@ class StoreReportRequest extends FormRequest
     {
         return [
             'report_date' => ['required', 'date'],
+
             'notes' => ['string', 'max:255'],
             'company_id' => ['required','exists:companies,id'],
             'registry_id' => ['required', 'exists:registries,id'],

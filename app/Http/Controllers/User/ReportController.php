@@ -7,6 +7,7 @@ use App\Domains\Company\Models\Registry;
 use App\Domains\Company\Models\Report;
 use App\Domains\Company\Requests\StoreReportRequest;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -47,8 +48,13 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request, Company $company, Registry $registry)
     {
+        $report_date = new Carbon ($request->report_date);
+        $expiryDate= $report_date->addMonths($registry->valid_for)->toDateString();
+
+
         $report = new Report();
         $report->report_date = $request->report_date;
+        $report->expiry_date = $expiryDate;
         $report->notes = $request->notes;
         $report->company_id = $request->company_id;
         $report->registry_id = $request->registry_id;

@@ -61,7 +61,7 @@
                         </div>
 
 
-                        <div class="bg-white rounded-md shadow overflow-x-auto px-6 pt-6 pb-4">
+                        <div class="bg-white shadow overflow-x-auto px-6 pt-6 pb-4">
                             <div class="font-bold"> Description: </div> <br>
 
                             <div class=" text-sm mb-6">{{ registry.description }}</div>
@@ -71,7 +71,7 @@
                             <div class="text-sm">{{ registry.valid_for }}</div>
                         </div>
 
-                        <div class="bg-white rounded-md shadow overflow-x-auto px-6 pt-6 pb-4">
+                        <div class="bg-white shadow overflow-x-auto mt-4">
                             <table class="w-full whitespace-nowrap">
                                 <tr class="text-left font-bold">
                                     <th class="px-6 pt-6 pb-4">Reports</th>
