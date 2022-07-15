@@ -51,17 +51,33 @@ class RegistryController extends Controller
                  'name' => $registry->name,
                  'expiry_days' =>  $expiryDays];
         });
+        $registries2 = $company->registries()->where(['assigned' => true])->get()->map(function ($registry) {
+            return collect($registry->toArray())
+                ->only(['id', 'name'])
+                ->all();
+        });
 
 
 
 
         return Inertia::render('User/Pages/Registries/Index', [
             'filters' => $request->all(['search', 'trashed']),
-            'registries' => $registries,
             'reports' => $registriesWithLatestReport,
             'company' => $company,
+            'registries' => $company->registries()->where(['assigned' => true])->when($request->input('search'), function ($query, $search) {
 
-        ]);
+                $query->where('name', 'like', '%' . $search . '%');
+
+            })->paginate(2)
+                ->withQueryString()
+                ->through(fn($registry) => [
+                    'id' => $registry->id,
+                    'name' => $registry->name,
+
+                ])]);
+
+
+
     }
 
     /**

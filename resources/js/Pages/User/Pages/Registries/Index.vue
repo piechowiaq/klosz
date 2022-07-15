@@ -81,7 +81,7 @@
                                     <th class="px-6 pt-6 pb-4">Pobierz</th>
                                     <th class="px-6 pt-6 pb-4"></th>
                                 </tr>
-                                <tr v-for="registry of registries" :key="registry.id"
+                                <tr v-for="registry of registries.data" :key="registry.id"
                                     class="hover:bg-gray-100 focus-within:bg-gray-100">
                                     <td class="border-t">
                                         <Link value="Edit" :href="route('user.registries.show', [company, registry])"
@@ -192,6 +192,7 @@ export default defineComponent({
         registries: Object,
         filters: Object,
         reports: Array,
+
     },
     data() {
         return {
@@ -199,6 +200,7 @@ export default defineComponent({
             form: {
                 search: this.filters.search,
                 expired: this.filters.expired,
+
             },
         }
     },
@@ -223,21 +225,22 @@ export default defineComponent({
            const result = this.reports.find(({id}) =>id === registry);
 
 
-        return result.expiry_days <= 0;
+        return result['expiry_days'] <= 0;
 
 
         } ,
         test(registry) {
             const result = this.reports.find(({id}) =>id === registry);
 
+            console.log(result);
 
-            return result.expiry_days ;
+            return result['expiry_days']  ;
         },
        date(registry) {
             const result = this.reports.find(({id}) =>id === registry);
 
 
-            return result.latest_date ;
+            return result['latest_date'];
         },
 
 
