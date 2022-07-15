@@ -70,6 +70,8 @@
                         <h1 class="mb-8 font-bold text-3xl">Przeglądy</h1>
                         <div class="mb-6 flex justify-between items-center">
 
+                            <input v-model="form.search" type="text" name="search" placeholder="Search…" class="w-full px-6 py-3 rounded-r focus:ring">
+
 
                         </div>
                         <div class="bg-white shadow overflow-x-auto">
@@ -208,7 +210,7 @@ export default defineComponent({
         form: {
             deep: true,
             handler: debounce(function () {
-                this.$inertia.get(this.route('user.registries.index'), this.form, {preserveState: true, replace: true})
+                this.$inertia.get(this.route('user.registries.index', this.company), this.form, {preserveState: true, replace: true})
             }, 150),
         },
     },
@@ -232,7 +234,6 @@ export default defineComponent({
         test(registry) {
             const result = this.reports.find(({id}) =>id === registry);
 
-            console.log(result);
 
             return result['expiry_days']  ;
         },

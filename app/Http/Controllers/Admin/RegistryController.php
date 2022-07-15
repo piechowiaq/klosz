@@ -33,6 +33,7 @@ class RegistryController extends Controller
      */
     public function index(Request $request): Response
     {
+
         return Inertia::render('Admin/Registries/Index', [
             'filters' => $request->all(['search', 'trashed']),
             'registries' => Registry::when($request->input('search'), function ($query, $search) {
@@ -46,7 +47,7 @@ class RegistryController extends Controller
                     } elseif ($trashed === 'only') {
                         $query->onlyTrashed();
                     }
-                })->paginate(10)
+                })->paginate(2)
                 ->withQueryString()
                 ->through(fn($registry) => [
                     'id' => $registry->id,

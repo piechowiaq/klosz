@@ -59,7 +59,6 @@ class RegistryController extends Controller
 
 
 
-
         return Inertia::render('User/Pages/Registries/Index', [
             'filters' => $request->all(['search', 'trashed']),
             'reports' => $registriesWithLatestReport,
