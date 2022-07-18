@@ -58,7 +58,6 @@ class RegistryController extends Controller
         });
 
 
-//        dd($company->registries()->where(['assigned' => true])->whereIn( 'registries.id', $company->expiredReports())->get());
 
         return Inertia::render('User/Pages/Registries/Index', [
             'filters' => $request->all(['search', 'expired']),
@@ -71,10 +70,11 @@ class RegistryController extends Controller
             }) ->when($request->input('expired'), function ($query, $expired ) use ( $company) {
                 if ($expired === 'only') {
 
-                    $query->whereIn( 'registries.id', $company->expiredReports());
+
+                    $query->whereNotIn( 'registries.id', $company->reportsByIds())->orWhereIn( 'registries.id', $company->expiredReports())->groupBy('registries.id');
 
                 }
-            })->paginate(2)
+            })->paginate(10)
                 ->withQueryString()
                 ->through(fn($registry) => [
                     'id' => $registry->id,

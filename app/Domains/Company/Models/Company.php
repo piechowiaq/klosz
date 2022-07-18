@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Ramsey\Collection\Collection;
 
 /**
  * App\Vendor\Spatie\Laravel-permission\Src\Models\Permission
@@ -48,11 +49,16 @@ class Company extends Model
     {
         return $this->hasMany(Report::class);
     }
+    public function reportsByIds(): \Illuminate\Support\Collection
+    {
+
+        return $this->reports()->get('registry_id');
+    }
 
     public function expiredReports(): \Illuminate\Database\Eloquent\Collection
     {
 
-        return $this->reports()->whereDate('expiry_date', '<', Carbon::now())->get('id');
+        return $this->reports()->whereDate('expiry_date', '<', Carbon::now())->get('registry_id');
     }
 
 }
