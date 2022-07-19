@@ -22256,26 +22256,20 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     expired: function expired(registry) {
-      var result = this.reports.find(function (_ref) {
-        var id = _ref.id;
-        return id === registry;
-      });
-      return result['expiry_days'] <= 0;
-    },
-    test: function test(registry) {
-      var result = this.reports.find(function (_ref2) {
-        var id = _ref2.id;
-        return id === registry;
-      });
-      return result['expiry_days'];
-    },
-    date: function date(registry) {
-      var result = this.reports.find(function (_ref3) {
-        var id = _ref3.id;
-        return id === registry;
-      });
-      return result['latest_date'];
-    }
+      return registry <= 0;
+    } // reportExpiresInDays(registry) {
+    //     const result = this.reports.find(({id}) => id === registry);
+    //
+    //
+    //     return result['expiry_days'];
+    // },
+    // reportExpiryDate(registry) {
+    //     const result = this.reports.find(({id}) => id === registry);
+    //
+    //
+    //     return result['latest_date'];
+    // },
+
   }
 }));
 
@@ -29798,7 +29792,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [_ctx.expired(registry.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [_ctx.expired(registry.expiry_days) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
           name: "expired",
           "class": "block m-auto text-red-500 h-6 w-6"
         })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -29807,7 +29801,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.test(registry.id)) + " dni ", 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.expiry_days) + " dni ", 1
             /* TEXT */
             )];
           }),
@@ -29822,7 +29816,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.date(registry.id)), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.latest_date), 1
             /* TEXT */
             )];
           }),
@@ -29831,7 +29825,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [!_ctx.expired(registry.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [!_ctx.expired(registry.expiry_days) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
           key: 0,
           value: "Edit",
           href: _ctx.route('user.dashboard', [_ctx.company, registry]),
@@ -29875,7 +29869,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         links: _ctx.registries.links
       }, null, 8
       /* PROPS */
-      , ["links"])])])])])])];
+      , ["links"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.registries), 1
+      /* TEXT */
+      )])])])];
     }),
     _: 1
     /* STABLE */

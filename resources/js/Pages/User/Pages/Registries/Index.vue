@@ -66,24 +66,24 @@
                                     </Link>
                                 </td>
                                 <td class="border-t w-px">
-                                    <div v-if="expired(registry.id)">
+                                    <div v-if="expired(registry.expiry_days)">
                                         <icon name="expired" class="block m-auto text-red-500 h-6 w-6"/>
                                     </div>
                                 </td>
-                                <td class="border-t ">
+                                <td class="border-t" >
                                     <Link value="Edit" :href="route('user.registries.show', [company, registry])"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">
-                                        {{test(registry.id) }} dni
+                                        {{registry.expiry_days }} dni
                                     </Link>
                                 </td>
                                 <td class="border-t">
                                     <Link value="Edit" :href="route('user.registries.show', [company, registry])"
                                           class="pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500">
-                                        {{ date(registry.id) }}
+                                        {{ registry.latest_date }}
                                     </Link>
                                 </td>
                                 <td class="border-t">
-                                    <Link value="Edit" v-if="! expired(registry.id)"
+                                    <Link value="Edit" v-if="! expired(registry.expiry_days)"
                                           :href="route('user.dashboard', [company, registry])"
                                           class=" hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500">
 
@@ -112,7 +112,7 @@
                             <Pagination :links="registries.links"></Pagination>
                         </div>
                     </div>
-
+{{ registries }}
                 </div>
             </div>
 
@@ -192,26 +192,25 @@ export default defineComponent({
         },
         expired(registry) {
 
-            const result = this.reports.find(({id}) => id === registry);
 
 
-            return result['expiry_days'] <= 0;
+
+            return registry <= 0;
 
 
         },
-        test(registry) {
-            const result = this.reports.find(({id}) => id === registry);
-
-
-            return result['expiry_days'];
-        },
-        date(registry) {
-            const result = this.reports.find(({id}) => id === registry);
-
-
-            return result['latest_date'];
-        },
-
+        // reportExpiresInDays(registry) {
+        //     const result = this.reports.find(({id}) => id === registry);
+        //
+        //
+        //     return result['expiry_days'];
+        // },
+        // reportExpiryDate(registry) {
+        //     const result = this.reports.find(({id}) => id === registry);
+        //
+        //
+        //     return result['latest_date'];
+        // },
 
     },
 

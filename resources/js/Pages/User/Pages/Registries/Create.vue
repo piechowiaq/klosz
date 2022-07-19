@@ -49,7 +49,6 @@ import LoadingButton from "@/Shared/LoadingButton";
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
 import Search from "@/Shared/Search";
-
 import Banner from '@/Shared/Banner.vue'
 import Dropdown from "@/Shared/Dropdown";
 import FlashMessages from "@/Shared/FlashMessages";

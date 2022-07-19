@@ -1297,12 +1297,12 @@ select {
   margin-bottom: 0.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .mr-1 {
@@ -1751,14 +1751,6 @@ select {
   border-right-width: 1px;
 }
 
-.border-r-4 {
-  border-right-width: 4px;
-}
-
-.border-r-2 {
-  border-right-width: 2px;
-}
-
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1786,16 +1778,6 @@ select {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-
-.border-l-red-100 {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(254 226 226 / var(--tw-border-opacity));
-}
-
-.border-r-red-100 {
-  --tw-border-opacity: 1;
-  border-right-color: rgb(254 226 226 / var(--tw-border-opacity));
 }
 
 .bg-white {
@@ -1893,11 +1875,6 @@ select {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1940,10 +1917,6 @@ select {
 
 .fill-gray-400 {
   fill: #9ca3af;
-}
-
-.fill-red-600 {
-  fill: #dc2626;
 }
 
 .object-cover {
@@ -2307,11 +2280,6 @@ select {
   color: rgb(7 89 133 / var(--tw-text-opacity));
 }
 
-.text-orange-500 {
-  --tw-text-opacity: 1;
-  color: rgb(249 115 22 / var(--tw-text-opacity));
-}
-
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -2526,14 +2494,14 @@ select {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.hover\:text-orange-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(234 88 12 / var(--tw-text-opacity));
-}
-
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-orange-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
 }
 
 .hover\:text-indigo-600:hover {
@@ -2721,36 +2689,9 @@ select {
   fill: #fff;
 }
 
-.group:hover .group-hover\:fill-red-800 {
-  fill: #991b1b;
-}
-
-.group:hover .group-hover\:fill-red-400 {
-  fill: #f87171;
-}
-
-.group:hover .group-hover\:fill-gray-400 {
-  fill: #9ca3af;
-}
-
 .group:hover .group-hover\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-red-800 {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-red-400 {
-  --tw-text-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 @media (prefers-color-scheme: dark) {

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use voku\helper\ASCII;
 
 class RegistryController extends Controller
 {
@@ -51,21 +52,23 @@ class RegistryController extends Controller
                  'name' => $registry->name,
                  'expiry_days' =>  $expiryDays];
         });
-        $registries2 = $company->registries()->where(['assigned' => true])->get()->map(function ($registry) {
-            return collect($registry->toArray())
-                ->only(['id', 'name'])
-                ->all();
-        });
 
-
+//        'latest_date' => $reports->pluck('reports')->collapse()->pluck('expiry_date'),
+//        'name' => $registry->name,
+//        'expiry_days' =>  Carbon::now()->diffInDays(Carbon::parse($reports->pluck('reports')->collapse()->pluck('expiry_date')), false);
 
         return Inertia::render('User/Pages/Registries/Index', [
             'filters' => $request->all(['search', 'expired']),
-            'reports' => $registriesWithLatestReport,
+
             'company' => $company,
-            'registries' => $company->registries()->where(['assigned' => true])->when($request->input('search'), function ($query, $search) {
+            'registries' => $company->registries()
+                ->where(['assigned' => true])
+                ->with('reports', function($query) use ($company){
+                    return $query->where('company_id', '=', $company->id)->max('expiry_date');
+                })->when($request->input('search'), function ($query, $search) {
 
                 $query->where('name', 'like', '%' . $search . '%');
+
 
             }) ->when($request->input('expired'), function ($query, $expired ) use ( $company) {
                 if ($expired === 'only') {
@@ -80,7 +83,36 @@ class RegistryController extends Controller
                     'id' => $registry->id,
                     'name' => $registry->name,
 
+                    'latest_date' => $registry->reports()->where('company_id', $company->id)->max('expiry_date'),
+                    'expiry_days' =>  Carbon::now()->diffInDays(Carbon::parse($registry->reports()->where('company_id', $company->id)->max('expiry_date')), false)
+
+
                 ])]);
+
+
+
+//        return Inertia::render('User/Pages/Registries/Index', [
+//            'filters' => $request->all(['search', 'expired']),
+//            'reports' => $registriesWithLatestReport,
+//            'company' => $company,
+//            'registries' => $company->registries()->where(['assigned' => true])->when($request->input('search'), function ($query, $search) {
+//
+//                $query->where('name', 'like', '%' . $search . '%');
+//
+//            }) ->when($request->input('expired'), function ($query, $expired ) use ( $company) {
+//                if ($expired === 'only') {
+//
+//
+//                    $query->whereNotIn( 'registries.id', $company->reportsByIds())->orWhereIn( 'registries.id', $company->expiredReports())->groupBy('registries.id');
+//
+//                }
+//            })->paginate(10)
+//                ->withQueryString()
+//                ->through(fn($registry) => [
+//                    'id' => $registry->id,
+//                    'name' => $registry->name,
+//
+//                ])]);
 
 
 
