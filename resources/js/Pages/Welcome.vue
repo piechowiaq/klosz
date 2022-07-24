@@ -3,18 +3,23 @@
 
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
+
+            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline mr-1">
                 Dashboard
             </Link>
+
+            <Link v-if="$page.props.user" :href="route('logout')" method="post" as="button" class="text-sm text-gray-700 underline">
+                Logout
+            </Link>
+
+
 
             <template v-else>
                 <Link :href="route('login')" class="text-sm text-gray-700 underline">
                     Log in
                 </Link>
 
-                <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
-                    Register
-                </Link>
+
             </template>
         </div>
 
@@ -37,7 +42,7 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                Laravel dup has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
                             </div>
                         </div>
                     </div>
