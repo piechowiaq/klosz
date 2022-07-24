@@ -112,7 +112,7 @@
                             <Pagination :links="registries.links"></Pagination>
                         </div>
                     </div>
-{{ registries }}
+
                 </div>
             </div>
 
