@@ -29,10 +29,9 @@
 
         php artisan key:generate
 
-7. Create an empty database for our application
+7. Create an empty database for our application [(Laravel - Database: Getting Started)](https://laravel.com/docs/master/database)
 
-       ['Laravel - Database: Getting Started'](https://laravel.com/docs/master/database)
-
+       
 8. In the .env file, add database information to allow Laravel to connect to the database
 
         DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD
