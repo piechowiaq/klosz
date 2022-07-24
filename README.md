@@ -31,7 +31,7 @@
 
 7. Create an empty database for our application
 
-       [Laravel - Database: Getting Started](https://laravel.com/docs/master/database)
+       ['Laravel - Database: Getting Started'](https://laravel.com/docs/master/database)
 
 8. In the .env file, add database information to allow Laravel to connect to the database
 
