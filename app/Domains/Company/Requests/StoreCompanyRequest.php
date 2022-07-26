@@ -24,7 +24,7 @@ class StoreCompanyRequest extends FormRequest
      * @return array
      * @throws Exception
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],

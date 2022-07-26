@@ -24,7 +24,7 @@ class StoreReportRequest extends FormRequest
      * @return array
      * @throws Exception
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'report_date' => ['required', 'date'],

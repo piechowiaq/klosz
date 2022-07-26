@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use JetBrains\PhpStorm\ArrayShape;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -25,10 +26,10 @@ class UpdateUserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array|string[]
+     * @return array
      * @throws Exception
      */
-    public function rules(): array
+    #[ArrayShape(['name' => "string[]", 'last_name' => "string[]", 'role_id' => "string[]", 'password' => "array", 'email' => "array", 'phone' => "string[]", 'company_ids' => "array", 'company_ids.*' => "string[]"])] public function rules(): array
     {
 
         if (! assert($this->route('user') instanceof User)) {

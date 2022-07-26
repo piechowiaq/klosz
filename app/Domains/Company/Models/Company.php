@@ -36,26 +36,22 @@ class Company extends Model
     }
 
     public function registries(): Relation
-{
-    return $this->belongsToMany(Registry::class)->withPivot('assigned');;
-}
-
-    public function getByUserId(User $user)
     {
-        return $this->users()->get()->find($user)->id;
+        return $this->belongsToMany(Registry::class)->withPivot('assigned');;
     }
 
     public function reports(): Relation
     {
         return $this->hasMany(Report::class);
     }
+
     public function reportsByIds(): \Illuminate\Support\Collection
     {
 
-        return $this->reports()->get('registry_id');
+        return $this->reports()->get(['registry_id']);
     }
 
-    public function expiredReports(): \Illuminate\Database\Eloquent\Collection
+    public function expiredReports(): \Illuminate\Support\Collection
     {
 
         return $this->reports()->whereDate('expiry_date', '<', Carbon::now())->get('registry_id');

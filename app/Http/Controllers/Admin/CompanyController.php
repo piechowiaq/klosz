@@ -19,7 +19,7 @@ class CompanyController extends Controller
     /**
      * @var CompanyService
      */
-    private $companyService;
+    private CompanyService $companyService;
 
     public function __construct(CompanyService $companyService)
     {

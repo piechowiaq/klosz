@@ -27,7 +27,7 @@ class UserService
     }
 
 
-    public function update(User $user, string $name, string $lastName, $password, string $email, string $phone, int $roleId): User
+    public function update(User $user, string $name, string $lastName, string $password, string $email, string $phone, int $roleId): User
     {
 
         $user->name = $name;
@@ -37,7 +37,7 @@ class UserService
         $user->save();
 
         if ($password) {
-            $user->password = Hash::make((string)$password);
+            $user->password = Hash::make($password);
             $user->save();
         }
 

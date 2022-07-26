@@ -35,88 +35,33 @@ class RegistryController extends Controller
      */
     public function index(Request $request, Company $company): Response
     {
-
-
-        $registries = $company->registries()->where(['assigned' => true])->get();
-
-        $registriesWithLatestReport = $registries->map(function ($registry, $key) use ( $company) {
-
-            if (! assert($registry instanceof Registry)) {
-                throw new Exception('Received registry is not the required object');
-            }
-            $latestDate = $registry->reports()->where('company_id', $company->id)->max('expiry_date');
-            $expiryDays = Carbon::now()->diffInDays(Carbon::parse($latestDate), false);
-
-             return [ 'id' => $registry->id,
-                 'latest_date' => $latestDate,
-                 'name' => $registry->name,
-                 'expiry_days' =>  $expiryDays];
-        });
-
-//        'latest_date' => $reports->pluck('reports')->collapse()->pluck('expiry_date'),
-//        'name' => $registry->name,
-//        'expiry_days' =>  Carbon::now()->diffInDays(Carbon::parse($reports->pluck('reports')->collapse()->pluck('expiry_date')), false);
-
-        return Inertia::render('User/Pages/Registries/Index', [
-            'filters' => $request->all(['search', 'expired']),
-
-            'company' => $company,
-            'registries' => $company->registries()
+        $query = $company->registries()
                 ->where(['assigned' => true])
                 ->with('reports', function($query) use ($company){
                     return $query->where('company_id', '=', $company->id)->max('expiry_date');
-                })->when($request->input('search'), function ($query, $search) {
+                });
 
-                $query->where('name', 'like', '%' . $search . '%');
+        if ($request->has('search')){
+            $query->where('name', 'like', '%' .$request->get('search') . '%');
+        }
 
+        if($request->has(['field', 'direction'])){
 
-            }) ->when($request->input('expired'), function ($query, $expired ) use ( $company) {
-                if ($expired === 'only') {
+            $query->orderBy($request->get('field'), $request->get('direction'));
+        }
 
-
-                    $query->whereNotIn( 'registries.id', $company->reportsByIds())->orWhereIn( 'registries.id', $company->expiredReports())->groupBy('registries.id');
-
-                }
-            })->paginate(10)
-                ->withQueryString()
-                ->through(fn($registry) => [
+        return Inertia::render('User/Pages/Registries/Index', [
+            'registries' => $query->paginate(10)
+                ->withQueryString()->through(fn($registry) => [
                     'id' => $registry->id,
                     'name' => $registry->name,
-
                     'latest_date' => $registry->reports()->where('company_id', $company->id)->max('expiry_date'),
                     'expiry_days' =>  Carbon::now()->diffInDays(Carbon::parse($registry->reports()->where('company_id', $company->id)->max('expiry_date')), false)
-
-
-                ])]);
-
-
-
-//        return Inertia::render('User/Pages/Registries/Index', [
-//            'filters' => $request->all(['search', 'expired']),
-//            'reports' => $registriesWithLatestReport,
-//            'company' => $company,
-//            'registries' => $company->registries()->where(['assigned' => true])->when($request->input('search'), function ($query, $search) {
-//
-//                $query->where('name', 'like', '%' . $search . '%');
-//
-//            }) ->when($request->input('expired'), function ($query, $expired ) use ( $company) {
-//                if ($expired === 'only') {
-//
-//
-//                    $query->whereNotIn( 'registries.id', $company->reportsByIds())->orWhereIn( 'registries.id', $company->expiredReports())->groupBy('registries.id');
-//
-//                }
-//            })->paginate(10)
-//                ->withQueryString()
-//                ->through(fn($registry) => [
-//                    'id' => $registry->id,
-//                    'name' => $registry->name,
-//
-//                ])]);
-
-
-
-    }
+                ]),
+            'filters'=> $request->all(['search', 'field', 'direction']),
+            'company' => $company,
+            ]);
+       }
 
     /**
      * Show the form for creating a new resource.
