@@ -35,11 +35,22 @@ class RegistryController extends Controller
      */
     public function index(Request $request, Company $company): Response
     {
-        $query = $company->registries()
-                ->where(['assigned' => true])
-                ->with('reports', function($query) use ($company){
-                    return $query->where('company_id', '=', $company->id)->max('expiry_date');
-                });
+        $query = DB::table('registries')
+            ->join('company_registry', 'registries.id' ,'=', 'company_registry.registry_id')
+            ->where('company_registry.company_id', '=', $company->id)->where('assigned', true)
+            ->leftJoin('reports', function($join){
+                $join->on('registries.id', '=' , 'reports.registry_id');
+            });
+
+//        dd(
+//            DB::table('registries')
+//                ->join('company_registry', 'registries.id' ,'=', 'company_registry.registry_id')
+//                ->where('company_registry.company_id', '=', $company->id)->where('assigned', true)
+//                ->leftJoin('reports', function($join){
+//                $join->on('registries.id', '=' , 'reports.registry_id');
+//            })->orderBy('expiry_date', 'desc')->get());
+
+
 
         if ($request->has('search')){
             $query->where('name', 'like', '%' .$request->get('search') . '%');
@@ -52,12 +63,7 @@ class RegistryController extends Controller
 
         return Inertia::render('User/Pages/Registries/Index', [
             'registries' => $query->paginate(10)
-                ->withQueryString()->through(fn($registry) => [
-                    'id' => $registry->id,
-                    'name' => $registry->name,
-                    'latest_date' => $registry->reports()->where('company_id', $company->id)->max('expiry_date'),
-                    'expiry_days' =>  Carbon::now()->diffInDays(Carbon::parse($registry->reports()->where('company_id', $company->id)->max('expiry_date')), false)
-                ]),
+                ->withQueryString(),
             'filters'=> $request->all(['search', 'field', 'direction']),
             'company' => $company,
             ]);

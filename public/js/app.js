@@ -22223,8 +22223,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     company: Object,
     registries: Object,
-    filters: Object,
-    reports: Array
+    filters: Object
   },
   data: function data() {
     return {
@@ -29623,32 +29622,28 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  colspan: "2",
-  "class": "px-6 pt-6 pb-4"
-}, "Wygasa za", -1
-/* HOISTED */
-);
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "px-6 pt-6 pb-4"
 }, "Pobierz", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "px-6 pt-6 pb-4"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_13 = {
   "class": "border-t"
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   "class": "border-t w-px"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   key: 0
+};
+var _hoisted_16 = {
+  "class": "border-t"
 };
 var _hoisted_17 = {
   "class": "border-t"
@@ -29660,24 +29655,21 @@ var _hoisted_19 = {
   "class": "border-t"
 };
 var _hoisted_20 = {
-  "class": "border-t"
-};
-var _hoisted_21 = {
   key: 0
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "px-6 py-4 border-t",
   colspan: "4"
 }, "No registries found.", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = [_hoisted_22];
-var _hoisted_24 = {
+var _hoisted_22 = [_hoisted_21];
+var _hoisted_23 = {
   "class": "mt-6"
 };
-var _hoisted_25 = {
+var _hoisted_24 = {
   "class": "flex flex-wrap -mb-1"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -29720,13 +29712,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = function ($event) {
           return _ctx.sort('name');
         })
-      }, "Nazwa przeglądu"), _hoisted_10, _hoisted_11, _hoisted_12, _hoisted_13]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.registries.data, function (registry) {
+      }, "Nazwa przeglądu"), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+        colspan: "2",
+        "class": "px-6 pt-6 pb-4",
+        onClick: _cache[3] || (_cache[3] = function ($event) {
+          return _ctx.sort('expiry_date');
+        })
+      }, "Wygasa za"), _hoisted_11, _hoisted_12]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.registries.data, function (registry) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: registry.id,
           "class": "hover:bg-gray-100 focus-within:bg-gray-100"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
-          href: _ctx.route('user.registries.show', [_ctx.company, registry]),
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29737,45 +29734,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           _: 2
           /* DYNAMIC */
 
-        }, 1032
-        /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, [_ctx.expired(registry.expiry_days) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
           name: "expired",
           "class": "block m-auto text-red-500 h-6 w-6"
-        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
-          href: _ctx.route('user.registries.show', [_ctx.company, registry]),
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.expiry_days) + " dni ", 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.expiry_date) + " dni ", 1
             /* TEXT */
             )];
           }),
           _: 2
           /* DYNAMIC */
 
-        }, 1032
-        /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
-          href: _ctx.route('user.registries.show', [_ctx.company, registry]),
           "class": "pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.latest_date), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.expiry_date), 1
             /* TEXT */
             )];
           }),
           _: 2
           /* DYNAMIC */
 
-        }, 1032
-        /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [!_ctx.expired(registry.expiry_days) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [!_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
           key: 0,
           value: "Edit",
-          href: _ctx.route('user.dashboard', [_ctx.company, registry]),
           "class": "hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29784,18 +29778,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               "class": "block m-auto h-6 w-6"
             })];
           }),
-          _: 2
-          /* DYNAMIC */
+          _: 1
+          /* STABLE */
 
-        }, 1032
-        /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_icon, {
+        })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_icon, {
           key: 1,
           name: "download",
           "class": "text-gray-300 block m-auto h-6 w-6"
-        }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           "class": "flex items-center px-4",
-          href: _ctx.route('user.registries.show', [_ctx.company, registry]),
+          href: _ctx.route('user.registries.show', [registry.company_id, 1]),
           tabindex: "-1"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29812,7 +29804,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["href"])])]);
       }), 128
       /* KEYED_FRAGMENT */
-      )), _ctx.registries.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_21, _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+      )), _ctx.registries.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_20, _hoisted_22)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
         links: _ctx.registries.links
       }, null, 8
       /* PROPS */

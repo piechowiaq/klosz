@@ -31,39 +31,39 @@
                             <tr class="text-left font-bold">
                                 <th class="px-6 pt-6 pb-4 w-2/3" @click="sort('name')">Nazwa przeglądu</th>
                                 <th class="px-6 pt-6 pb-4"></th>
-                                <th colspan="2" class="px-6 pt-6 pb-4" >Wygasa za</th>
+                                <th colspan="2" class="px-6 pt-6 pb-4" @click="sort('expiry_date')">Wygasa za</th>
                                 <th class="px-6 pt-6 pb-4">Pobierz</th>
                                 <th class="px-6 pt-6 pb-4"></th>
                             </tr>
                             <tr v-for="registry of registries.data" :key="registry.id"
                                 class="hover:bg-gray-100 focus-within:bg-gray-100">
                                 <td class="border-t">
-                                    <Link value="Edit" :href="route('user.registries.show', [company, registry])"
+                                    <Link value="Edit"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">{{
                                             registry.name
                                         }}
                                     </Link>
                                 </td>
                                 <td class="border-t w-px">
-                                    <div v-if="expired(registry.expiry_days)">
+                                    <div v-if="expired(registry.expiry_date)">
                                         <icon name="expired" class="block m-auto text-red-500 h-6 w-6"/>
                                     </div>
                                 </td>
                                 <td class="border-t" >
-                                    <Link value="Edit" :href="route('user.registries.show', [company, registry])"
+                                    <Link value="Edit"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">
-                                        {{registry.expiry_days }} dni
+                                        {{registry.expiry_date }} dni
                                     </Link>
                                 </td>
                                 <td class="border-t">
-                                    <Link value="Edit" :href="route('user.registries.show', [company, registry])"
+                                    <Link value="Edit"
                                           class="pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500">
-                                        {{ registry.latest_date }}
+                                        {{ registry.expiry_date }}
                                     </Link>
                                 </td>
                                 <td class="border-t">
-                                    <Link value="Edit" v-if="! expired(registry.expiry_days)"
-                                          :href="route('user.dashboard', [company, registry])"
+                                    <Link value="Edit" v-if="! expired(registry.expiry_date)"
+
                                           class=" hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500">
 
                                         <icon name="download" class="block m-auto h-6 w-6 "/>
@@ -74,7 +74,7 @@
                                 </td>
                                 <td class="border-t">
                                     <Link class="flex items-center px-4"
-                                          :href="route('user.registries.show', [company, registry])" tabindex="-1">
+                                          :href="route('user.registries.show', [registry.company_id, 1])" tabindex="-1">
                                         <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
                                     </Link>
                                 </td>
@@ -137,7 +137,7 @@ export default defineComponent({
         company: Object,
         registries: Object,
         filters: Object,
-        reports: Array,
+
 
     },
     data() {
