@@ -22261,6 +22261,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     expired: function expired(registry) {
       return registry <= 0;
+    },
+    daysLeft: function daysLeft(registry) {
+      var today = new Date();
+      var expiryDate = new Date(!registry ? today : registry);
+      var diffTime = Math.abs(expiryDate - today);
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
   }
 }));
@@ -29746,7 +29752,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(registry.expiry_date) + " dni ", 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.daysLeft(registry.expiry_date)) + " dni ", 1
             /* TEXT */
             )];
           }),

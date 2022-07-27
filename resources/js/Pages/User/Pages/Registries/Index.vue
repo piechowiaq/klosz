@@ -56,7 +56,7 @@
                                     <Link value="Edit"
                                           :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">
-                                        {{ registry.expiry_date}} dni
+                                        {{ daysLeft(registry.expiry_date) }} dni
                                     </Link>
                                 </td>
                                 <td class="border-t">
@@ -107,11 +107,11 @@
 
 <script>
 
-import {defineComponent, computed} from 'vue'
-import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
+import {computed, defineComponent} from 'vue'
+import {Link, usePage} from '@inertiajs/inertia-vue3';
 import Layout from "@/Layouts/AppLayout.vue"
 
-import {debounce, mapValues, pickBy, throttle} from "lodash"
+import {mapValues, pickBy, throttle} from "lodash"
 
 
 import Icon from "@/Shared/Icon.vue"
@@ -186,7 +186,13 @@ export default defineComponent({
         expired(registry){
             return registry <= 0
         },
+        daysLeft(registry){
 
+            const today = new Date();
+            const expiryDate = new Date(!registry ? today : registry);
+            const diffTime = Math.abs(expiryDate-today);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+        }
 
     },
 
