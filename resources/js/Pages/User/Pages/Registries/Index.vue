@@ -91,7 +91,7 @@
                             <Pagination :links="registries.links"></Pagination>
                         </div>
                     </div>
-
+{{ registries }}
                 </div>
             </div>
 
@@ -106,7 +106,7 @@ import {defineComponent, computed} from 'vue'
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 import Layout from "@/Layouts/AppLayout.vue"
 
-import {debounce, mapValues} from "lodash"
+import {debounce, mapValues, pickBy, throttle} from "lodash"
 
 
 import Icon from "@/Shared/Icon.vue"
@@ -154,8 +154,11 @@ export default defineComponent({
     watch: {
         form: {
             deep: true,
-            handler: debounce(function () {
-                this.$inertia.get(this.route('user.registries.index', this.company), this.form, {
+            handler: throttle(function () {
+
+                let form = pickBy(this.form);
+
+                this.$inertia.get(this.route('user.registries.index', this.company), form, {
                     preserveState: true,
                     replace: true
                 })

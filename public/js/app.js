@@ -22238,8 +22238,9 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     form: {
       deep: true,
-      handler: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(function () {
-        this.$inertia.get(this.route('user.registries.index', this.company), this.form, {
+      handler: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.throttle)(function () {
+        var form = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.pickBy)(this.form);
+        this.$inertia.get(this.route('user.registries.index', this.company), form, {
           preserveState: true,
           replace: true
         });
@@ -29815,7 +29816,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         links: _ctx.registries.links
       }, null, 8
       /* PROPS */
-      , ["links"])])])])])])];
+      , ["links"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.registries), 1
+      /* TEXT */
+      )])])])];
     }),
     _: 1
     /* STABLE */
