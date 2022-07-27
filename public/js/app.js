@@ -29724,6 +29724,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "hover:bg-gray-100 focus-within:bg-gray-100"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
+          href: _ctx.route('user.registries.show', [registry.company_id, registry.registry_id]),
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29734,13 +29735,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           _: 2
           /* DYNAMIC */
 
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
           name: "expired",
           "class": "block m-auto text-red-500 h-6 w-6"
         })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
+          href: _ctx.route('user.registries.show', [registry.company_id, registry.registry_id]),
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29751,10 +29753,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           _: 2
           /* DYNAMIC */
 
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           value: "Edit",
+          href: _ctx.route('user.registries.show', [registry.company_id, registry.registry_id]),
           "class": "pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29765,11 +29768,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           _: 2
           /* DYNAMIC */
 
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [!_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [!_ctx.expired(registry.expiry_date) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
           key: 0,
           value: "Edit",
+          href: _ctx.route('user.registries.show', [registry.company_id, registry.registry_id]),
           "class": "hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29778,16 +29782,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               "class": "block m-auto h-6 w-6"
             })];
           }),
-          _: 1
-          /* STABLE */
+          _: 2
+          /* DYNAMIC */
 
-        })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_icon, {
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_icon, {
           key: 1,
           name: "download",
           "class": "text-gray-300 block m-auto h-6 w-6"
         }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           "class": "flex items-center px-4",
-          href: _ctx.route('user.registries.show', [registry.company_id, 1]),
+          href: _ctx.route('user.registries.show', [registry.company_id, registry.registry_id]),
           tabindex: "-1"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -29808,9 +29814,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         links: _ctx.registries.links
       }, null, 8
       /* PROPS */
-      , ["links"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.registries), 1
-      /* TEXT */
-      )])])])];
+      , ["links"])])])])])])];
     }),
     _: 1
     /* STABLE */

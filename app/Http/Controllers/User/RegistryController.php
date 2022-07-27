@@ -36,20 +36,9 @@ class RegistryController extends Controller
     public function index(Request $request, Company $company): Response
     {
         $query = DB::table('registries')
+            ->leftjoin('reports', 'registries.id', '=' , 'reports.registry_id')
             ->join('company_registry', 'registries.id' ,'=', 'company_registry.registry_id')
-            ->where('company_registry.company_id', '=', $company->id)->where('assigned', true)
-            ->leftJoin('reports', function($join){
-                $join->on('registries.id', '=' , 'reports.registry_id');
-            });
-
-//        dd(
-//            DB::table('registries')
-//                ->join('company_registry', 'registries.id' ,'=', 'company_registry.registry_id')
-//                ->where('company_registry.company_id', '=', $company->id)->where('assigned', true)
-//                ->leftJoin('reports', function($join){
-//                $join->on('registries.id', '=' , 'reports.registry_id');
-//            })->orderBy('expiry_date', 'desc')->get());
-
+            ->where('company_registry.company_id', '=', $company->id)->where('assigned', true);
 
 
         if ($request->has('search')){
@@ -96,7 +85,8 @@ class RegistryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Company $company
+     * @param Registry $registry
      * @return Response
      */
     public function show(Company $company, Registry $registry)

@@ -37,8 +37,11 @@
                             </tr>
                             <tr v-for="registry of registries.data" :key="registry.id"
                                 class="hover:bg-gray-100 focus-within:bg-gray-100">
+
                                 <td class="border-t">
                                     <Link value="Edit"
+                                          :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
+
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">{{
                                             registry.name
                                         }}
@@ -51,19 +54,21 @@
                                 </td>
                                 <td class="border-t" >
                                     <Link value="Edit"
+                                          :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">
-                                        {{registry.expiry_date }} dni
+                                        {{ registry.expiry_date}} dni
                                     </Link>
                                 </td>
                                 <td class="border-t">
                                     <Link value="Edit"
+                                          :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class="pr-6 py-3 w-auto flex items-center text-sm text-gray-300 focus:text-indigo-500">
                                         {{ registry.expiry_date }}
                                     </Link>
                                 </td>
                                 <td class="border-t">
                                     <Link value="Edit" v-if="! expired(registry.expiry_date)"
-
+                                          :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class=" hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500">
 
                                         <icon name="download" class="block m-auto h-6 w-6 "/>
@@ -74,7 +79,7 @@
                                 </td>
                                 <td class="border-t">
                                     <Link class="flex items-center px-4"
-                                          :href="route('user.registries.show', [registry.company_id, 1])" tabindex="-1">
+                                          :href="route('user.registries.show', [registry.company_id, registry.registry_id])" tabindex="-1">
                                         <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
                                     </Link>
                                 </td>
@@ -91,7 +96,7 @@
                             <Pagination :links="registries.links"></Pagination>
                         </div>
                     </div>
-{{ registries }}
+
                 </div>
             </div>
 
@@ -149,6 +154,7 @@ export default defineComponent({
                 direction: this.filters.direction,
 
             },
+
         }
     },
     watch: {
@@ -179,7 +185,8 @@ export default defineComponent({
         },
         expired(registry){
             return registry <= 0
-        }
+        },
+
 
     },
 
