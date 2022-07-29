@@ -48,7 +48,7 @@
                                     </Link>
                                 </td>
                                 <td class="border-t w-px">
-                                    <div v-if="expired(registry.expiry_date)">
+                                    <div v-if="expired(daysLeftUntilExpiryDate(registry.expiry_date))">
                                         <icon name="expired" class="block m-auto text-red-500 h-6 w-6"/>
                                     </div>
                                 </td>
@@ -67,7 +67,7 @@
                                     </Link>
                                 </td>
                                 <td class="border-t">
-                                    <Link value="Edit" v-if="! expired(registry.expiry_date)"
+                                    <Link value="Edit" v-if="! expired(daysLeftUntilExpiryDate(registry.expiry_date))"
                                           :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class=" hover:bg-indigo-300 px-6 py-3 flex items-center focus:text-indigo-500">
 
@@ -142,19 +142,14 @@ export default defineComponent({
         company: Object,
         registries: Object,
         filters: Object,
-
-
     },
     data() {
         return {
-
             form: {
                 search: this.filters.search,
                 field: this.filters.field,
                 direction: this.filters.direction,
-
             },
-
         }
     },
     watch: {
@@ -190,7 +185,7 @@ export default defineComponent({
 
             const today = new Date();
             const expiryDate = new Date(!expiry_date ? today : expiry_date);
-            const diffTime = Math.abs(expiryDate-today);
+            const diffTime = expiryDate-today;
             return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
         }
 
