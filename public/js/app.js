@@ -22262,9 +22262,9 @@ __webpack_require__.r(__webpack_exports__);
     expired: function expired(registry) {
       return registry <= 0;
     },
-    daysLeft: function daysLeft(registry) {
+    daysLeftUntilExpiryDate: function daysLeftUntilExpiryDate(expiry_date) {
       var today = new Date();
-      var expiryDate = new Date(!registry ? today : registry);
+      var expiryDate = new Date(!expiry_date ? today : expiry_date);
       var diffTime = Math.abs(expiryDate - today);
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
@@ -29704,12 +29704,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         name: "search",
         placeholder: "Search…",
-        "class": "w-full px-6 py-3 rounded-r focus:ring"
+        "class": "w-full px-6 py-3 focus:ring"
       }, null, 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.form.search]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
-        "class": "flex ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500",
+        "class": "flex ml-3 items-center text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500",
         onClick: _cache[1] || (_cache[1] = function ($event) {
           return _ctx.reset();
         })
@@ -29752,7 +29752,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "px-6 py-3 flex items-center focus:text-indigo-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.daysLeft(registry.expiry_date)) + " dni ", 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.daysLeftUntilExpiryDate(registry.expiry_date)) + " dni ", 1
             /* TEXT */
             )];
           }),

@@ -36,13 +36,18 @@ class RegistryController extends Controller
     public function index(Request $request, Company $company): Response
     {
         $query = DB::table('registries')
-            ->leftjoin('reports', 'registries.id', '=' , 'reports.registry_id')
             ->join('company_registry', 'registries.id' ,'=', 'company_registry.registry_id')
-            ->where('company_registry.company_id', '=', $company->id)->where('assigned', true);
-
+            ->where('company_registry.company_id', '=', $company->id)
+            ->where('assigned', true)
+            ->leftjoin('reports', function($join){
+                $join->on('company_registry.registry_id', '=', 'reports.registry_id')
+                     ->on('company_registry.company_id', '=', 'reports.company_id');
+            })
+            ->select('company_registry.registry_id','registries.name', DB::raw('MAX(expiry_date) as expiry_date'),'company_registry.company_id' )
+            ->groupBy('company_registry.registry_id');
 
         if ($request->has('search')){
-            $query->where('name', 'like', '%' .$request->get('search') . '%');
+            $query->where('registries.name', 'like', '%' .$request->get('search') . '%');
         }
 
         if($request->has(['field', 'direction'])){

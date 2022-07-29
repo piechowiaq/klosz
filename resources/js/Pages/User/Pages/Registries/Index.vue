@@ -16,10 +16,10 @@
 
 
                                 <input v-model="form.search" type="text" name="search" placeholder="Search…"
-                                       class="w-full px-6 py-3 rounded-r focus:ring">
+                                       class="w-full px-6 py-3 focus:ring">
                             </div>
                             <button type="button"
-                                    class="flex ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500"
+                                    class="flex ml-3 items-center text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500"
                                     @click="reset()">Reset
                             </button>
                         </div>
@@ -56,7 +56,7 @@
                                     <Link value="Edit"
                                           :href="route('user.registries.show', [registry.company_id, registry.registry_id])"
                                           class="px-6 py-3 flex items-center focus:text-indigo-500">
-                                        {{ daysLeft(registry.expiry_date) }} dni
+                                        {{ daysLeftUntilExpiryDate(registry.expiry_date) }} dni
                                     </Link>
                                 </td>
                                 <td class="border-t">
@@ -186,10 +186,10 @@ export default defineComponent({
         expired(registry){
             return registry <= 0
         },
-        daysLeft(registry){
+        daysLeftUntilExpiryDate(expiry_date){
 
             const today = new Date();
-            const expiryDate = new Date(!registry ? today : registry);
+            const expiryDate = new Date(!expiry_date ? today : expiry_date);
             const diffTime = Math.abs(expiryDate-today);
             return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
         }
