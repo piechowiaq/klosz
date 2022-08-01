@@ -22,7 +22,7 @@ class AuthorizeUserPanelAccess
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->companies()->get()->contains($request->route('company'))) {
 
             return $next($request);
 

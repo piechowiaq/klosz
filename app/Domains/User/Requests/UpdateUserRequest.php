@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['name' => "string[]", 'last_name' => "string[]", 'role_id' => "string[]", 'password' => "array", 'email' => "array", 'phone' => "string[]", 'company_ids' => "array", 'company_ids.*' => "string[]"])] public function rules(): array
+    public function rules(): array
     {
 
         if (! assert($this->route('user') instanceof User)) {
