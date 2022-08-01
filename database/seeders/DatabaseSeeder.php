@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => 'Super Admin'])->id);
 
 
+        $this->call([RegistrySeeder::class
+        ]);
     }
 }

@@ -14,16 +14,18 @@ class RegistryService
     /**
      * @param string $name
      * @param string $description
-     * @param string $valid_for
+     * @param string|int $valid_for
      * @return Registry
      */
-    public function create(string $name, string $description, string $valid_for): Registry
+    public function create(string $name, string $description, string|int $valid_for): Registry
     {
         $registry = new Registry();
         $registry->name = $name;
         $registry->description = $description;
         $registry->valid_for = $valid_for;
         $registry->save();
+
+        $registry->companies()->sync(Company::all());
 
         return $registry;
     }

@@ -47,7 +47,7 @@ class RegistryController extends Controller
                     } elseif ($trashed === 'only') {
                         $query->onlyTrashed();
                     }
-                })->paginate(2)
+                })->paginate(10)
                 ->withQueryString()
                 ->through(fn($registry) => [
                     'id' => $registry->id,
@@ -79,7 +79,6 @@ class RegistryController extends Controller
     {
         $registry = $this->registryService->create($request->get('name'), $request->get('description'), $request->get('valid_for'));
 
-        $registry->companies()->sync(Company::all());
         return Redirect::route('registries.edit', ['registry' => $registry])->with('success', 'Registry created.');
     }
 

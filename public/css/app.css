@@ -1935,6 +1935,10 @@ select {
   fill: #9ca3af;
 }
 
+.fill-blue-500 {
+  fill: #3b82f6;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
