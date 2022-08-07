@@ -14,7 +14,6 @@
                 <table class="w-full whitespace-nowrap">
                     <tr class="text-left font-bold">
                         <th class="px-6 pt-6 pb-4">Name</th>
-                        <th class="px-6 pt-6 pb-4">Description</th>
                         <th class="px-6 pt-6 pb-4">Valid for | months</th>
                     </tr>
                     <tr v-for="registry of registries.data" :key="registry.id"
@@ -24,11 +23,7 @@
                                   class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.name }}
                             </Link>
                         </td>
-                        <td class="border-t">
-                            <Link value="Edit" :href="route('registries.edit', registry)"
-                                  class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.description }}
-                            </Link>
-                        </td>
+
                         <td class="border-t">
                             <Link value="Edit" :href="route('registries.edit', registry)"
                                   class="px-6 py-4 flex items-center focus:text-indigo-500">{{ registry.valid_for }}

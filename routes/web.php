@@ -50,10 +50,11 @@ Route::middleware('admin.authorize')->group(static function (): void {
 
 });
 
+Route::get('/{user}/navigate', [DashboardController::class, 'navigate'])->name('user.navigate');
 
 Route::middleware('user.authorize')->namespace('User')->name('user.')->group(static function (): void {
 
-    Route::get('/{user}/navigate', [DashboardController::class, 'navigate'])->name('navigate');
+
     Route::get('/{company}/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/{company}/registries', [UserRegistryController::class, 'index'])->name('registries.index');
     Route::get('/{company}/registries/{registry}', [UserRegistryController::class, 'show'])->name('registries.show');

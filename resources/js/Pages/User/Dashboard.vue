@@ -1,7 +1,7 @@
 <template>
-    <layout>
+    <layout :company="company" >
         <div class="md:flex md:flex-grow md:overflow-hidden">
-            <user-navigation :company="company"/>
+            <user-navigation :company="company" :companies="companies"/>
             <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto">
                 <h1 class="mb-8 text-3xl font-bold">Dashboard</h1>
                 <p class="mb-8 leading-normal">Czesc there! Welcome to Ping CRM, a demo app designed to help illustrate
@@ -26,6 +26,7 @@ export default {
 
     props: {
         company: Object,
+        companies: Array
     }
 
 }

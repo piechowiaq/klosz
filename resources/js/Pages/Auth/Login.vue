@@ -2,7 +2,7 @@
     <Head title="Login" />
     <div class="flex items-center justify-center p-6 min-h-screen bg-sky-800">
         <div class="w-full max-w-md">
-            <logo height="150" />
+            <logo class="block m-auto" height="150" />
             <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
                 <div class="px-10 py-12">
                     <h1 class="text-center text-3xl font-bold">Welcome!</h1>

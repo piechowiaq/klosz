@@ -1,5 +1,5 @@
 <template>
-    <layout>
+    <layout :company="company">
 
         <div class="md:flex md:flex-grow md:overflow-hidden">
 

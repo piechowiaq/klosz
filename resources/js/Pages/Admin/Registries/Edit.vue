@@ -3,7 +3,7 @@
 
         <div>
             <h1 class="mb-8 font-bold text-3xl">
-                <Link :href="route('registries.index')" class="text-indigo-400 hover:text-indigo-600">Companies</Link>
+                <Link :href="route('registries.index')" class="text-indigo-400 hover:text-indigo-600">Registries</Link>
                 <span class="text-indigo-400 font-medium"> /</span> Edit
             </h1>
             <trashed-message v-if="registry.deleted_at" class="mb-6" @restore="restore(registry)"> This registry has been
@@ -13,7 +13,7 @@
                 <form @submit.prevent="update">
                     <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
                         <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2"
-                                    label="Company Name"/>
+                                    label="Registry Name"/>
                         <text-input v-model="form.description" :error="form.errors.description" class="pb-8 pr-6 w-full lg:w-1/2"
                                     label="Description"/>
                         <text-input v-model="form.valid_for" :error="form.errors.valid_for" class="pb-8 pr-6 w-full lg:w-1/2"

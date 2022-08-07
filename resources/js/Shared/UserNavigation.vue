@@ -9,7 +9,13 @@
         <div class="mb-4">
             <Link :href="route('user.registries.index',this.company)" class="flex items-center group py-3">
                 <icon name="registries" class="w-4 h-4 mr-2 fill-zinc-400 group-hover:fill-white" />
-                <div class="text-zinc-300 group-hover:text-white">Registry</div>
+                <div class="text-zinc-300 group-hover:text-white">Registries</div>
+            </Link>
+        </div>
+        <div v-if="obiekty(companies)" class="mb-4">
+            <Link :href="route('user.navigate',  `${user.id}`)" class="flex items-center group py-3">
+                <icon name="venues" class="w-4 h-4 mr-2 text-zinc-400 group-hover:text-white" />
+                <div class="text-zinc-300 group-hover:text-white">Obiekty</div>
             </Link>
         </div>
 
@@ -18,9 +24,11 @@
 
 <script>
 
-import {Link} from '@inertiajs/inertia-vue3';
-import {defineComponent} from 'vue';
+import {Link, usePage} from '@inertiajs/inertia-vue3';
+
 import Icon from "@/Shared/Icon.vue"
+import {defineComponent, computed} from 'vue'
+import {mapValues} from "lodash";
 
 export default defineComponent( {
     name: "UserNavigation",
@@ -28,9 +36,23 @@ export default defineComponent( {
                 Link,
                 Icon
     },
+
     props: {
         company: Object,
-    }
+        companies: Array
+    },
+    methods:{
+        obiekty(companies) {
+           return companies.length > 1
+        },
+
+
+
+    },
+    setup() {
+        const user = computed(() => usePage().props.value.auth.user)
+        return {user}
+    },
 })
 </script>
 

@@ -107,7 +107,7 @@ export default defineComponent({
         return { user }
     },
     props: {
-
+        company: Object,
     },
 
     components: {
