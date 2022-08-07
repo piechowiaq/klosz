@@ -29,9 +29,21 @@
                     <div class="bg-white shadow overflow-x-auto">
                         <table class="w-full whitespace-nowrap">
                             <tr class="text-left font-bold">
-                                <th class="px-6 pt-6 pb-4 w-2/3" @click="sort('name')">Nazwa przeglądu</th>
+                                <th class="px-6 pt-6 pb-4 w-2/3 flex" @click="sort('name')">
+                                    Nazwa przeglądu
+
+                                    <icon name="sorting" class="block m-auto ml-2 text-gray-300"/>
+
+                                </th>
                                 <th class="px-6 pt-6 pb-4"></th>
-                                <th colspan="2" class="px-6 pt-6 pb-4" @click="sort('expiry_date')">Wygasa za</th>
+                                <th colspan="2" class="px-6 pt-6 pb-4 flex" @click="sort('expiry_date')">
+                                   Wygasa za
+
+                                    <icon name="sorting" class="block m-auto ml-2 text-gray-300 "/>
+
+
+
+                                </th>
                                 <th class="px-6 pt-6 pb-4">Pobierz</th>
                                 <th class="px-6 pt-6 pb-4"></th>
                             </tr>

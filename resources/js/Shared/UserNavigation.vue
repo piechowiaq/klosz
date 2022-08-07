@@ -43,7 +43,7 @@ export default defineComponent( {
     },
     methods:{
         obiekty(companies) {
-           return companies.length > 1
+           return true
         },
 
 

@@ -14,10 +14,11 @@
                     <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
                         <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2"
                                     label="Registry Name"/>
-                        <text-input v-model="form.description" :error="form.errors.description" class="pb-8 pr-6 w-full lg:w-1/2"
-                                    label="Description"/>
                         <text-input v-model="form.valid_for" :error="form.errors.valid_for" class="pb-8 pr-6 w-full lg:w-1/2"
                                     label="Valid for | months"/>
+                        <text-area v-model="form.description" :error="form.errors.description" class="pb-8 pr-6 w-full "
+                                    label="Description"/>
+
                     </div>
                     <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
                         <button v-if="!registry.deleted_at" value="Delete" @click.once="destroy(registry)" tabindex="-1"
@@ -42,10 +43,12 @@ import Layout from "@/Pages/Layout";
 import TextInput from "@/Shared/TextInput";
 import LoadingButton from "@/Shared/LoadingButton";
 import TrashedMessage from "@/Shared/TrashedMessage";
+import TextArea from "@/Shared/TextArea";
 
 export default defineComponent({
     name: 'Admin/Registries/Edit',
     components: {
+        TextArea,
         Layout,
         Link,
         TextInput,
