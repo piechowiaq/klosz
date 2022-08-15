@@ -39,11 +39,12 @@ export default defineComponent( {
 
     props: {
         company: Object,
-        companies: Array
+        companies: Object
     },
     methods:{
         obiekty(companies) {
-           return true
+
+           return companies.length > 1
         },
 
 

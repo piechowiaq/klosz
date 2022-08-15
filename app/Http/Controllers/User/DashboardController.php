@@ -20,7 +20,10 @@ class DashboardController extends Controller
     }
     public function dashboard(Company $company): Response
     {
+
        $companies = Auth::user()->companies()->pluck('company_id');
+
+
 
         return Inertia::render('User/Dashboard', ['company' => $company, 'companies' => $companies]);
     }

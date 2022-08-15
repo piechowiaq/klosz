@@ -46,6 +46,9 @@ class RegistryController extends Controller
             ->select('company_registry.registry_id','registries.name', DB::raw('MAX(expiry_date) as expiry_date'),'company_registry.company_id' )
             ->groupBy('company_registry.registry_id');
 
+
+
+
         if ($request->has('search')){
             $query->where('registries.name', 'like', '%' .$request->get('search') . '%');
         }
@@ -55,11 +58,15 @@ class RegistryController extends Controller
             $query->orderBy($request->get('field'), $request->get('direction'));
         }
 
+        $companies = Auth::user()->companies()->pluck('company_id');
+
         return Inertia::render('User/Pages/Registries/Index', [
             'registries' => $query->paginate(10)
                 ->withQueryString(),
             'filters'=> $request->all(['search', 'field', 'direction']),
             'company' => $company,
+            'companies' => $companies,
+            'countOfUpToDateRegistries' => $query->whereNotNull('expiry_date')->where('expiry_date', '>', Carbon::now() )->count()
             ]);
        }
 
@@ -96,10 +103,14 @@ class RegistryController extends Controller
      */
     public function show(Company $company, Registry $registry)
     {
+        $companies = Auth::user()->companies()->pluck('company_id');
+
         return Inertia::render('User/Pages/Registries/Show', [
             'company' => $company,
             'registry' => $registry,
-            'reports' => $registry->reports()->where('company_id', $company->id)->get()->toArray()
+            'reports' => $registry->reports()->where('company_id', $company->id)->get()->toArray(),
+            'companies' => $companies,
+
         ]);
     }
 
