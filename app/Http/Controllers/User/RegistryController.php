@@ -60,13 +60,15 @@ class RegistryController extends Controller
 
         $companies = Auth::user()->companies()->pluck('company_id');
 
+
+
         return Inertia::render('User/Pages/Registries/Index', [
             'registries' => $query->paginate(10)
                 ->withQueryString(),
             'filters'=> $request->all(['search', 'field', 'direction']),
             'company' => $company,
             'companies' => $companies,
-            'countOfUpToDateRegistries' => $query->whereNotNull('expiry_date')->where('expiry_date', '>', Carbon::now() )->count()
+            'countOfUpToDateRegistries' => $query->whereNotNull('expiry_date')->where('expiry_date', '>', Carbon::now() )->get()->count()
             ]);
        }
 

@@ -29,7 +29,7 @@
                         <div class="text-sm mb-6 mr-6 text-center">
                         <p class="text-red-500">
 
-                            <Doughnut :chart-data="chartData" :width="width" :height="height" />
+                            <DoughnutChart :chart-data="chartData" :chart-options="chartOptions" :width="width" :height="height" />
 
 
                         </p>
@@ -137,7 +137,7 @@
 import {computed, defineComponent} from 'vue'
 import {Link, usePage} from '@inertiajs/inertia-vue3';
 import Layout from "@/Layouts/AppLayout.vue"
-import { Doughnut } from 'vue-chartjs'
+
 
 import {mapValues, pickBy, throttle} from "lodash"
 
@@ -149,9 +149,9 @@ import UserNavigation from "@/Shared/UserNavigation";
 import Banner from '@/Shared/Banner.vue'
 import Dropdown from "@/Shared/Dropdown";
 import FlashMessages from "@/Shared/FlashMessages";
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement)
+import DoughnutChart from "@/Shared/DoughnutChart";
+
 
 export default defineComponent({
     name: 'User/Pages/Registries/Index',
@@ -164,7 +164,7 @@ export default defineComponent({
         Banner,
         Dropdown,
         FlashMessages,
-        Doughnut
+        DoughnutChart
     },
     setup() {
         const user = computed(() => usePage().props.value.auth.user)
@@ -185,17 +185,30 @@ export default defineComponent({
                 direction: this.filters.direction,
             },
             chartData: {
-
+                labels: ['Aktualne', 'Nieaktualne'],
                 datasets: [
                     {
                         label: 'Registries',
-                        backgroundColor: '#f87979',
-                        data: [this.countOfUpToDateRegistries, this.registries.total]
+                        backgroundColor: [ '#9ae6b4', '#FEB2B2',],
+                        data: [this.countOfUpToDateRegistries, this.registries.total],
+                        borderWidth: 0
+
                     }
                 ],
 
             },
-            width: 100,
+            chartOptions: {
+
+
+                            radius: '50%'
+
+
+
+
+
+            },
+
+            width: 120,
             height: 100,
 
 
