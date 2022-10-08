@@ -9,7 +9,7 @@ import { Chart as ChartJS, Title, Tooltip,  BarElement, CategoryScale, LinearSca
 ChartJS.register(Title, Tooltip,  BarElement, CategoryScale, LinearScale, ArcElement)
 
 export default {
-    name: 'BarChart',
+    name: 'DoughnutChart',
     components: {  Doughnut },
     props: {
         chartData: {

@@ -26,13 +26,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-sm mb-6 mr-6 text-center">
-                        <p class="text-red-500">
-
-                            <DoughnutChart :chart-data="chartData" :chart-options="chartOptions" :width="width" :height="height" />
+                        <div class="text-sm   mb-6 px-6 py-4  bg-gray-100 ">
 
 
-                        </p>
+                            <h1 class="mb-2 font-bold text-center ">Status</h1>
+
+
+
+
+                            <div class="flex  justify-between"><div class="flex items-center h-6 w-6 ">{{ this.countOfUpToDateRegistries }}</div><icon name="up-to-date" class="block m-auto text-green-500 h-6 w-6"/></div>
+                            <div class="flex justify-between "><div class="flex items-center h-6 w-6 " > {{this.registries.total - this.countOfUpToDateRegistries}}</div><icon name="expired" class="block m-auto text-red-500 h-6 w-6"/></div>
+
+
+
+                            <!--                            <DoughnutChart :chart-data="chartData" />-->
+
+
 
 
 
@@ -150,7 +159,9 @@ import Banner from '@/Shared/Banner.vue'
 import Dropdown from "@/Shared/Dropdown";
 import FlashMessages from "@/Shared/FlashMessages";
 
-import DoughnutChart from "@/Shared/DoughnutChart";
+
+
+import DoughnutChart from "@/Shared/doughnutChart";
 
 
 export default defineComponent({
@@ -164,7 +175,8 @@ export default defineComponent({
         Banner,
         Dropdown,
         FlashMessages,
-        DoughnutChart
+        DoughnutChart,
+
     },
     setup() {
         const user = computed(() => usePage().props.value.auth.user)
@@ -190,28 +202,16 @@ export default defineComponent({
                     {
                         label: 'Registries',
                         backgroundColor: [ '#9ae6b4', '#FEB2B2',],
-                        data: [this.countOfUpToDateRegistries, this.registries.total],
+                        data: [this.countOfUpToDateRegistries, this.registries.total - this.countOfUpToDateRegistries ],
                         borderWidth: 0
-
                     }
                 ],
-
             },
             chartOptions: {
-
-
-                            radius: '50%'
-
-
-
-
-
+                cutout: 75,
             },
-
             width: 120,
             height: 100,
-
-
         }
     },
     watch: {
