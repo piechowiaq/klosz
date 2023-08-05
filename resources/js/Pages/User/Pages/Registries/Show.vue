@@ -2,7 +2,7 @@
 
     <layout :company="company">
             <div class="md:flex md:flex-grow md:overflow-hidden">
-                <user-navigation :company="company" :companies="company"/>
+                <user-navigation :company="company" :companies="companies"/>
 
 
                 <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" >
