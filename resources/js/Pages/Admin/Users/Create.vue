@@ -35,12 +35,12 @@
 
 <script>
 import {defineComponent, reactive } from 'vue'
-import Layout from "../../Layout";
+import Layout from "../../Layout.vue";
 import { useRemember, useForm } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
-import TextInput from "../../../Shared/TextInput";
-import SelectInput from "../../../Shared/SelectInput";
-import LoadingButton from "../../../Shared/LoadingButton";
+import TextInput from "../../../Shared/TextInput.vue";
+import SelectInput from "../../../Shared/SelectInput.vue";
+import LoadingButton from "../../../Shared/LoadingButton.vue";
 
 export default defineComponent({
     name: 'Admin/Users/Create',

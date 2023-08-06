@@ -30,10 +30,10 @@
 <script>
 import {defineComponent, reactive} from 'vue'
 import {useRemember, useForm, Link} from '@inertiajs/inertia-vue3'
-import Layout from "@/Pages/Layout";
-import TextInput from "@/Shared/TextInput";
-import LoadingButton from "@/Shared/LoadingButton";
-import TextArea from "@/Shared/TextArea";
+import Layout from "@/Pages/Layout.vue";
+import TextInput from "@/Shared/TextInput.vue";
+import LoadingButton from "@/Shared/LoadingButton.vue";
+import TextArea from "@/Shared/TextArea.vue";
 
 export default defineComponent({
     name: 'Admin/Registries/Create',

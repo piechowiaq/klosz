@@ -94,8 +94,8 @@
 import { defineComponent, computed } from 'vue'
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 import Banner from '@/Shared/Banner.vue'
-import Dropdown from "../Shared/Dropdown";
-import FlashMessages from "@/Shared/FlashMessages";
+import Dropdown from "../Shared/Dropdown.vue";
+import FlashMessages from "@/Shared/FlashMessages.vue";
 
 
 export default defineComponent({

@@ -42,11 +42,11 @@
 
 <script>
 import { defineComponent } from 'vue'
-import Layout from "../../Layout";
+import Layout from "../../Layout.vue";
 import Icon from "@/Shared/Icon.vue"
 import {Link} from "@inertiajs/inertia-vue3"
 import Pagination from '@/Shared/Pagination.vue'
-import Search from "@/Shared/Search";
+import Search from "@/Shared/Search.vue";
 import {debounce, mapValues} from "lodash";
 
 export default defineComponent({

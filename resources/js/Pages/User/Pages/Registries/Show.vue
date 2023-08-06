@@ -66,13 +66,13 @@ import {debounce, mapValues} from "lodash"
 
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
-import Search from "@/Shared/Search";
+import Search from "@/Shared/Search.vue";
 
 import Banner from '@/Shared/Banner.vue'
-import Dropdown from "@/Shared/Dropdown";
-import FlashMessages from "@/Shared/FlashMessages";
-import Layout from "@/Layouts/AppLayout";
-import UserNavigation from "@/Shared/UserNavigation";
+import Dropdown from "@/Shared/Dropdown.vue";
+import FlashMessages from "@/Shared/FlashMessages.vue";
+import Layout from "@/Layouts/AppLayout.vue";
+import UserNavigation from "@/Shared/UserNavigation.vue";
 
 export default defineComponent({
     name: 'User/Pages/Registries/Show',

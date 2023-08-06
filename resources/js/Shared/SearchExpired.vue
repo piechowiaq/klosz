@@ -25,7 +25,7 @@
 
 <script>
 import {onUnmounted} from 'vue';
-import Dropdown from "@/Shared/Dropdown";
+import Dropdown from "@/Shared/Dropdown.vue";
 
 
 export default {

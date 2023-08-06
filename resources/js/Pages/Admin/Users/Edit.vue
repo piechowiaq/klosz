@@ -52,13 +52,13 @@
 
 <script>
 import {defineComponent, reactive} from 'vue'
-import Layout from "../../Layout";
+import Layout from "../../Layout.vue";
 import {useRemember, useForm} from '@inertiajs/inertia-vue3'
 import {Head, Link} from "@inertiajs/inertia-vue3";
-import LoadingButton from "@/Shared/LoadingButton";
-import TextInput from "@/Shared/TextInput";
-import SelectInput from "@/Shared/SelectInput";
-import TrashedMessage from "@/Shared/TrashedMessage";
+import LoadingButton from "@/Shared/LoadingButton.vue";
+import TextInput from "@/Shared/TextInput.vue";
+import SelectInput from "@/Shared/SelectInput.vue";
+import TrashedMessage from "@/Shared/TrashedMessage.vue";
 
 export default defineComponent({
     name: 'Admin/Users/Edit',

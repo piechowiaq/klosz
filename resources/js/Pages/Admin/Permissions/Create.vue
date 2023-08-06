@@ -25,9 +25,9 @@
 
 import {defineComponent, reactive} from 'vue'
 import { useRemember, useForm, Link  } from '@inertiajs/inertia-vue3'
-import Layout from "../../Layout";
-import TextInput from "../../../Shared/TextInput";
-import LoadingButton from "../../../Shared/LoadingButton";
+import Layout from "../../Layout.vue";
+import TextInput from "../../../Shared/TextInput.vue";
+import LoadingButton from "../../../Shared/LoadingButton.vue";
 
 export default defineComponent({
     name: 'Admin/Permissions/Create',

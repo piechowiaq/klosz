@@ -56,7 +56,7 @@
 <script>
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 import Banner from '@/Shared/Banner.vue'
-import Dropdown from "@/Shared/Dropdown";
+import Dropdown from "@/Shared/Dropdown.vue";
 import {defineComponent, computed} from 'vue'
 
 
