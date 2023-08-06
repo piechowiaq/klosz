@@ -23,13 +23,6 @@ use Inertia\Inertia;
 |
 */
 
-
-Route::get('/job', function () {
-   \App\Jobs\SayHello::dispatch();
-
-    return Inertia::render('Welcome');
-});
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
