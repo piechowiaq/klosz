@@ -55,10 +55,10 @@
 import {defineComponent} from 'vue'
 import {debounce, mapValues} from "lodash"
 import {Link} from "@inertiajs/inertia-vue3";
-import Layout from "@/Pages/Layout";
+import Layout from "@/Pages/Layout.vue";
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
-import Search from "@/Shared/Search";
+import Search from "@/Shared/Search.vue";
 
 export default defineComponent({
     name: 'Admin/Registries/Index',

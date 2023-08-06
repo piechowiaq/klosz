@@ -32,12 +32,12 @@
 
 
 import {defineComponent, reactive} from 'vue'
-import Layout from "../../Layout";
+import Layout from "../../Layout.vue";
 import { useRemember, useForm  } from '@inertiajs/inertia-vue3'
 import {Link} from "@inertiajs/inertia-vue3";
-import TextInput from "../../../Shared/TextInput";
-import LoadingButton from "../../../Shared/LoadingButton";
-import SelectInput from "../../../Shared/SelectInput";
+import TextInput from "../../../Shared/TextInput.vue";
+import LoadingButton from "../../../Shared/LoadingButton.vue";
+import SelectInput from "../../../Shared/SelectInput.vue";
 
 export default defineComponent({
     name: 'Admin/Roles/Create',

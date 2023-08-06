@@ -47,9 +47,9 @@
 
 <script>
 
-import Layout from '@/Layouts/AppLayout'
-import UserNavigation from "@/Shared/UserNavigation";
-import DoughnutChart from "@/Shared/DoughnutChart";
+import Layout from '@/Layouts/AppLayout.vue'
+import UserNavigation from "@/Shared/UserNavigation.vue";
+import DoughnutChart from "@/Shared/DoughnutChart.vue";
 
 export default {
     components: {

@@ -154,10 +154,10 @@ import {mapValues, pickBy, throttle} from "lodash"
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
 
-import UserNavigation from "@/Shared/UserNavigation";
+import UserNavigation from "@/Shared/UserNavigation.vue";
 import Banner from '@/Shared/Banner.vue'
-import Dropdown from "@/Shared/Dropdown";
-import FlashMessages from "@/Shared/FlashMessages";
+import Dropdown from "@/Shared/Dropdown.vue";
+import FlashMessages from "@/Shared/FlashMessages.vue";
 
 
 

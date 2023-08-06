@@ -43,17 +43,17 @@
 import { defineComponent, computed ,reactive } from 'vue'
 import {Head, Link, usePage} from '@inertiajs/inertia-vue3';
 import { useRemember, useForm  } from '@inertiajs/inertia-vue3'
-import TextInput from "@/Shared/TextInput";
-import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput.vue";
+import LoadingButton from "@/Shared/LoadingButton.vue";
 
 import Icon from "@/Shared/Icon.vue"
 import Pagination from '@/Shared/Pagination.vue'
-import Search from "@/Shared/Search";
+import Search from "@/Shared/Search.vue";
 import Banner from '@/Shared/Banner.vue'
-import Dropdown from "@/Shared/Dropdown";
-import FlashMessages from "@/Shared/FlashMessages";
-import UserNavigation from "@/Shared/UserNavigation";
-import Layout from "@/Layouts/AppLayout";
+import Dropdown from "@/Shared/Dropdown.vue";
+import FlashMessages from "@/Shared/FlashMessages.vue";
+import UserNavigation from "@/Shared/UserNavigation.vue";
+import Layout from "@/Layouts/AppLayout.vue";
 
 export default defineComponent({
     name: 'User/Pages/Registries/Create',
