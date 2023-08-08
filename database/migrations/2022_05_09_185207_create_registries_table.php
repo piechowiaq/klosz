@@ -16,7 +16,7 @@ class CreateRegistriesTable extends Migration
         Schema::create('registries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('valid_for')->nullable();
             $table->softDeletes();
             $table->timestamps();
