@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import {Doughnut} from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip,  BarElement, CategoryScale, LinearScale, ArcElement } from 'chart.js'
 
 ChartJS.register(Title, Tooltip,  BarElement, CategoryScale, LinearScale, ArcElement)
 
 export default {
-    name: 'DoughnutChart',
+
     components: {  Doughnut },
     props: {
         chartData: {
