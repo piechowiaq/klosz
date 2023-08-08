@@ -161,7 +161,7 @@ import FlashMessages from "@/Shared/FlashMessages";
 
 
 
-import DoughnutChart from "@/Shared/doughnutChart";
+import RingChart from "@/Shared/RingChart";
 
 
 export default defineComponent({
@@ -175,7 +175,7 @@ export default defineComponent({
         Banner,
         Dropdown,
         FlashMessages,
-        DoughnutChart,
+        RingChart
 
     },
     setup() {

@@ -8,7 +8,7 @@
                     <div class="w-1/2 rounded-md border shadow mr-2">
                         <div class="flex">
                             <div class="p-8 flex  w-1/2">
-                                <DoughnutChart :chart-data="chartDataRegistries" class="w-full"/>
+                                <RingChart :chart-data="chartDataRegistries" class="w-full"/>
                             </div>
                             <div class="p-8 flex  w-1/2">
                                 <div class="w-full h-full bg-gray-100 flex items-center grid justify-items-center">
@@ -24,7 +24,7 @@
                     <div class="w-1/2 rounded-md border shadow ml-2">
                         <div class="flex">
                             <div class="p-8 flex  w-1/2">
-                                <DoughnutChart :chart-data="chartData" class="w-full"/>
+                                <RingChart :chart-data="chartData" class="w-full"/>
                             </div>
                             <div class="p-8 flex  w-1/2">
                                 <div class="w-full h-full bg-gray-50 flex items-center grid justify-items-center">
@@ -49,13 +49,15 @@
 
 import Layout from '@/Layouts/AppLayout'
 import UserNavigation from "@/Shared/UserNavigation";
-import DoughnutChart from "@/Shared/DoughnutChart";
+
+import RingChart from "@/Shared/RingChart";
 
 export default {
     components: {
+        RingChart,
         Layout,
         UserNavigation,
-        DoughnutChart
+
 
     },
 
