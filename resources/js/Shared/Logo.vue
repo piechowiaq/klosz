@@ -1,16 +1,8 @@
 <template>
 
-    <svg  viewBox="0 0 500 437" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M250.499 52.5903L337.35 245.108H163.647L250.499 52.5903Z" fill="#D9D9D9"/>
-        <path d="M250.499 437L163.647 244.482L337.35 244.482L250.499 437Z" fill="#D9D9D9"/>
-        <g opacity="0.8">
-            <path d="M250.06 52.4288L200.053 255.535L57.764 164.726L250.06 52.4288Z" fill="#D9D9D9"/>
-            <path d="M8.15065 367.319L58.158 164.213L200.447 255.022L8.15065 367.319Z" fill="#D9D9D9"/>
-        </g>
-        <g opacity="0.8">
-            <path d="M250.937 52.4288L443.233 164.726L300.944 255.535L250.937 52.4288Z" fill="#D9D9D9"/>
-            <path d="M492.846 367.319L300.55 255.022L442.839 164.213L492.846 367.319Z" fill="#D9D9D9"/>
-        </g>
-    </svg>
+    <div class="pt-8 sm:pt-0 flex flex-col max-w-md items-center justify-between" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24"><g fill="#4b5563" stroke="#0891b2" class="text-gray-600" stroke-width="1.5"><path d="M12 22c-1.02 0-1.38-.158-2.101-.473C7.239 20.365 3 17.63 3 11.991v-1.574c0-3.198 0-4.797.378-5.334C3.755 4.545 5.258 4.03 8.265 3l.573-.196C10.405 2.268 11.188 2 12 2"/><path d="M12 22c1.02 0 1.38-.158 2.101-.473c2.66-1.162 6.9-3.898 6.9-9.536v-1.574c0-3.198 0-4.797-.378-5.334c-.378-.538-1.881-1.053-4.888-2.082l-.573-.196C13.595 2.268 12.812 2 12 2" opacity=".5"/></g></svg>
+        <p class="ml-2 text-xl font-bold whitespace-nowrap tracking-widest text-gray-600"><span class="text-cyan-600 " >TIMELY</span> RECORD</p>
+    </div>
 
 </template>
