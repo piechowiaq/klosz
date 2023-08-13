@@ -28243,7 +28243,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.remember]]), _hoisted_7])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loading_button, {
     loading: $data.form.processing,
-    "class": "btn-indigo ml-auto",
+    "class": "btn-cyan ml-auto",
     type: "submit"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
