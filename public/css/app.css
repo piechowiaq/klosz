@@ -1265,19 +1265,14 @@ select {
   margin-right: auto;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .-mb-1 {
@@ -1977,11 +1972,6 @@ select {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
-.bg-cyan-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(8 145 178 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -2000,6 +1990,14 @@ select {
 
 .fill-gray-400 {
   fill: #9ca3af;
+}
+
+.fill-gray-500 {
+  fill: #6b7280;
+}
+
+.fill-gray-600 {
+  fill: #4b5563;
 }
 
 .fill-gray-700 {
@@ -2024,6 +2022,14 @@ select {
 
 .fill-zinc-400 {
   fill: #a1a1aa;
+}
+
+.stroke-cyan-600 {
+  stroke: #0891b2;
+}
+
+.stroke-1 {
+  stroke-width: 1;
 }
 
 .object-cover {
@@ -2131,6 +2137,11 @@ select {
   padding-bottom: 2rem;
 }
 
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -2193,6 +2204,10 @@ select {
 
 .text-right {
   text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .font-mono {
@@ -2402,11 +2417,6 @@ select {
   color: rgb(161 161 170 / var(--tw-text-opacity));
 }
 
-.text-orange-600 {
-  --tw-text-opacity: 1;
-  color: rgb(234 88 12 / var(--tw-text-opacity));
-}
-
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -2590,6 +2600,10 @@ select {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:fill-cyan-600:hover {
+  fill: #0891b2;
 }
 
 .hover\:text-gray-400:hover {
