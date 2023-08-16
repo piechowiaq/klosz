@@ -30,6 +30,11 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');;
+
+
 
 Route::middleware('admin.authorize')->group(static function (): void {
     Route::get('/dashboard', function () {

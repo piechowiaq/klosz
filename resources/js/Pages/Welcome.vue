@@ -99,7 +99,9 @@
                 </div>
 
                 <div class="ml-4 text-center text-xs text-gray-500 items-center sm:text-right sm:ml-0 flex">
-                   <p>PL 111 222 33 44</p>
+                    <Link :href="route('contact')"  as="button" class=" text-sm text-gray-700 underline">
+                     contact@timelyrecod.com
+                    </Link>
                 </div>
             </div>
         </div>
