@@ -1717,6 +1717,10 @@ select {
   flex-wrap: wrap;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -2222,6 +2226,10 @@ select {
 
 .text-justify {
   text-align: justify;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .font-mono {
@@ -2875,6 +2883,14 @@ select {
 
 @media (min-width: 640px) {
 
+  .sm\:fixed {
+    position: fixed;
+  }
+
+  .sm\:absolute {
+    position: absolute;
+  }
+
   .sm\:col-span-4 {
     grid-column: span 4 / span 4;
   }
@@ -3069,6 +3085,10 @@ select {
 
 @media (min-width: 768px) {
 
+  .md\:fixed {
+    position: fixed;
+  }
+
   .md\:col-span-1 {
     grid-column: span 1 / span 1;
   }
@@ -3170,6 +3190,10 @@ select {
 
 @media (min-width: 1024px) {
 
+  .lg\:fixed {
+    position: fixed;
+  }
+
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
   }
@@ -3185,6 +3209,13 @@ select {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .xl\:fixed {
+    position: fixed;
   }
 }
 
