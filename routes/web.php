@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RegistryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\RegistryController as UserRegistryController;
 use App\Http\Controllers\User\ReportController;
@@ -29,6 +30,9 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
     ]);
 });
+
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');;
+
 
 Route::get('/contact', function () {
     return Inertia::render('Contact');

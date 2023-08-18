@@ -3,12 +3,13 @@
     <div class="flex items-center justify-center p-6 min-h-screen bg-gray-100 dark:bg-gray-900">
         <div class="w-full max-w-md">
             <Logo class="block m-auto" height="150" />
-            <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="contact">
+            <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="send">
                 <div class="px-10 pt-12">
                     <h1 class="text-center text-3xl font-bold">Contact us!</h1>
                     <div class="mt-6 mx-auto w-24 border-b-2" />
-                    <text-input v-model="form.email" :error="form.errors.email" class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
-                    <text-area v-model="form.message" :error="form.errors.message" class="mt-6" label="Message" type="text" />
+                    <text-input v-model="form.name"  class="mt-10" label="Name" type="text" autofocus/>
+                    <text-input v-model="form.email"  class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
+                    <text-area v-model="form.body"  class="mt-6" label="Message" type="text" />
                 </div>
                 <div>
                     <p class="p-2 text-xs text-center">We will do our best to get back to you within 24h!</p>
@@ -21,34 +22,23 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { Head } from '@inertiajs/inertia-vue3'
 import Logo from '@/Shared/Logo'
 import TextInput from '@/Shared/TextInput'
 import TextArea from '@/Shared/TextArea'
 import LoadingButton from '@/Shared/LoadingButton'
+import { reactive } from 'vue'
+import { router } from '@inertiajs/vue3'
 
-export default {
-    components: {
-        Head,
-        LoadingButton,
-        Logo,
-        TextInput,
-        TextArea,
-    },
-    data() {
-        return {
-            form: this.$inertia.form({
-                email: '',
-                message: '' ,
+const form = reactive({
+    name: '',
+    email: '',
+    body: '',
+})
 
-            }),
-        }
-    },
-    methods: {
-        contact() {
-            console.log("Send contact form")
-        },
-    },
+function send() {
+    router.post('/contact', form)
 }
+
 </script>
