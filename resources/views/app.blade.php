@@ -6,6 +6,9 @@
 
         <title inertia>{{ config('app.name', 'Timely Record') }}</title>
 
+        <link rel="icon" href="{{ asset('storage/favicon.svg')}}" type="image/svg+xml">
+
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 

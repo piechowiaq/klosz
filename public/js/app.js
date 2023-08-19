@@ -26256,7 +26256,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     error: $setup.form.errors.email,
     "class": "mt-2",
-    type: "password",
+    type: "email",
     label: "Email"
   }, null, 8
   /* PROPS */

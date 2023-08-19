@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Responses\LoginResponse;
 use function PHPUnit\Framework\throwException;
+use function Termwind\render;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -70,6 +72,10 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
+
+        Fortify::resetPasswordView(function ($request) {
+            return Inertia::render('../Components/ForgottenPassword', ['request' => $request]);
         });
     }
 }

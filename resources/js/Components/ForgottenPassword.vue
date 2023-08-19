@@ -31,7 +31,7 @@ const submit = () => {
             <div class="mx-12">
                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm text-justify"
                 >
-                    <TextInput v-model="form.email" :error="form.errors.email" class="mt-2" type="password" label="Email"/>
+                    <TextInput v-model="form.email" :error="form.errors.email" class="mt-2" type="email" label="Email"/>
                     <p class="p-2 text-xs text-center">
                         Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one. 24h!
                     </p>
