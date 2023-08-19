@@ -12,9 +12,8 @@ const form = useForm({
     body: null,
 })
 
-
 const login = () => {
-   form.post('/login')
+   form.post(route('login'))
 }
 
 </script>
@@ -46,7 +45,7 @@ const login = () => {
                     <div class="justify-between flex mt-2">
                         <label> Password </label>
 
-                        <button @click="$emit('setStatus', 'forgottenPassword')" class="text-xs underline">Forgotten Password?</button>
+                        <button @click="$emit('setStatus', 'forgottenPassword'); form.cancel()" class="text-xs underline">Forgotten Password?</button>
                     </div>
                     <TextInput v-model="form.password" :error="form.errors.password" class="mt-2" type="password"/>
                     <Label class="py-2 text-xs flex items-center  select-none" for="remember">

@@ -13,7 +13,7 @@ const form = useForm({
 })
 
 const send = () => {
-    form.post('/contact')
+    form.post(route('contact.send'))
 }
 
 </script>

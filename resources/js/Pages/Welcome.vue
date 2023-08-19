@@ -74,7 +74,7 @@ const setStatus = (newStatus) => {
 
             <div class="mt-8   overflow-hidden ">
                 <Contact v-if="active === 'contact'" @set-status="setStatus"></Contact>
-                <ForgottenPassword v-else-if="active === 'forgottenPassword'"></ForgottenPassword>
+                <ForgottenPassword v-else-if="active === 'forgottenPassword'" @set-status="setStatus"></ForgottenPassword>
                 <PasswordReset v-else-if="active === 'passwordReset'"></PasswordReset>
                 <Login v-else-if="active === 'login'" @set-status="setStatus" ></Login>
 
