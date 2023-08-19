@@ -38,12 +38,16 @@ class ContactMail extends Mailable
     /**
      * Get the message content definition.
      *
-     * @return \Illuminate\Mail\Mailables\Content
+     * @return Content
      */
     public function content()
     {
         return new Content(
             markdown: 'emails.contact',
+            with: [
+                'name' => $this->name,
+                'body' => $this->body,
+            ],
         );
     }
 

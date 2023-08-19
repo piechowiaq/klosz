@@ -14,6 +14,6 @@ class ContactController extends Controller
     {
         Mail::to('contact@timelyrecord.com')->send(new ContactMail($request->name, $request->email, $request->body));
 
-        return Inertia::render('Welcome');
+        return to_route('welcome');
     }
 }

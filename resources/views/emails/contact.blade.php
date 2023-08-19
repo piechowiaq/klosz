@@ -1,12 +1,8 @@
 <x-mail::message>
-# Introduction
+# Contact From - {{$name}}
 
-The body of your message.
+    {{$body}}
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+#Sender Email - {{$email}}
 
-Thanks,<br>
-{{ config('app.name') }}
 </x-mail::message>

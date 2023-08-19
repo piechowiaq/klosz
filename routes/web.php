@@ -29,10 +29,13 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
     ]);
-});
+})->name('welcome');
 
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');;
 
+Route::get('/test', function (){
+    return Inertia::render('Test');
+});
 
 Route::get('/contact', function () {
     return Inertia::render('Contact');

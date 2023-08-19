@@ -8,7 +8,9 @@
                     <h1 class="text-center text-3xl font-bold">Contact us!</h1>
                     <div class="mt-6 mx-auto w-24 border-b-2" />
                     <text-input v-model="form.name"  class="mt-10" label="Name" type="text" autofocus/>
-                    <text-input v-model="form.email"  class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
+                    <div v-if="form.errors.name">{{ form.errors.name }}</div>
+                    <text-input v-model="form.email"  class="mt-10" label="Email" type="text" autofocus autocapitalize="off" />
+                    <div v-if="form.errors.name">{{ form.errors.email }}</div>
                     <text-area v-model="form.body"  class="mt-6" label="Message" type="text" />
                 </div>
                 <div>
@@ -29,9 +31,9 @@ import TextInput from '@/Shared/TextInput'
 import TextArea from '@/Shared/TextArea'
 import LoadingButton from '@/Shared/LoadingButton'
 import { reactive } from 'vue'
-import { router } from '@inertiajs/vue3'
+import {router, useForm} from '@inertiajs/vue3'
 
-const form = reactive({
+const form = useForm({
     name: '',
     email: '',
     body: '',
