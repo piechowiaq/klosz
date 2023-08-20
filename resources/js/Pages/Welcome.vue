@@ -1,24 +1,21 @@
 <script setup>
 
 import {Head, Link} from '@inertiajs/inertia-vue3';
-
-import {ref} from 'vue';
+import { ref} from 'vue';
 import Contact from "@/Components/Contact";
 import Login from "@/Components/Login";
 import PasswordReset from "@/Components/PasswordReset";
 import ForgottenPassword from "@/Components/ForgottenPassword";
 
-const props = defineProps({
-    canLogin: Boolean
+defineProps({
+    canLogin: Boolean,
 })
 
-const active = ref(null);
+const active = ref('')
 
 const setStatus = (newStatus) => {
 
     active.value = newStatus;
-
-    console.log(active.value)
 
 }
 

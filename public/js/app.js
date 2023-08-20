@@ -25474,16 +25474,13 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var props = __props;
-    var active = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var active = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
 
     var setStatus = function setStatus(newStatus) {
       active.value = newStatus;
-      console.log(active.value);
     };
 
     var __returned__ = {
-      props: props,
       active: active,
       setStatus: setStatus,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,

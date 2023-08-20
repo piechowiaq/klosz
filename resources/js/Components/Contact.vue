@@ -19,6 +19,7 @@ const send = () => {
 </script>
 
 <template>
+
     <div class=" lg:flex lg:justify-center grid grid-cols-1">
         <div class="p-6 lg:w-1/2 bg-white dark:bg-gray-800 shadow rounded-lg">
             <div class="flex justify-between">
@@ -48,6 +49,7 @@ const send = () => {
             </div>
         </div>
     </div>
+
 </template>
 
 <style scoped>
