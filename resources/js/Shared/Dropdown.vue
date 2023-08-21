@@ -18,7 +18,6 @@ import { Link } from '@inertiajs/inertia-vue3';
 import { usePage } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
-    name: 'Dropdown',
 
     setup() {
         const user = computed(() => usePage().props.value.auth.user)
