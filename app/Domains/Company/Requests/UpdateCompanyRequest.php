@@ -30,7 +30,6 @@ class UpdateCompanyRequest extends FormRequest
         if (! assert($this->route('company') instanceof Company)) {
             throw new Exception('Received company is not the required object');
         }
-
         return [
             'name' => ['required', 'string' , 'max:255'],
             'city' => ['required', 'string' , 'max:255'],
